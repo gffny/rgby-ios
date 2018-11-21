@@ -11,51 +11,29 @@ import UIKit
 class RGBYFieldView: UIView {
 
     // state { field location input, event type input, event result input }
-    var state: FieldViewInput
-    var location: CGPoint
+    var fieldLocation: CGPoint
 
     // initialiser
     override init(frame: CGRect) {
-        state = FieldViewInput.FIELD_LOCATION
-        location = CGPoint.init(x: 0, y: 0)
-        super.init(frame: frame)
-    }
-
-    init(frame: CGRect, fieldViewInput: FieldViewInput) {
-        self.state = fieldViewInput
-        location = CGPoint.init(x: 0, y: 0)
+        fieldLocation = CGPoint.init(x: 0, y: 0)
         super.init(frame: frame)
     }
 
     required init?(coder aDecoder: NSCoder) {
-        state = FieldViewInput.FIELD_LOCATION
-        location = CGPoint.init(x: 0, y: 0)
+        fieldLocation = CGPoint.init(x: 0, y: 0)
         super.init(coder: aDecoder)
     }
     
     func loadEventTypeDisplayInput() {
         //
-        state = FieldViewInput.EVENT_TYPE
     }
  
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
-        // FIELD_LOCATION?
-            // get the location
-            // switch the display
         //
-        if state == FieldViewInput.FIELD_LOCATION {
-            if let touch = touches.first {
-                location = touch.location(in: self)
-            }
-            super.touchesBegan(touches, with: event)
-            loadEventTypeDisplayInput()
+        if let touch = touches.first {
+            fieldLocation = touch.location(in: self)
         }
+        super.touchesBegan(touches, with: event)
+        loadEventTypeDisplayInput()
     }
-}
-
-enum FieldViewInput {
-    case FIELD_LOCATION
-    case EVENT_TYPE
-    case EVENT_RESULT
 }
