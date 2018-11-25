@@ -15,7 +15,7 @@ class RGBYTeamListView: UIView {
     
     @IBOutlet weak var contentView: UIView!
 
-    @IBOutlet weak var teamNameLabel: UILabel!
+    @IBOutlet weak var teamTitleLabel: UILabel!
     @IBOutlet weak var unknownPlayer: UIButton!
 
     // forwards
@@ -62,6 +62,7 @@ class RGBYTeamListView: UIView {
         number13.player = squad._outsideCenter
         number14.player = squad._rightWing
         number15.player = squad._fullback
+        teamTitleLabel.text = squad._teamTitle
     }
 }
 

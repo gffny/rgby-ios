@@ -27,7 +27,7 @@
                 <outlet property="number7" destination="2Mg-5n-R3n" id="oQM-Xa-LpA"/>
                 <outlet property="number8" destination="juQ-Sa-fL1" id="h3T-ji-8jc"/>
                 <outlet property="number9" destination="PZb-Tw-dGN" id="2PY-3l-N00"/>
-                <outlet property="teamNameLabel" destination="QlQ-vc-pgc" id="cDh-XE-g7E"/>
+                <outlet property="teamTitleLabel" destination="QlQ-vc-pgc" id="cDh-XE-g7E"/>
                 <outlet property="unknownPlayer" destination="b0l-W4-pxS" id="5Jp-tk-oUi"/>
             </connections>
         </placeholder>

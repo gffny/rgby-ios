@@ -14,7 +14,6 @@ class RGBYInMatchTackleInputViewController:  UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        teamListView.teamNameLabel.text = "MIT Rugby Team Label"
         teamListView.setTeam(squad: RGBYMatchDetail.sharedInstance.myTeamMatchDaySquad)
     }
 }

@@ -10,6 +10,7 @@ import Foundation
 
 class RGBYMatchDaySquad {
     
+    var _teamTitle: String?
     var _looseHeadProp: RGBYMatchDaySquadMember
     var _hooker: RGBYMatchDaySquadMember
     var _tightHeadProp: RGBYMatchDaySquadMember
@@ -29,7 +30,7 @@ class RGBYMatchDaySquad {
     var _subbedPlayers: [RGBYMatchDaySquadMember]
     var _bloodBin: [RGBYMatchDaySquadMember]
     
-    init(looseHeadProp: RGBYMatchDaySquadMember, hooker: RGBYMatchDaySquadMember, tightHeadProp: RGBYMatchDaySquadMember, looseHeadSecondRow: RGBYMatchDaySquadMember, tightHeadSecondRow: RGBYMatchDaySquadMember, blindSideFlanker: RGBYMatchDaySquadMember, opensideFlanker: RGBYMatchDaySquadMember, number8: RGBYMatchDaySquadMember, scrumHalf: RGBYMatchDaySquadMember, outHalf: RGBYMatchDaySquadMember, leftWing: RGBYMatchDaySquadMember, insideCenter: RGBYMatchDaySquadMember, outsideCenter: RGBYMatchDaySquadMember, rightWing: RGBYMatchDaySquadMember, fullback: RGBYMatchDaySquadMember, subsitutes: [RGBYMatchDaySquadMember]) {
+    init(looseHeadProp: RGBYMatchDaySquadMember, hooker: RGBYMatchDaySquadMember, tightHeadProp: RGBYMatchDaySquadMember, looseHeadSecondRow: RGBYMatchDaySquadMember, tightHeadSecondRow: RGBYMatchDaySquadMember, blindSideFlanker: RGBYMatchDaySquadMember, opensideFlanker: RGBYMatchDaySquadMember, number8: RGBYMatchDaySquadMember, scrumHalf: RGBYMatchDaySquadMember, outHalf: RGBYMatchDaySquadMember, leftWing: RGBYMatchDaySquadMember, insideCenter: RGBYMatchDaySquadMember, outsideCenter: RGBYMatchDaySquadMember, rightWing: RGBYMatchDaySquadMember, fullback: RGBYMatchDaySquadMember, subsitutes: [RGBYMatchDaySquadMember], teamTitle: String?) {
         _looseHeadProp = looseHeadProp
         _hooker = hooker
         _tightHeadProp = tightHeadProp
@@ -48,14 +49,15 @@ class RGBYMatchDaySquad {
         _subsitutes = subsitutes
         _subbedPlayers = [RGBYMatchDaySquadMember]()
         _bloodBin = [RGBYMatchDaySquadMember]()
+        _teamTitle = teamTitle
     }
-    
+
     var listTeam: [RGBYMatchDaySquadMember] {
         get {
             return [_looseHeadProp, _hooker, _tightHeadProp, _looseHeadSecondRow, _tightHeadSecondRow, _blindSideFlanker, _opensideFlanker, _number8, _scrumHalf, _outHalf, _leftWing, _insideCenter, _outsideCenter, _rightWing, _fullback];
         }
     }
-    
+
     var looseHeadProp: RGBYMatchDaySquadMember {
         get {
             return _looseHeadProp

@@ -46,7 +46,8 @@ class RGBYMatchDetail {
                 RGBYMatchDaySquadMember(player: RGBYPlayer(firstName: "Luke", lastName: "McGrath", preferredPosition: .SCRUM_HALF), squadNumber: 21),
                 RGBYMatchDaySquadMember(player: RGBYPlayer(firstName: "Joey", lastName: "Carbery", preferredPosition: .OUT_HALF), squadNumber: 22),
                 RGBYMatchDaySquadMember(player: RGBYPlayer(firstName: "Jordan", lastName: "Larmour", preferredPosition: .FULLBACK), squadNumber: 23)
-            ])
+            ],
+            teamTitle: "MIT RFC vs New Zealand")
     }
 
     var myTeamScore: Int {

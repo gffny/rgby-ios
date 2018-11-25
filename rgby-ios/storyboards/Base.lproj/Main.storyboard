@@ -1613,7 +1613,6 @@
                             </label>
                             <view contentMode="bottomRight" translatesAutoresizingMaskIntoConstraints="NO" id="Zs1-vW-Zxo" customClass="RGBYTeamListView" customModule="rgby_ios" customModuleProvider="target">
                                 <rect key="frame" x="275" y="145" width="729" height="603"/>
-                                <color key="backgroundColor" red="0.66666668650000005" green="0.069611343640000004" blue="0.034837604219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2hC-UE-WOh">
                                 <rect key="frame" x="20" y="145" width="250" height="603"/>
