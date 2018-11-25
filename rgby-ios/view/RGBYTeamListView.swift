@@ -9,10 +9,12 @@
 import UIKit
 
 @IBDesignable
-class RGBYTeamListView: UIView {
+class RGBYTeamListView: UIControl {
     
     let nibName = "RGBYTeamListView"
-    
+
+    var selectedPlayer: RGBYMatchDaySquadMember?
+
     @IBOutlet weak var contentView: UIView!
 
     @IBOutlet weak var teamTitleLabel: UILabel!
@@ -44,6 +46,21 @@ class RGBYTeamListView: UIView {
         contentView.frame = bounds
         contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         addSubview(contentView)
+        number1.addTarget(self, action: #selector(playerSelected(button:)), for: .touchUpInside)
+        number2.addTarget(self, action: #selector(playerSelected(button:)), for: .touchUpInside)
+        number3.addTarget(self, action: #selector(playerSelected(button:)), for: .touchUpInside)
+        number4.addTarget(self, action: #selector(playerSelected(button:)), for: .touchUpInside)
+        number5.addTarget(self, action: #selector(playerSelected(button:)), for: .touchUpInside)
+        number6.addTarget(self, action: #selector(playerSelected(button:)), for: .touchUpInside)
+        number7.addTarget(self, action: #selector(playerSelected(button:)), for: .touchUpInside)
+        number8.addTarget(self, action: #selector(playerSelected(button:)), for: .touchUpInside)
+        number9.addTarget(self, action: #selector(playerSelected(button:)), for: .touchUpInside)
+        number10.addTarget(self, action: #selector(playerSelected(button:)), for: .touchUpInside)
+        number11.addTarget(self, action: #selector(playerSelected(button:)), for: .touchUpInside)
+        number12.addTarget(self, action: #selector(playerSelected(button:)), for: .touchUpInside)
+        number13.addTarget(self, action: #selector(playerSelected(button:)), for: .touchUpInside)
+        number14.addTarget(self, action: #selector(playerSelected(button:)), for: .touchUpInside)
+        number15.addTarget(self, action: #selector(playerSelected(button:)), for: .touchUpInside)
     }
 
     func setTeam(squad: RGBYMatchDaySquad) {
@@ -66,23 +83,19 @@ class RGBYTeamListView: UIView {
         number14.player = squad._rightWing
         number15.player = squad._fullback
     }
-    
-    func addTarget(target: Any?, actionSelector: Selector, forEvent: UIControl.Event) {
-        number1.addTarget(target, action: actionSelector, for: forEvent)
-        number2.addTarget(target, action: actionSelector, for: forEvent)
-        number3.addTarget(target, action: actionSelector, for: forEvent)
-        number4.addTarget(target, action: actionSelector, for: forEvent)
-        number5.addTarget(target, action: actionSelector, for: forEvent)
-        number6.addTarget(target, action: actionSelector, for: forEvent)
-        number7.addTarget(target, action: actionSelector, for: forEvent)
-        number8.addTarget(target, action: actionSelector, for: forEvent)
-        number9.addTarget(target, action: actionSelector, for: forEvent)
-        number10.addTarget(target, action: actionSelector, for: forEvent)
-        number11.addTarget(target, action: actionSelector, for: forEvent)
-        number12.addTarget(target, action: actionSelector, for: forEvent)
-        number13.addTarget(target, action: actionSelector, for: forEvent)
-        number14.addTarget(target, action: actionSelector, for: forEvent)
-        number15.addTarget(target, action: actionSelector, for: forEvent)
-    }
 }
 
+extension RGBYTeamListView {
+
+    //MARK: MAIN ACTION: .valueChanged
+    fileprivate func performAction() {
+        sendActions(for: .valueChanged)
+    }
+    
+    //MARK: CHANGING APPEREANCE OF BUTTON ON TAP
+    @objc fileprivate func playerSelected(button: RGBYPlayerButton) {
+        // maybe handle some styling here if need be for the button tapping
+        selectedPlayer = button.player
+        self.performAction()
+    }
+}

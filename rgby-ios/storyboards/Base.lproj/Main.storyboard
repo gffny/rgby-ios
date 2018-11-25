@@ -1613,6 +1613,9 @@
                             </label>
                             <view contentMode="bottomRight" translatesAutoresizingMaskIntoConstraints="NO" id="Zs1-vW-Zxo" customClass="RGBYTeamListView" customModule="rgby_ios" customModuleProvider="target">
                                 <rect key="frame" x="275" y="145" width="729" height="603"/>
+                                <connections>
+                                    <action selector="handlePlayerSelected:" destination="cus-da-OQ3" eventType="valueChanged" id="KMq-0D-InD"/>
+                                </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2hC-UE-WOh">
                                 <rect key="frame" x="20" y="145" width="250" height="603"/>

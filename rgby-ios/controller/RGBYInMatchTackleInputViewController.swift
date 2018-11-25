@@ -11,16 +11,15 @@ import UIKit
 class RGBYInMatchTackleInputViewController:  UIViewController {
 
     @IBOutlet weak var teamListView: RGBYTeamListView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         teamListView.setTeam(squad: RGBYMatchDetail.sharedInstance.myTeamMatchDaySquad)
-        teamListView.addTarget(target: self, actionSelector: #selector(self.handleValueChanged(_:)), forEvent: .touchDown)
     }
 
-    @objc func handleValueChanged(_ sender:RGBYPlayerButton) {
-        
-
+    @IBAction func handlePlayerSelected(_ sender: RGBYTeamListView) {
+        if let playerValue = sender.selectedPlayer {
+            print(playerValue._squadNumber)
+        }
     }
-    
 }
