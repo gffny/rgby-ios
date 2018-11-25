@@ -22,30 +22,30 @@ class RGBYMatchDetail {
     
     init() {
         _myTeamMatchDaySquad = RGBYMatchDaySquad(
-            looseHeadProp: RGBYPlayer(firstName: "Cian", lastName: "Healy", preferredPosition: .LOOSE_HEAD_PROP),
-            hooker: RGBYPlayer(firstName: "Rory", lastName: "Best", preferredPosition: .HOOKER),
-            tightHeadProp: RGBYPlayer(firstName: "Tadhg", lastName: "Furlong", preferredPosition: .TIGHT_HEAD_PROP),
-            looseHeadSecondRow: RGBYPlayer(firstName: "James", lastName: "Ryan", preferredPosition: .SECOND_ROW),
-            tightHeadSecondRow: RGBYPlayer(firstName: "Devin", lastName: "Toner", preferredPosition: .SECOND_ROW),
-            blindSideFlanker: RGBYPlayer(firstName: "Peter", lastName: "O'Mahoney", preferredPosition: .BLINDSIDE_FLANKER),
-            opensideFlanker: RGBYPlayer(firstName: "Dan", lastName: "Leavy", preferredPosition: .OPENSIDE_FLANKER),
-            number8: RGBYPlayer(firstName: "CJ", lastName: "Stander", preferredPosition: .NUMBER_8),
-            scrumHalf: RGBYPlayer(firstName: "Kieran", lastName: "Marmion", preferredPosition: .SCRUM_HALF),
-            outHalf: RGBYPlayer(firstName: "Johnny", lastName: "Sexton", preferredPosition: .OUT_HALF),
-            leftWing: RGBYPlayer(firstName: "Jacob", lastName: "Stockdale", preferredPosition: .LEFT_WING),
-            insideCenter: RGBYPlayer(firstName: "Bundee", lastName: "Aki", preferredPosition: .INSIDE_CENTER),
-            outsideCenter: RGBYPlayer(firstName: "Gary", lastName: "Ringrose", preferredPosition: .OUTSIDE_CENTER),
-            rightWing: RGBYPlayer(firstName: "Keith", lastName: "Earls", preferredPosition: .RIGHT_WING),
-            fullback: RGBYPlayer(firstName: "Rob", lastName: "Kearney", preferredPosition: .FULLBACK),
+            looseHeadProp: RGBYMatchDaySquadMember(player: RGBYPlayer(firstName: "Cian", lastName: "Healy", preferredPosition: .LOOSE_HEAD_PROP), squadNumber: 1),
+            hooker: RGBYMatchDaySquadMember(player: RGBYPlayer(firstName: "Rory", lastName: "Best", preferredPosition: .HOOKER), squadNumber: 2),
+            tightHeadProp: RGBYMatchDaySquadMember(player: RGBYPlayer(firstName: "Tadhg", lastName: "Furlong", preferredPosition: .TIGHT_HEAD_PROP), squadNumber: 3),
+            looseHeadSecondRow: RGBYMatchDaySquadMember(player: RGBYPlayer(firstName: "James", lastName: "Ryan", preferredPosition: .SECOND_ROW), squadNumber: 4),
+            tightHeadSecondRow: RGBYMatchDaySquadMember(player: RGBYPlayer(firstName: "Devin", lastName: "Toner", preferredPosition: .SECOND_ROW), squadNumber: 5),
+            blindSideFlanker: RGBYMatchDaySquadMember(player: RGBYPlayer(firstName: "Peter", lastName: "O'Mahoney", preferredPosition: .BLINDSIDE_FLANKER), squadNumber: 6),
+            opensideFlanker: RGBYMatchDaySquadMember(player: RGBYPlayer(firstName: "Dan", lastName: "Leavy", preferredPosition: .OPENSIDE_FLANKER), squadNumber: 7),
+            number8: RGBYMatchDaySquadMember(player: RGBYPlayer(firstName: "CJ", lastName: "Stander", preferredPosition: .NUMBER_8), squadNumber: 8),
+            scrumHalf: RGBYMatchDaySquadMember(player: RGBYPlayer(firstName: "Kieran", lastName: "Marmion", preferredPosition: .SCRUM_HALF), squadNumber: 9),
+            outHalf: RGBYMatchDaySquadMember(player: RGBYPlayer(firstName: "Johnny", lastName: "Sexton", preferredPosition: .OUT_HALF), squadNumber: 10),
+            leftWing: RGBYMatchDaySquadMember(player: RGBYPlayer(firstName: "Jacob", lastName: "Stockdale", preferredPosition: .LEFT_WING), squadNumber: 11),
+            insideCenter: RGBYMatchDaySquadMember(player: RGBYPlayer(firstName: "Bundee", lastName: "Aki", preferredPosition: .INSIDE_CENTER), squadNumber: 12),
+            outsideCenter: RGBYMatchDaySquadMember(player: RGBYPlayer(firstName: "Gary", lastName: "Ringrose", preferredPosition: .OUTSIDE_CENTER), squadNumber: 13),
+            rightWing: RGBYMatchDaySquadMember(player: RGBYPlayer(firstName: "Keith", lastName: "Earls", preferredPosition: .RIGHT_WING), squadNumber: 14),
+            fullback: RGBYMatchDaySquadMember(player: RGBYPlayer(firstName: "Rob", lastName: "Kearney", preferredPosition: .FULLBACK), squadNumber: 15),
             subsitutes: [
-                RGBYPlayer(firstName: "Seán", lastName: "Cronin", preferredPosition: .HOOKER),
-                RGBYPlayer(firstName: "Jack", lastName: "McGrath", preferredPosition: .LOOSE_HEAD_PROP),
-                RGBYPlayer(firstName: "Andrew", lastName: "Porter", preferredPosition: .TIGHT_HEAD_PROP),
-                RGBYPlayer(firstName: "Iain", lastName: "Henderson", preferredPosition: .SECOND_ROW),
-                RGBYPlayer(firstName: "Josh", lastName: "van der Flier", preferredPosition: .OPENSIDE_FLANKER),
-                RGBYPlayer(firstName: "Luke", lastName: "McGrath", preferredPosition: .SCRUM_HALF),
-                RGBYPlayer(firstName: "Joey", lastName: "Carbery", preferredPosition: .OUT_HALF),
-                RGBYPlayer(firstName: "Jordan", lastName: "Larmour", preferredPosition: .FULLBACK)
+                RGBYMatchDaySquadMember(player: RGBYPlayer(firstName: "Seán", lastName: "Cronin", preferredPosition: .HOOKER), squadNumber: 16),
+                RGBYMatchDaySquadMember(player: RGBYPlayer(firstName: "Jack", lastName: "McGrath", preferredPosition: .LOOSE_HEAD_PROP), squadNumber: 17),
+                RGBYMatchDaySquadMember(player: RGBYPlayer(firstName: "Andrew", lastName: "Porter", preferredPosition: .TIGHT_HEAD_PROP), squadNumber: 18),
+                RGBYMatchDaySquadMember(player: RGBYPlayer(firstName: "Iain", lastName: "Henderson", preferredPosition: .SECOND_ROW), squadNumber: 19),
+                RGBYMatchDaySquadMember(player: RGBYPlayer(firstName: "Josh", lastName: "van der Flier", preferredPosition: .OPENSIDE_FLANKER), squadNumber: 20),
+                RGBYMatchDaySquadMember(player: RGBYPlayer(firstName: "Luke", lastName: "McGrath", preferredPosition: .SCRUM_HALF), squadNumber: 21),
+                RGBYMatchDaySquadMember(player: RGBYPlayer(firstName: "Joey", lastName: "Carbery", preferredPosition: .OUT_HALF), squadNumber: 22),
+                RGBYMatchDaySquadMember(player: RGBYPlayer(firstName: "Jordan", lastName: "Larmour", preferredPosition: .FULLBACK), squadNumber: 23)
             ])
     }
 

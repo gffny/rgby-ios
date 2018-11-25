@@ -36,6 +36,8 @@ class RGBYInMatchIncidentInputViewController: UIViewController  {
     }
     
     @IBAction func handleTackleOrMiss(_ sender: Any) {
+        print("RGBYInMatchIncidentViewController:: tackle clicked")
+        performSegue(withIdentifier: "presentTackleInput", sender: self)
     }
 
     @IBAction func handleGoBack(_ sender: Any) {

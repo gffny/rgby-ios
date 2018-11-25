@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="ipad9_7" orientation="landscape">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RGBYTeamListView" customModule="rgby_ios" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="iN0-l3-epB" id="5GV-3A-1ds"/>
+                <outlet property="number1" destination="lLP-y5-bCG" id="QYj-i8-LCe"/>
+                <outlet property="number10" destination="ait-nF-57c" id="4Gb-Vu-yYh"/>
+                <outlet property="number11" destination="IE1-dS-NoX" id="WuT-zM-K9S"/>
+                <outlet property="number12" destination="5H8-pV-ulH" id="tO2-G6-Svt"/>
+                <outlet property="number13" destination="Epa-xd-gmS" id="VPl-64-IUA"/>
+                <outlet property="number14" destination="zMs-Nd-B3P" id="tQ5-NB-aHi"/>
+                <outlet property="number15" destination="2ha-hT-4Kf" id="LnT-n5-M15"/>
+                <outlet property="number2" destination="SoW-DV-UWn" id="yI4-Wg-WtS"/>
+                <outlet property="number3" destination="bcl-CY-xhJ" id="c24-HY-NH3"/>
+                <outlet property="number4" destination="0EM-06-6gQ" id="gCi-yX-EZC"/>
+                <outlet property="number5" destination="0gr-gW-iOx" id="rdw-S5-thX"/>
+                <outlet property="number6" destination="QcM-Us-aE3" id="WP1-O1-tTx"/>
+                <outlet property="number7" destination="2Mg-5n-R3n" id="oQM-Xa-LpA"/>
+                <outlet property="number8" destination="juQ-Sa-fL1" id="h3T-ji-8jc"/>
+                <outlet property="number9" destination="PZb-Tw-dGN" id="2PY-3l-N00"/>
+                <outlet property="teamNameLabel" destination="QlQ-vc-pgc" id="cDh-XE-g7E"/>
+                <outlet property="unknownPlayer" destination="b0l-W4-pxS" id="5Jp-tk-oUi"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="center" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QlQ-vc-pgc">
+                    <rect key="frame" x="5" y="20" width="1019" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="5FJ-qv-kZv"/>
+                        <constraint firstAttribute="height" constant="50" id="eqt-0Q-c2I"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="35"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b0l-W4-pxS">
+                    <rect key="frame" x="0.0" y="70" width="509.5" height="83"/>
+                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="35"/>
+                    <state key="normal" title="Unknown Player">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lLP-y5-bCG" customClass="RGBYPlayerButton" customModule="rgby_ios" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="158" width="509.5" height="83"/>
+                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="35"/>
+                    <state key="normal" title="#1">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SoW-DV-UWn" customClass="RGBYPlayerButton" customModule="rgby_ios" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="246" width="509.5" height="82.5"/>
+                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="35"/>
+                    <state key="normal" title="#2">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bcl-CY-xhJ" customClass="RGBYPlayerButton" customModule="rgby_ios" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="333.5" width="509.5" height="83"/>
+                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="35"/>
+                    <state key="normal" title="#3">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0EM-06-6gQ" customClass="RGBYPlayerButton" customModule="rgby_ios" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="421.5" width="509.5" height="83"/>
+                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="35"/>
+                    <state key="normal" title="#4">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0gr-gW-iOx" customClass="RGBYPlayerButton" customModule="rgby_ios" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="509.5" width="509.5" height="83"/>
+                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="35"/>
+                    <state key="normal" title="#5">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QcM-Us-aE3" customClass="RGBYPlayerButton" customModule="rgby_ios" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="597.5" width="509.5" height="82.5"/>
+                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="35"/>
+                    <state key="normal" title="#6">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Mg-5n-R3n" customClass="RGBYPlayerButton" customModule="rgby_ios" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="685" width="509.5" height="83"/>
+                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="35"/>
+                    <state key="normal" title="#7">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="juQ-Sa-fL1" customClass="RGBYPlayerButton" customModule="rgby_ios" customModuleProvider="target">
+                    <rect key="frame" x="514.5" y="70" width="509.5" height="83"/>
+                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="35"/>
+                    <state key="normal" title="#8">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ait-nF-57c" customClass="RGBYPlayerButton" customModule="rgby_ios" customModuleProvider="target">
+                    <rect key="frame" x="514.5" y="246" width="509.5" height="82.5"/>
+                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="35"/>
+                    <state key="normal" title="#10">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IE1-dS-NoX" customClass="RGBYPlayerButton" customModule="rgby_ios" customModuleProvider="target">
+                    <rect key="frame" x="514.5" y="333.5" width="509.5" height="83"/>
+                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="35"/>
+                    <state key="normal" title="#11">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5H8-pV-ulH" customClass="RGBYPlayerButton" customModule="rgby_ios" customModuleProvider="target">
+                    <rect key="frame" x="514.5" y="421.5" width="509.5" height="83"/>
+                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="35"/>
+                    <state key="normal" title="#12">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Epa-xd-gmS" customClass="RGBYPlayerButton" customModule="rgby_ios" customModuleProvider="target">
+                    <rect key="frame" x="514.5" y="509.5" width="509.5" height="83"/>
+                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="35"/>
+                    <state key="normal" title="#13">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zMs-Nd-B3P" customClass="RGBYPlayerButton" customModule="rgby_ios" customModuleProvider="target">
+                    <rect key="frame" x="514.5" y="597.5" width="509.5" height="82.5"/>
+                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="35"/>
+                    <state key="normal" title="#14">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ha-hT-4Kf" customClass="RGBYPlayerButton" customModule="rgby_ios" customModuleProvider="target">
+                    <rect key="frame" x="514.5" y="685" width="509.5" height="83"/>
+                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="35"/>
+                    <state key="normal" title="#15">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PZb-Tw-dGN" customClass="RGBYPlayerButton" customModule="rgby_ios" customModuleProvider="target">
+                    <rect key="frame" x="514.5" y="158" width="509.5" height="83"/>
+                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="35"/>
+                    <state key="normal" title="#9">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                </button>
+            </subviews>
+            <constraints>
+                <constraint firstItem="IE1-dS-NoX" firstAttribute="width" secondItem="bcl-CY-xhJ" secondAttribute="width" id="1K4-tS-gY9"/>
+                <constraint firstItem="juQ-Sa-fL1" firstAttribute="leading" secondItem="b0l-W4-pxS" secondAttribute="trailing" constant="5" id="1c6-ib-Dcn"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="2ha-hT-4Kf" secondAttribute="trailing" id="3u6-o8-AR6"/>
+                <constraint firstItem="Epa-xd-gmS" firstAttribute="leading" secondItem="0gr-gW-iOx" secondAttribute="trailing" constant="5" id="4AW-fD-8FI"/>
+                <constraint firstItem="2ha-hT-4Kf" firstAttribute="width" secondItem="2Mg-5n-R3n" secondAttribute="width" id="5vJ-b0-B9I"/>
+                <constraint firstItem="5H8-pV-ulH" firstAttribute="height" secondItem="juQ-Sa-fL1" secondAttribute="height" id="6Ut-Wy-FjA"/>
+                <constraint firstItem="5H8-pV-ulH" firstAttribute="leading" secondItem="0EM-06-6gQ" secondAttribute="trailing" constant="5" id="8O0-7Z-vgX"/>
+                <constraint firstItem="IE1-dS-NoX" firstAttribute="height" secondItem="juQ-Sa-fL1" secondAttribute="height" id="968-tp-1kT"/>
+                <constraint firstItem="Epa-xd-gmS" firstAttribute="width" secondItem="0gr-gW-iOx" secondAttribute="width" id="9Eh-Wf-TwQ"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Epa-xd-gmS" secondAttribute="trailing" id="9US-d7-cRB"/>
+                <constraint firstItem="ait-nF-57c" firstAttribute="top" secondItem="PZb-Tw-dGN" secondAttribute="bottom" constant="5" id="A1n-tR-oLT"/>
+                <constraint firstItem="2ha-hT-4Kf" firstAttribute="height" secondItem="juQ-Sa-fL1" secondAttribute="height" id="CJC-xS-cDI"/>
+                <constraint firstItem="bcl-CY-xhJ" firstAttribute="height" secondItem="b0l-W4-pxS" secondAttribute="height" id="DIK-vM-7zA"/>
+                <constraint firstItem="PZb-Tw-dGN" firstAttribute="leading" secondItem="lLP-y5-bCG" secondAttribute="trailing" constant="5" id="EQt-Du-YEp"/>
+                <constraint firstItem="2Mg-5n-R3n" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Euh-IZ-Tg3"/>
+                <constraint firstItem="QcM-Us-aE3" firstAttribute="top" secondItem="0gr-gW-iOx" secondAttribute="bottom" constant="5" id="Fws-MG-R9W"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="PZb-Tw-dGN" secondAttribute="trailing" id="GQS-bE-H0t"/>
+                <constraint firstItem="ait-nF-57c" firstAttribute="leading" secondItem="SoW-DV-UWn" secondAttribute="trailing" constant="5" id="HGZ-we-9hx"/>
+                <constraint firstItem="lLP-y5-bCG" firstAttribute="height" secondItem="b0l-W4-pxS" secondAttribute="height" id="I6m-k3-bve"/>
+                <constraint firstItem="ait-nF-57c" firstAttribute="height" secondItem="juQ-Sa-fL1" secondAttribute="height" id="JD4-OI-lgc"/>
+                <constraint firstItem="SoW-DV-UWn" firstAttribute="top" secondItem="lLP-y5-bCG" secondAttribute="bottom" constant="5" id="K9Z-75-0fW"/>
+                <constraint firstItem="zMs-Nd-B3P" firstAttribute="leading" secondItem="QcM-Us-aE3" secondAttribute="trailing" constant="5" id="KXx-Bg-V4f"/>
+                <constraint firstItem="QlQ-vc-pgc" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="5" id="KtY-l7-NL9"/>
+                <constraint firstItem="IE1-dS-NoX" firstAttribute="leading" secondItem="bcl-CY-xhJ" secondAttribute="trailing" constant="5" id="Lry-CH-rhd"/>
+                <constraint firstItem="0EM-06-6gQ" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="N3L-DC-bQm"/>
+                <constraint firstItem="2Mg-5n-R3n" firstAttribute="top" secondItem="QcM-Us-aE3" secondAttribute="bottom" constant="5" id="P76-ni-MnS"/>
+                <constraint firstItem="0gr-gW-iOx" firstAttribute="height" secondItem="b0l-W4-pxS" secondAttribute="height" id="PDZ-pK-LON"/>
+                <constraint firstItem="2ha-hT-4Kf" firstAttribute="leading" secondItem="2Mg-5n-R3n" secondAttribute="trailing" constant="5" id="PiM-uL-odN"/>
+                <constraint firstItem="juQ-Sa-fL1" firstAttribute="width" secondItem="b0l-W4-pxS" secondAttribute="width" id="QW7-iu-AbM"/>
+                <constraint firstItem="bcl-CY-xhJ" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="R79-yb-JVq"/>
+                <constraint firstItem="zMs-Nd-B3P" firstAttribute="width" secondItem="QcM-Us-aE3" secondAttribute="width" id="S7k-Po-6fY"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="juQ-Sa-fL1" secondAttribute="trailing" id="Uuh-AC-VgJ"/>
+                <constraint firstItem="bcl-CY-xhJ" firstAttribute="top" secondItem="SoW-DV-UWn" secondAttribute="bottom" constant="5" id="Z35-9J-Ots"/>
+                <constraint firstItem="SoW-DV-UWn" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="aot-ms-MLP"/>
+                <constraint firstItem="2ha-hT-4Kf" firstAttribute="top" secondItem="zMs-Nd-B3P" secondAttribute="bottom" constant="5" id="bRm-wH-fFt"/>
+                <constraint firstItem="5H8-pV-ulH" firstAttribute="top" secondItem="IE1-dS-NoX" secondAttribute="bottom" constant="5" id="cDs-AZ-8K7"/>
+                <constraint firstItem="QcM-Us-aE3" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="cYn-F3-69M"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="2ha-hT-4Kf" secondAttribute="bottom" id="eYA-XH-zFK"/>
+                <constraint firstItem="ait-nF-57c" firstAttribute="width" secondItem="SoW-DV-UWn" secondAttribute="width" id="fDz-Nx-wF1"/>
+                <constraint firstItem="b0l-W4-pxS" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="fjN-JR-r8z"/>
+                <constraint firstItem="SoW-DV-UWn" firstAttribute="height" secondItem="b0l-W4-pxS" secondAttribute="height" id="g76-n6-O2K"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="zMs-Nd-B3P" secondAttribute="trailing" id="gBf-y3-khn"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="IE1-dS-NoX" secondAttribute="trailing" id="gFg-nh-fKD"/>
+                <constraint firstItem="0EM-06-6gQ" firstAttribute="top" secondItem="bcl-CY-xhJ" secondAttribute="bottom" constant="5" id="gFy-vU-2nq"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="ait-nF-57c" secondAttribute="trailing" id="glF-L2-E8d"/>
+                <constraint firstItem="QlQ-vc-pgc" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="h7e-WE-p0b"/>
+                <constraint firstItem="2Mg-5n-R3n" firstAttribute="height" secondItem="b0l-W4-pxS" secondAttribute="height" id="hPt-x0-eC5"/>
+                <constraint firstItem="lLP-y5-bCG" firstAttribute="top" secondItem="b0l-W4-pxS" secondAttribute="bottom" constant="5" id="hjF-XS-BiO"/>
+                <constraint firstItem="5H8-pV-ulH" firstAttribute="width" secondItem="0EM-06-6gQ" secondAttribute="width" id="hmf-mR-bve"/>
+                <constraint firstItem="0gr-gW-iOx" firstAttribute="top" secondItem="0EM-06-6gQ" secondAttribute="bottom" constant="5" id="jgp-VO-8Px"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="QlQ-vc-pgc" secondAttribute="trailing" id="jpR-V5-7Ca"/>
+                <constraint firstItem="Epa-xd-gmS" firstAttribute="height" secondItem="juQ-Sa-fL1" secondAttribute="height" id="mxy-b0-7Cb"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="2Mg-5n-R3n" secondAttribute="bottom" id="nar-Cs-Qo9"/>
+                <constraint firstItem="juQ-Sa-fL1" firstAttribute="leading" secondItem="b0l-W4-pxS" secondAttribute="trailing" constant="5" id="pPm-PF-hXS"/>
+                <constraint firstItem="juQ-Sa-fL1" firstAttribute="top" secondItem="QlQ-vc-pgc" secondAttribute="bottom" id="qpX-NV-1il"/>
+                <constraint firstItem="PZb-Tw-dGN" firstAttribute="height" secondItem="juQ-Sa-fL1" secondAttribute="height" id="rlT-L0-euK"/>
+                <constraint firstItem="zMs-Nd-B3P" firstAttribute="height" secondItem="juQ-Sa-fL1" secondAttribute="height" id="rmx-fu-4X1"/>
+                <constraint firstItem="QcM-Us-aE3" firstAttribute="height" secondItem="b0l-W4-pxS" secondAttribute="height" id="sNg-2G-e1Y"/>
+                <constraint firstItem="PZb-Tw-dGN" firstAttribute="top" secondItem="juQ-Sa-fL1" secondAttribute="bottom" constant="5" id="siB-hD-opU"/>
+                <constraint firstItem="zMs-Nd-B3P" firstAttribute="top" secondItem="Epa-xd-gmS" secondAttribute="bottom" constant="5" id="tY1-HS-q3x"/>
+                <constraint firstItem="Epa-xd-gmS" firstAttribute="top" secondItem="5H8-pV-ulH" secondAttribute="bottom" constant="5" id="tpx-8W-nSJ"/>
+                <constraint firstItem="PZb-Tw-dGN" firstAttribute="width" secondItem="lLP-y5-bCG" secondAttribute="width" id="uYp-WX-rw1"/>
+                <constraint firstItem="lLP-y5-bCG" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="upc-sr-sWO"/>
+                <constraint firstItem="0gr-gW-iOx" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="v7E-Si-Bqe"/>
+                <constraint firstItem="0EM-06-6gQ" firstAttribute="height" secondItem="b0l-W4-pxS" secondAttribute="height" id="wy2-p1-b8r"/>
+                <constraint firstItem="b0l-W4-pxS" firstAttribute="top" secondItem="QlQ-vc-pgc" secondAttribute="bottom" id="xTo-dG-jK4"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="5H8-pV-ulH" secondAttribute="trailing" id="ysc-o0-EUp"/>
+                <constraint firstItem="IE1-dS-NoX" firstAttribute="top" secondItem="ait-nF-57c" secondAttribute="bottom" constant="5" id="ysy-Eg-rCq"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="53.90625" y="67.96875"/>
+        </view>
+    </objects>
+</document>

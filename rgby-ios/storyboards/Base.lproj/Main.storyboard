@@ -355,8 +355,8 @@
                         <segue destination="Hjv-j4-pYX" kind="presentation" identifier="presentPenaltyInput" id="3nJ-s6-ntM"/>
                         <segue destination="E0l-5L-LKw" kind="presentation" identifier="presentFoulInput" id="TQp-xz-KHw"/>
                         <segue destination="fa5-iU-fpw" kind="presentation" identifier="presentScoreInput" id="QFE-OW-4SM"/>
-                        <segue destination="cus-da-OQ3" kind="presentation" identifier="presentTurnOverInput" id="f9y-8S-Io0"/>
-                        <segue destination="uwo-ns-TVl" kind="presentation" identifier="presentTackleInput" id="sf4-cQ-PSu"/>
+                        <segue destination="cus-da-OQ3" kind="presentation" identifier="presentTackleInput" id="f9y-8S-Io0"/>
+                        <segue destination="uwo-ns-TVl" kind="presentation" identifier="presentTurnOverInput" id="sf4-cQ-PSu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oxt-E7-cU0" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1597,13 +1597,50 @@
         <!--In Match Tackle Input View Controller-->
         <scene sceneID="7nh-Pg-ehZ">
             <objects>
-                <viewController id="cus-da-OQ3" userLabel="In Match Tackle Input View Controller" sceneMemberID="viewController">
+                <viewController id="cus-da-OQ3" userLabel="In Match Tackle Input View Controller" customClass="RGBYInMatchTackleInputViewController" customModule="rgby_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5Mu-Q7-o0o">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tackle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LVg-Xk-zhs">
+                                <rect key="frame" x="20" y="40" width="984" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="Hs2-ig-v6B"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="35"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="bottomRight" translatesAutoresizingMaskIntoConstraints="NO" id="Zs1-vW-Zxo" customClass="RGBYTeamListView" customModule="rgby_ios" customModuleProvider="target">
+                                <rect key="frame" x="275" y="145" width="729" height="603"/>
+                                <color key="backgroundColor" red="0.66666668650000005" green="0.069611343640000004" blue="0.034837604219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2hC-UE-WOh">
+                                <rect key="frame" x="20" y="145" width="250" height="603"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="dKo-uK-v2m"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Zs1-vW-Zxo" firstAttribute="top" secondItem="LVg-Xk-zhs" secondAttribute="bottom" constant="5" id="05K-ah-pv8"/>
+                            <constraint firstItem="2bF-Zx-f41" firstAttribute="bottom" secondItem="Zs1-vW-Zxo" secondAttribute="bottom" constant="20" id="27R-qq-q6V"/>
+                            <constraint firstItem="LVg-Xk-zhs" firstAttribute="top" secondItem="2bF-Zx-f41" secondAttribute="top" constant="20" id="3l2-8p-ngU"/>
+                            <constraint firstItem="2bF-Zx-f41" firstAttribute="trailing" secondItem="LVg-Xk-zhs" secondAttribute="trailing" constant="20" id="CgE-Wx-BFL"/>
+                            <constraint firstItem="2bF-Zx-f41" firstAttribute="bottom" secondItem="2hC-UE-WOh" secondAttribute="bottom" constant="20" id="bpc-td-g9V"/>
+                            <constraint firstItem="Zs1-vW-Zxo" firstAttribute="leading" secondItem="2hC-UE-WOh" secondAttribute="trailing" constant="5" id="deb-2S-mHH"/>
+                            <constraint firstItem="2bF-Zx-f41" firstAttribute="trailing" secondItem="Zs1-vW-Zxo" secondAttribute="trailing" constant="20" id="ey8-08-ecr"/>
+                            <constraint firstItem="2hC-UE-WOh" firstAttribute="top" secondItem="LVg-Xk-zhs" secondAttribute="bottom" constant="5" id="hHT-2W-h87"/>
+                            <constraint firstItem="LVg-Xk-zhs" firstAttribute="leading" secondItem="2bF-Zx-f41" secondAttribute="leading" constant="20" id="pga-1a-1C4"/>
+                            <constraint firstItem="2hC-UE-WOh" firstAttribute="leading" secondItem="2bF-Zx-f41" secondAttribute="leading" constant="20" id="xR5-Wu-Ek9"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="2bF-Zx-f41"/>
                     </view>
+                    <connections>
+                        <outlet property="teamListView" destination="Zs1-vW-Zxo" id="WT0-e3-8Bg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5TL-Oz-V6d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
