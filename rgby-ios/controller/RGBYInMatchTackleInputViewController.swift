@@ -15,5 +15,12 @@ class RGBYInMatchTackleInputViewController:  UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         teamListView.setTeam(squad: RGBYMatchDetail.sharedInstance.myTeamMatchDaySquad)
+        teamListView.addTarget(target: self, actionSelector: #selector(self.handleValueChanged(_:)), forEvent: .touchDown)
     }
+
+    @objc func handleValueChanged(_ sender:RGBYPlayerButton) {
+        
+
+    }
+    
 }

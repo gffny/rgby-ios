@@ -47,6 +47,9 @@ class RGBYTeamListView: UIView {
     }
 
     func setTeam(squad: RGBYMatchDaySquad) {
+        // set the team title
+        teamTitleLabel.text = squad._teamTitle
+        // set the team players
         number1.player = squad._looseHeadProp
         number2.player = squad._hooker
         number3.player = squad._tightHeadProp
@@ -62,7 +65,24 @@ class RGBYTeamListView: UIView {
         number13.player = squad._outsideCenter
         number14.player = squad._rightWing
         number15.player = squad._fullback
-        teamTitleLabel.text = squad._teamTitle
+    }
+    
+    func addTarget(target: Any?, actionSelector: Selector, forEvent: UIControl.Event) {
+        number1.addTarget(target, action: actionSelector, for: forEvent)
+        number2.addTarget(target, action: actionSelector, for: forEvent)
+        number3.addTarget(target, action: actionSelector, for: forEvent)
+        number4.addTarget(target, action: actionSelector, for: forEvent)
+        number5.addTarget(target, action: actionSelector, for: forEvent)
+        number6.addTarget(target, action: actionSelector, for: forEvent)
+        number7.addTarget(target, action: actionSelector, for: forEvent)
+        number8.addTarget(target, action: actionSelector, for: forEvent)
+        number9.addTarget(target, action: actionSelector, for: forEvent)
+        number10.addTarget(target, action: actionSelector, for: forEvent)
+        number11.addTarget(target, action: actionSelector, for: forEvent)
+        number12.addTarget(target, action: actionSelector, for: forEvent)
+        number13.addTarget(target, action: actionSelector, for: forEvent)
+        number14.addTarget(target, action: actionSelector, for: forEvent)
+        number15.addTarget(target, action: actionSelector, for: forEvent)
     }
 }
 
