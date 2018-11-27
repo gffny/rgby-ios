@@ -18,7 +18,7 @@ class RGBYMatchDetail {
     private var _myTeam = [RGBYPlayer]()
     private var _oppositionTeam = [RGBYPlayer]()
     private var _myTeamMatchDaySquad: RGBYMatchDaySquad
-    private var _oppositionTeamMatchDaySquad = [RGBYPlayer]()
+    private var _oppositionTeamMatchDaySquad: RGBYMatchDaySquad
     
     init() {
         _myTeamMatchDaySquad = RGBYMatchDaySquad(
@@ -48,6 +48,33 @@ class RGBYMatchDetail {
                 RGBYMatchDaySquadMember(player: RGBYPlayer(firstName: "Jordan", lastName: "Larmour", preferredPosition: .FULLBACK), squadNumber: 23)
             ],
             teamTitle: "MIT RFC vs New Zealand")
+        _oppositionTeamMatchDaySquad = RGBYMatchDaySquad(
+            looseHeadProp: RGBYMatchDaySquadMember(player: RGBYPlayer(firstName: "Karl", lastName: "Tu'inukuafe", preferredPosition: .LOOSE_HEAD_PROP), squadNumber: 1),
+            hooker: RGBYMatchDaySquadMember(player: RGBYPlayer(firstName: "Codie", lastName: "Taylor", preferredPosition: .HOOKER), squadNumber: 2),
+            tightHeadProp: RGBYMatchDaySquadMember(player: RGBYPlayer(firstName: "Owen", lastName: "Franks", preferredPosition: .TIGHT_HEAD_PROP), squadNumber: 3),
+            looseHeadSecondRow: RGBYMatchDaySquadMember(player: RGBYPlayer(firstName: "Brodie", lastName: "Retallick", preferredPosition: .SECOND_ROW), squadNumber: 4),
+            tightHeadSecondRow: RGBYMatchDaySquadMember(player: RGBYPlayer(firstName: "Samuel", lastName: "Whitelock", preferredPosition: .SECOND_ROW), squadNumber: 5),
+            blindSideFlanker: RGBYMatchDaySquadMember(player: RGBYPlayer(firstName: "Liam", lastName: "Squire", preferredPosition: .BLINDSIDE_FLANKER), squadNumber: 6),
+            opensideFlanker: RGBYMatchDaySquadMember(player: RGBYPlayer(firstName: "Ardie", lastName: "Savea", preferredPosition: .OPENSIDE_FLANKER), squadNumber: 7),
+            number8: RGBYMatchDaySquadMember(player: RGBYPlayer(firstName: "Kieran", lastName: "Reid", preferredPosition: .NUMBER_8), squadNumber: 8),
+            scrumHalf: RGBYMatchDaySquadMember(player: RGBYPlayer(firstName: "Aaron", lastName: "Smith", preferredPosition: .SCRUM_HALF), squadNumber: 9),
+            outHalf: RGBYMatchDaySquadMember(player: RGBYPlayer(firstName: "Beauden", lastName: "Barrett", preferredPosition: .OUT_HALF), squadNumber: 10),
+            leftWing: RGBYMatchDaySquadMember(player: RGBYPlayer(firstName: "Rieko", lastName: "Ioane", preferredPosition: .LEFT_WING), squadNumber: 11),
+            insideCenter: RGBYMatchDaySquadMember(player: RGBYPlayer(firstName: "Ryan", lastName: "Crotty", preferredPosition: .INSIDE_CENTER), squadNumber: 12),
+            outsideCenter: RGBYMatchDaySquadMember(player: RGBYPlayer(firstName: "Jack", lastName: "Goodhue", preferredPosition: .OUTSIDE_CENTER), squadNumber: 13),
+            rightWing: RGBYMatchDaySquadMember(player: RGBYPlayer(firstName: "Ben", lastName: "Smith", preferredPosition: .RIGHT_WING), squadNumber: 14),
+            fullback: RGBYMatchDaySquadMember(player: RGBYPlayer(firstName: "Damien", lastName: "McKenzie", preferredPosition: .FULLBACK), squadNumber: 15),
+            subsitutes: [
+                RGBYMatchDaySquadMember(player: RGBYPlayer(firstName: "Dane", lastName: "Coles", preferredPosition: .HOOKER), squadNumber: 16),
+                RGBYMatchDaySquadMember(player: RGBYPlayer(firstName: "Ofa", lastName: "Tuungafasi", preferredPosition: .LOOSE_HEAD_PROP), squadNumber: 17),
+                RGBYMatchDaySquadMember(player: RGBYPlayer(firstName: "Nepo", lastName: "Laulala", preferredPosition: .TIGHT_HEAD_PROP), squadNumber: 18),
+                RGBYMatchDaySquadMember(player: RGBYPlayer(firstName: "Scott", lastName: "Barrett", preferredPosition: .SECOND_ROW), squadNumber: 19),
+                RGBYMatchDaySquadMember(player: RGBYPlayer(firstName: "Matt", lastName: "Todd", preferredPosition: .OPENSIDE_FLANKER), squadNumber: 20),
+                RGBYMatchDaySquadMember(player: RGBYPlayer(firstName: "TJ", lastName: "Perenara", preferredPosition: .SCRUM_HALF), squadNumber: 21),
+                RGBYMatchDaySquadMember(player: RGBYPlayer(firstName: "Richie", lastName: "Mo'unga", preferredPosition: .OUT_HALF), squadNumber: 22),
+                RGBYMatchDaySquadMember(player: RGBYPlayer(firstName: "Anton", lastName: "Lienert-Brown", preferredPosition: .FULLBACK), squadNumber: 23)
+            ],
+            teamTitle: "New Zealand vs MIT RFC")
     }
 
     var myTeamScore: Int {
@@ -83,6 +110,12 @@ class RGBYMatchDetail {
     var myTeamMatchDaySquad: RGBYMatchDaySquad {
         get {
             return _myTeamMatchDaySquad
+        }
+    }
+    
+    var oppositionTeamMatchDaySquad: RGBYMatchDaySquad {
+        get {
+            return _oppositionTeamMatchDaySquad
         }
     }
 }

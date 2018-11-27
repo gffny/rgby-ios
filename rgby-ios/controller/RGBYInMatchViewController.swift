@@ -12,8 +12,8 @@ class RGBYInMatchViewController: UIViewController, UITableViewDataSource {
     
     @IBOutlet weak var fieldView: UIImageView!
     @IBOutlet weak var scoreView: RGBYInMatchScoreView!
-    var tapLocation: CGPoint?
-    
+    var matchEvent: RGBYMatchEvent?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -28,7 +28,7 @@ class RGBYInMatchViewController: UIViewController, UITableViewDataSource {
     @objc func handleFieldTap(_ sender:UITapGestureRecognizer) {
         // do other task
         print("RGBYInGameViewController:: handleFieldTap")
-        tapLocation = sender.location(in: self.fieldView)
+        matchEvent = RGBYMatchEvent(eventTime: 100, fieldLocation: sender.location(in: self.fieldView))
         // record or pass the tap location to the next VC
         // create a view controller class for the match incident input
         performSegue(withIdentifier: "presentMatchIncidentInput", sender: self)
@@ -36,8 +36,8 @@ class RGBYInMatchViewController: UIViewController, UITableViewDataSource {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is RGBYInMatchIncidentInputViewController {
-            let vc = segue.destination as! RGBYInMatchIncidentInputViewController
-            vc.tapLocation = self.tapLocation
+            let destVC = segue.destination as! RGBYInMatchIncidentInputViewController
+            destVC.matchEvent = self.matchEvent
         }
     }
 

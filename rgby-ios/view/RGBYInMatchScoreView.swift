@@ -25,7 +25,7 @@ class RGBYMatchDetailTableViewCell: UITableViewCell {
     @IBOutlet weak var eventDetailLabel: UILabel!
     
     func setData(matchEvent: RGBYMatchEvent) {
-        eventTypeLabel.text = matchEvent._eventType.displayName
+        eventTypeLabel.text = matchEvent._eventType?.displayName
         if let subject = matchEvent._subject {
             eventDetailLabel.text = String(matchEvent._eventTime) + " " + subject._firstName + " " + subject._lastName
         } else {

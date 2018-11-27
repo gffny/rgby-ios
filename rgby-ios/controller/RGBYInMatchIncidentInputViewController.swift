@@ -9,50 +9,100 @@
 import UIKit
 
 class RGBYInMatchIncidentInputViewController: UIViewController  {
-    
-//    @IBOutlet weak var penaltyButton: UIButton!
-    var tapLocation: CGPoint?
+
+    @IBOutlet weak var incidentInputLabel: UILabel!
+    @IBOutlet weak var containerView: UIView!
+    var matchEvent: RGBYMatchEvent?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view
         print("RGBYInMatchIncidentViewController:: viewDidLoad");
+        // show the initial view - incident type input view
+        showIncidentTypeSelectView()
     }
 
-    @IBAction func handlePenalty(_ sender: Any) {
-        print("RGBYInMatchIncidentViewController:: penalty clicked")
-        performSegue(withIdentifier: "presentPenaltyInput", sender: self)
-    }
-    
-    @IBAction func handleFoul(_ sender: Any) {
-    }
-    
-    @IBAction func handleScore(_ sender: Any) {
-        print("RGBYInMatchIncidentViewController:: score clicked")
-        performSegue(withIdentifier: "presentScoreInput", sender: self)
+    func showIncidentTypeSelectView() {
+        // add the incident type screen
+        let incidentTypeSelectView = RGBYIncidentTypeSelectView(frame: containerView.frame)
+        // configure incidentTypeSelectView
+        incidentTypeSelectView.frame = containerView.bounds
+        incidentTypeSelectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        incidentTypeSelectView.addTarget(self, action: #selector(handleIncidentTypeSelect), for: .valueChanged)
+        containerView.addSubview(incidentTypeSelectView)
     }
 
-    @IBAction func handleTurnOver(_ sender: Any) {
-    }
-    
-    @IBAction func handleTackleOrMiss(_ sender: Any) {
-        print("RGBYInMatchIncidentViewController:: tackle clicked")
-        performSegue(withIdentifier: "presentTackleInput", sender: self)
+    func showTeamSelectView() {
+        let teamSelectView = RGBYTeamSelectView(frame: containerView.frame)
+        teamSelectView.setTeamValues(myTeam: RGBYMatchDetail.sharedInstance.myTeamMatchDaySquad, oppositionTeam: RGBYMatchDetail.sharedInstance.oppositionTeamMatchDaySquad)
+        // configure incidentTypeSelectView
+        teamSelectView.frame = containerView.bounds
+        teamSelectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        teamSelectView.addTarget(self, action: #selector(handleTeamSelect), for: .valueChanged)
+        containerView.addSubview(teamSelectView)
     }
 
-    @IBAction func handleGoBack(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+    func showScoreTypeSelectView() {
+        let scoreTypeSelectView = RGBYScoreTypeSelectView(frame: containerView.frame)
+        // configure incidentTypeSelectView
+        scoreTypeSelectView.frame = containerView.bounds
+        scoreTypeSelectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        scoreTypeSelectView.addTarget(self, action: #selector(handleScoreTypeSelect), for: .valueChanged)
+        containerView.addSubview(scoreTypeSelectView)
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.destination is RGBYInMatchPenaltyInputViewController {
-            let vc = segue.destination as? RGBYInMatchPenaltyInputViewController
-            vc?.tapLocation = self.tapLocation
-            vc?.loadingModalVC = self
-        } else if segue.destination is RGBYInMatchScoreInputViewContoller {
-            let vc = segue.destination as? RGBYInMatchScoreInputViewContoller
-            vc?.tapLocation = self.tapLocation
-            vc?.loadingModalVC = self
+
+    func showPlayerSelectView() {
+        let playerSelectView = RGBYPlayerSelectView(frame: containerView.frame)
+        playerSelectView.setTeam(squad: (matchEvent?._team)!)
+        playerSelectView.frame = containerView.bounds
+        playerSelectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        playerSelectView.addTarget(self, action: #selector(handlePlayerSelect), for: .valueChanged)
+        containerView.addSubview(playerSelectView)
+    }
+
+    @objc func handleIncidentTypeSelect(_ sender: RGBYIncidentTypeSelectView) {
+        print("RGBYInMatchIncidentViewController:: handleInputTypeSelect")
+        sender.removeFromSuperview()
+        if sender.selectedIncident == RGBYIncidentTypeSelectView.PENALTY {
+            print("RGBYInMatchIncidentViewController - show penalty window")
+            //showTeamSelectView()
+        } else if sender.selectedIncident == RGBYIncidentTypeSelectView.FOUL {
+            print("RGBYInMatchIncidentViewController - show foul window")
+        } else if sender.selectedIncident == RGBYIncidentTypeSelectView.SCORE {
+            print("RGBYInMatchIncidentViewController - show score window")
+            showScoreTypeSelectView()
+        } else if sender.selectedIncident == RGBYIncidentTypeSelectView.TURN_OVER {
+            print("RGBYInMatchIncidentViewController - show turn over window")
+        } else if sender.selectedIncident == RGBYIncidentTypeSelectView.TACKLE {
+            print("RGBYInMatchIncidentViewController - show tackle window")
+        } else if sender.selectedIncident == RGBYIncidentTypeSelectView.GO_BACK {
+            print("RGBYInMatchIncidentViewController - show go back window")
+            self.dismiss(animated: true)
         }
+    }
+
+    @objc func handleTeamSelect(_ sender: RGBYTeamSelectView) {
+        print("RGBYInMatchIncidentViewController:: handleTeamSelect")
+        if sender.goBackSelected {
+            self.dismiss(animated: true)
+        } else {
+            matchEvent?._team = sender.selectedTeam
+            sender.removeFromSuperview()
+            showPlayerSelectView()
+        }
+    }
+
+    @objc func handleScoreTypeSelect(_sender: RGBYScoreTypeSelectView) {
+        print("RGBYInMatchIncidentViewController:: handleScoreTypeSelect")
+        // TODO handle the type correctly
+        matchEvent?._eventType = .KICK_AT_GOAL
+        showTeamSelectView()
+    }
+
+    @objc func handlePlayerSelect(_ sender: RGBYPlayerSelectView) {
+        print("RGBYInMatchIncidentViewController:: handlePlayerSelect")
+        matchEvent?._subject = sender.selectedPlayer
+        RGBYMatchDetail.sharedInstance.matchEventArray.append(matchEvent!)
+        self.dismiss(animated: true)
     }
 }

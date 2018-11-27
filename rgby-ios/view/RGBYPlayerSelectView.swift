@@ -9,15 +9,14 @@
 import UIKit
 
 @IBDesignable
-class RGBYTeamListView: UIControl {
+class RGBYPlayerSelectView: UIControl {
     
-    let nibName = "RGBYTeamListView"
+    let nibName = "RGBYPlayerSelectView"
 
     var selectedPlayer: RGBYMatchDaySquadMember?
 
     @IBOutlet weak var contentView: UIView!
 
-    @IBOutlet weak var teamTitleLabel: UILabel!
     @IBOutlet weak var unknownPlayer: UIButton!
 
     // forwards
@@ -42,6 +41,16 @@ class RGBYTeamListView: UIControl {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         print("RGBYTeamListView::init(coder)")
+        setupView()
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        print("RGBYTeamListView::init(frame)")
+        setupView()
+    }
+    
+    func setupView() {
         Bundle.main.loadNibNamed(nibName, owner: self, options: nil)
         contentView.frame = bounds
         contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -64,8 +73,6 @@ class RGBYTeamListView: UIControl {
     }
 
     func setTeam(squad: RGBYMatchDaySquad) {
-        // set the team title
-        teamTitleLabel.text = squad._teamTitle
         // set the team players
         number1.player = squad._looseHeadProp
         number2.player = squad._hooker
@@ -85,7 +92,7 @@ class RGBYTeamListView: UIControl {
     }
 }
 
-extension RGBYTeamListView {
+extension RGBYPlayerSelectView {
 
     //MARK: MAIN ACTION: .valueChanged
     fileprivate func performAction() {

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RGBYScoreTypeSelectView" customModule="rgby_ios" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="iN0-l3-epB" id="x2v-Rr-eW1"/>
+                <outlet property="convButton" destination="SCt-Ip-IPK" id="wOT-2N-fvm"/>
+                <outlet property="dropGoalButton" destination="rnm-MY-cK0" id="0tJ-zw-umi"/>
+                <outlet property="penaltyButton" destination="7M7-od-PEB" id="kjN-25-Htl"/>
+                <outlet property="tryButton" destination="Hht-Oa-j5K" id="YuK-B5-2Jo"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hht-Oa-j5K">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="163"/>
+                    <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="35"/>
+                    <state key="normal" title="Try">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SCt-Ip-IPK" userLabel="Conversion Toggle Button">
+                    <rect key="frame" x="0.0" y="168" width="375" height="163"/>
+                    <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="35"/>
+                    <state key="normal" title="Conv.">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7M7-od-PEB">
+                    <rect key="frame" x="0.0" y="336" width="375" height="163"/>
+                    <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="35"/>
+                    <state key="normal" title="Penalty">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rnm-MY-cK0">
+                    <rect key="frame" x="0.0" y="504" width="375" height="163"/>
+                    <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="35"/>
+                    <state key="normal" title="Drop Goal">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="SCt-Ip-IPK" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="7a2-lP-zKe"/>
+                <constraint firstItem="Hht-Oa-j5K" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="DgC-NK-AP8"/>
+                <constraint firstItem="SCt-Ip-IPK" firstAttribute="height" secondItem="Hht-Oa-j5K" secondAttribute="height" id="G6e-8H-rWb"/>
+                <constraint firstItem="7M7-od-PEB" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="IJW-vb-r6j"/>
+                <constraint firstItem="7M7-od-PEB" firstAttribute="top" secondItem="SCt-Ip-IPK" secondAttribute="bottom" constant="5" id="J6g-yI-jmM"/>
+                <constraint firstItem="rnm-MY-cK0" firstAttribute="top" secondItem="7M7-od-PEB" secondAttribute="bottom" constant="5" id="Kkt-ph-pBI"/>
+                <constraint firstItem="SCt-Ip-IPK" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="Q0H-dI-A69"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="rnm-MY-cK0" secondAttribute="bottom" id="Ta8-MR-MAR"/>
+                <constraint firstItem="7M7-od-PEB" firstAttribute="height" secondItem="Hht-Oa-j5K" secondAttribute="height" id="V0g-th-3Fv"/>
+                <constraint firstItem="rnm-MY-cK0" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="VkV-y2-UoW"/>
+                <constraint firstItem="SCt-Ip-IPK" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="WHS-GU-c5d"/>
+                <constraint firstItem="Hht-Oa-j5K" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="bBl-Rw-bXM"/>
+                <constraint firstItem="SCt-Ip-IPK" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="cxT-sy-kh7"/>
+                <constraint firstItem="SCt-Ip-IPK" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="dOd-oQ-jdA"/>
+                <constraint firstItem="Hht-Oa-j5K" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="f1V-D8-Jur"/>
+                <constraint firstItem="rnm-MY-cK0" firstAttribute="height" secondItem="Hht-Oa-j5K" secondAttribute="height" id="gYd-Ia-QQd"/>
+                <constraint firstItem="SCt-Ip-IPK" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="kCL-Yy-04U"/>
+                <constraint firstItem="7M7-od-PEB" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="lTA-OJ-CGz"/>
+                <constraint firstItem="rnm-MY-cK0" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="mZa-t5-WQG"/>
+                <constraint firstItem="SCt-Ip-IPK" firstAttribute="top" secondItem="Hht-Oa-j5K" secondAttribute="bottom" constant="5" id="qGF-By-JyF"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+        </view>
+    </objects>
+</document>

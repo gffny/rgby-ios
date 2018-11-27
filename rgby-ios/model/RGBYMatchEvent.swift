@@ -11,14 +11,20 @@ import CoreGraphics
 
 class RGBYMatchEvent {
     
+    var _team: RGBYMatchDaySquad?
     var _subject: RGBYPlayer?
     var _subjectPosition: RGBYPlayerPosition?
     var _object: RGBYPlayer?
     var _objectPosition: RGBYPlayerPosition?
-    var _eventType: RGBYEventType
+    var _eventType: RGBYEventType?
     var _parentEvent: RGBYMatchEvent?
     var _eventTime: Int
     var _fieldLocation: CGPoint?
+
+    init(eventTime: Int, fieldLocation: CGPoint) {
+        _eventTime = eventTime
+        _fieldLocation = fieldLocation
+    }
 
     init(eventTime: Int, eventType: RGBYEventType, fieldLocation: CGPoint, subject: RGBYPlayer?, subjectPosition: RGBYPlayerPosition?, parentEvent: RGBYMatchEvent?) {
         _subject = subject
