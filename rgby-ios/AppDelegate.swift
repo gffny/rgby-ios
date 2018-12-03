@@ -16,13 +16,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var matchDetail: RGBYMatchDetail!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        self.matchDetail = RGBYMatchDetail.sharedInstance
+        self.matchDetail = RGBYDemoData.demoMatchDetail
         self.configureStyle()
         return true
     }
     
     func configureStyle() {
-        UIApplication.shared.setStatusBarStyle(.lightContent, animated: false)
         UINavigationBar.appearance().barTintColor = UIColor.red
         UINavigationBar.appearance().isTranslucent = true
         UINavigationBar.appearance().tintColor = UIColor.white

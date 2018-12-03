@@ -47,71 +47,45 @@ enum RGBYEventType {
     
     var resultingEvents: [RGBYEventType] {
         switch self {
+        case .MISSED_TACKLE, .LINE_BREAK, .CONVERSION, .KICK_FROM_PLAY, .DROP_GOAL, .KICK_AT_GOAL, .KICK_TO_TOUCH, .TAP, .POACH, .TACKLE:
+            return []
         case .PENALTY: return [.SCRUM, .KICK_AT_GOAL, .KICK_TO_TOUCH, .TRY]
-        case .MISSED_TACKLE:
-            return []
-        case .LINE_BREAK:
-            return []
         case .FOUL:
             return [.SCRUM, .TAP]
-        case .TRY:
-            return [.CONVERSION]
-        case .CONVERSION:
-            return []
-        case .KICK_FROM_PLAY:
-            return []
-        case .DROP_GOAL:
-            return []
-        case .KICK_AT_GOAL:
-            return []
-        case .KICK_TO_TOUCH:
-            return []
         case .SCRUM:
             return [.PENALTY, .FOUL]
-        case .TAP:
-            return []
-        case .POACH:
-            return []
-        case .TACKLE:
-            return []
+        case .TRY:
+            return [.CONVERSION]
         }
     }
-    
+
     var hasPlayerAttribute: Bool {
         switch self {
-        case .MISSED_TACKLE:
-            return true
-        case .LINE_BREAK:
-            return true
-        case .FOUL:
-            return true
-        case .PENALTY:
-            return true
-        case .TRY:
-            return true
-        case .CONVERSION:
-            return true
-        case .KICK_FROM_PLAY:
-            return true
-        case .DROP_GOAL:
-            return true
-        case .KICK_AT_GOAL:
-            return true
-        case .KICK_TO_TOUCH:
+        case .MISSED_TACKLE, .LINE_BREAK, .FOUL, .PENALTY, .TRY, .CONVERSION, .KICK_FROM_PLAY, .DROP_GOAL, .KICK_AT_GOAL, .KICK_TO_TOUCH, .TAP, .POACH, .TACKLE:
             return true
         case .SCRUM:
             return false
-        case .TAP:
-            return true
-        case .POACH:
-            return true
-        case .TACKLE:
-            return true
         }
     }
     
-    var topLevelEvents: [RGBYEventType] {
-        return [.PENALTY, .FOUL, .TRY, .KICK_FROM_PLAY, .DROP_GOAL, .POACH, .LINE_BREAK, .TACKLE]
+    var eventScoreValue: Int {
+        switch self {
+        case .TRY:
+            return 5
+        case .CONVERSION:
+            return 2
+        case .KICK_AT_GOAL, .DROP_GOAL:
+            return 3
+        case .MISSED_TACKLE, .LINE_BREAK, .FOUL, .PENALTY, .KICK_FROM_PLAY, .KICK_TO_TOUCH, .SCRUM, .TAP, .POACH, .TACKLE:
+            return 0
+        }
     }
     
+    static var topLevelEvents: [RGBYEventType] {
+        return [.PENALTY, .FOUL, .TRY, .KICK_FROM_PLAY, .DROP_GOAL, .POACH, .LINE_BREAK, .TACKLE]
+    }
+
+    static var scoreEvents: [RGBYEventType] {
+        return [.TRY, .CONVERSION, .DROP_GOAL, .KICK_AT_GOAL]
+    }
 }

@@ -10,16 +10,16 @@ import UIKit
 
 class RGBYPlayerButton: UIButton {
     
-    var _player: RGBYMatchDaySquadMember!
+    var _player: RGBYPlayer!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 
-    var player: RGBYMatchDaySquadMember {
+    var player: RGBYPlayer {
         set {
             _player = newValue
-            self.setTitle(String(newValue._squadNumber) + " " + newValue._firstName + " " + newValue._lastName, for: .normal)
+            self.setTitle(newValue.firstName + " " + newValue.lastName, for: .normal)
         }
         get {
             return _player

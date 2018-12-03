@@ -10,22 +10,21 @@ import Foundation
 
 class RGBYPlayer {
     
-    var _firstName: String
-    var _lastName: String
-    var _preferredPosition: RGBYPlayerPosition
-    var _imageURL: URL?
+    var firstName: String
+    var lastName: String
+    var preferredPosition: RGBYPlayerPosition
+    var imageURL: URL?
     
     init(firstName: String, lastName: String, preferredPosition: RGBYPlayerPosition) {
-        _firstName = firstName
-        _lastName = lastName
-        _preferredPosition = preferredPosition
-        _imageURL = nil
+        self.firstName = firstName
+        self.lastName = lastName
+        self.preferredPosition = preferredPosition
     }
 
     init(firstName: String, lastName: String, preferredPosition: RGBYPlayerPosition, imageURL: URL?) {
-        _firstName = firstName
-        _lastName = lastName
-        _preferredPosition = preferredPosition
-        _imageURL = imageURL
+        self.firstName = firstName
+        self.lastName = lastName
+        self.preferredPosition = preferredPosition
+        self.imageURL = imageURL
     }
 }

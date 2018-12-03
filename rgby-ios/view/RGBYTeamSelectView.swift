@@ -15,6 +15,7 @@ class RGBYTeamSelectView: UIControl {
 
     var goBackSelected:Bool = false
     var selectedTeam: RGBYMatchDaySquad?
+    var isMyTeam: Bool = true
     var _myTeam: RGBYMatchDaySquad?
     var _oppositionTeam: RGBYMatchDaySquad?
 
@@ -47,9 +48,9 @@ class RGBYTeamSelectView: UIControl {
 
     func setTeamValues(myTeam: RGBYMatchDaySquad, oppositionTeam: RGBYMatchDaySquad) {
         _myTeam = myTeam
-        myTeamButton.setTitle(_myTeam?._teamTitle, for: .normal)
+        myTeamButton.setTitle(_myTeam?.team.title, for: .normal)
         _oppositionTeam = oppositionTeam
-        oppositionTeamButton.setTitle(_oppositionTeam?._teamTitle, for: .normal)
+        oppositionTeamButton.setTitle(_oppositionTeam?.team.title, for: .normal)
     }
 }
 
@@ -68,8 +69,10 @@ extension RGBYTeamSelectView {
     //MARK: CHANGING APPEREANCE OF BUTTON ON TAP
     @objc fileprivate func handleTeamSelected(button: UIButton) {
         if button == myTeamButton {
+            isMyTeam = true
             selectedTeam = _myTeam
         } else if button == oppositionTeamButton {
+            isMyTeam = false
             selectedTeam = _oppositionTeam
         }
         // maybe handle some styling here if need be for the button tapping

@@ -9,58 +9,75 @@
 import Foundation
 
 class RGBYMatchDaySquad {
+
+    var match: RGBYMatch
+    var team: RGBYTeam
+    var looseHeadProp: RGBYPlayer?
+    var hooker: RGBYPlayer?
+    var tightHeadProp: RGBYPlayer?
+    var looseHeadSecondRow: RGBYPlayer?
+    var tightHeadSecondRow: RGBYPlayer?
+    var blindSideFlanker: RGBYPlayer?
+    var opensideFlanker: RGBYPlayer?
+    var number8: RGBYPlayer?
+    var scrumHalf: RGBYPlayer?
+    var outHalf: RGBYPlayer?
+    var leftWing: RGBYPlayer?
+    var insideCenter: RGBYPlayer?
+    var outsideCenter: RGBYPlayer?
+    var rightWing: RGBYPlayer?
+    var fullback: RGBYPlayer?
+    var subsitutes: [RGBYPlayer] = []
+    var subbedPlayers: [RGBYPlayer] = []
+    var bloodBin: [RGBYPlayer] = []
     
-    var _teamTitle: String?
-    var _looseHeadProp: RGBYMatchDaySquadMember
-    var _hooker: RGBYMatchDaySquadMember
-    var _tightHeadProp: RGBYMatchDaySquadMember
-    var _looseHeadSecondRow: RGBYMatchDaySquadMember
-    var _tightHeadSecondRow: RGBYMatchDaySquadMember
-    var _blindSideFlanker: RGBYMatchDaySquadMember
-    var _opensideFlanker: RGBYMatchDaySquadMember
-    var _number8: RGBYMatchDaySquadMember
-    var _scrumHalf: RGBYMatchDaySquadMember
-    var _outHalf: RGBYMatchDaySquadMember
-    var _leftWing: RGBYMatchDaySquadMember
-    var _insideCenter: RGBYMatchDaySquadMember
-    var _outsideCenter: RGBYMatchDaySquadMember
-    var _rightWing: RGBYMatchDaySquadMember
-    var _fullback: RGBYMatchDaySquadMember
-    var _subsitutes: [RGBYMatchDaySquadMember]
-    var _subbedPlayers: [RGBYMatchDaySquadMember]
-    var _bloodBin: [RGBYMatchDaySquadMember]
+    init(match: RGBYMatch, team: RGBYTeam) {
+        self.match = match
+        self.team = team
+    }
     
-    init(looseHeadProp: RGBYMatchDaySquadMember, hooker: RGBYMatchDaySquadMember, tightHeadProp: RGBYMatchDaySquadMember, looseHeadSecondRow: RGBYMatchDaySquadMember, tightHeadSecondRow: RGBYMatchDaySquadMember, blindSideFlanker: RGBYMatchDaySquadMember, opensideFlanker: RGBYMatchDaySquadMember, number8: RGBYMatchDaySquadMember, scrumHalf: RGBYMatchDaySquadMember, outHalf: RGBYMatchDaySquadMember, leftWing: RGBYMatchDaySquadMember, insideCenter: RGBYMatchDaySquadMember, outsideCenter: RGBYMatchDaySquadMember, rightWing: RGBYMatchDaySquadMember, fullback: RGBYMatchDaySquadMember, subsitutes: [RGBYMatchDaySquadMember], teamTitle: String?) {
-        _looseHeadProp = looseHeadProp
-        _hooker = hooker
-        _tightHeadProp = tightHeadProp
-        _looseHeadSecondRow = looseHeadSecondRow
-        _tightHeadSecondRow = tightHeadSecondRow
-        _blindSideFlanker = blindSideFlanker
-        _opensideFlanker = opensideFlanker
-        _number8 = number8
-        _scrumHalf = scrumHalf
-        _outHalf = outHalf
-        _leftWing = leftWing
-        _insideCenter = insideCenter
-        _outsideCenter = outsideCenter
-        _rightWing = rightWing
-        _fullback = fullback
-        _subsitutes = subsitutes
-        _subbedPlayers = [RGBYMatchDaySquadMember]()
-        _bloodBin = [RGBYMatchDaySquadMember]()
-        _teamTitle = teamTitle
+    init(match: RGBYMatch, team:RGBYTeam, looseHeadProp: RGBYPlayer, hooker: RGBYPlayer, tightHeadProp: RGBYPlayer, looseHeadSecondRow: RGBYPlayer, tightHeadSecondRow: RGBYPlayer, blindSideFlanker: RGBYPlayer, opensideFlanker: RGBYPlayer, number8: RGBYPlayer, scrumHalf: RGBYPlayer, outHalf: RGBYPlayer, leftWing: RGBYPlayer, insideCenter: RGBYPlayer, outsideCenter: RGBYPlayer, rightWing: RGBYPlayer, fullback: RGBYPlayer, subsitutes: [RGBYPlayer]) {
+        self.match = match
+        self.team = team
+        self.looseHeadProp = looseHeadProp
+        self.hooker = hooker
+        self.tightHeadProp = tightHeadProp
+        self.looseHeadSecondRow = looseHeadSecondRow
+        self.tightHeadSecondRow = tightHeadSecondRow
+        self.blindSideFlanker = blindSideFlanker
+        self.opensideFlanker = opensideFlanker
+        self.number8 = number8
+        self.scrumHalf = scrumHalf
+        self.outHalf = outHalf
+        self.leftWing = leftWing
+        self.insideCenter = insideCenter
+        self.outsideCenter = outsideCenter
+        self.rightWing = rightWing
+        self.fullback = fullback
+        self.subsitutes = subsitutes
+        self.subbedPlayers = [RGBYPlayer]()
+        self.bloodBin = [RGBYPlayer]()
     }
 
-    var listTeam: [RGBYMatchDaySquadMember] {
+    var listTeam: [RGBYPlayer] {
         get {
-            return [_looseHeadProp, _hooker, _tightHeadProp, _looseHeadSecondRow, _tightHeadSecondRow, _blindSideFlanker, _opensideFlanker, _number8, _scrumHalf, _outHalf, _leftWing, _insideCenter, _outsideCenter, _rightWing, _fullback];
-        }
-    }
-
-    var looseHeadProp: RGBYMatchDaySquadMember {
-        get {
-            return _looseHeadProp
+            return [
+                self.looseHeadProp!,
+                self.hooker!,
+                self.tightHeadProp!,
+                self.looseHeadSecondRow!,
+                self.tightHeadSecondRow!,
+                self.blindSideFlanker!,
+                self.opensideFlanker!,
+                self.number8!,
+                self.scrumHalf!,
+                self.outHalf!,
+                self.leftWing!,
+                self.insideCenter!,
+                self.outsideCenter!,
+                self.rightWing!,
+                self.fullback!
+            ];
         }
     }
 }

@@ -13,7 +13,7 @@ class RGBYPlayerSelectView: UIControl {
     
     let nibName = "RGBYPlayerSelectView"
 
-    var selectedPlayer: RGBYMatchDaySquadMember?
+    var selectedPlayer: RGBYPlayer?
 
     @IBOutlet weak var contentView: UIView!
 
@@ -74,21 +74,21 @@ class RGBYPlayerSelectView: UIControl {
 
     func setTeam(squad: RGBYMatchDaySquad) {
         // set the team players
-        number1.player = squad._looseHeadProp
-        number2.player = squad._hooker
-        number3.player = squad._tightHeadProp
-        number4.player = squad._looseHeadSecondRow
-        number5.player = squad._tightHeadSecondRow
-        number6.player = squad._blindSideFlanker
-        number7.player = squad._opensideFlanker
-        number8.player = squad._number8
-        number9.player = squad._scrumHalf
-        number10.player = squad._outHalf
-        number11.player = squad._leftWing
-        number12.player = squad._insideCenter
-        number13.player = squad._outsideCenter
-        number14.player = squad._rightWing
-        number15.player = squad._fullback
+        number1.player = squad.looseHeadProp!
+        number2.player = squad.hooker!
+        number3.player = squad.tightHeadProp!
+        number4.player = squad.looseHeadSecondRow!
+        number5.player = squad.tightHeadSecondRow!
+        number6.player = squad.blindSideFlanker!
+        number7.player = squad.opensideFlanker!
+        number8.player = squad.number8!
+        number9.player = squad.scrumHalf!
+        number10.player = squad.outHalf!
+        number11.player = squad.leftWing!
+        number12.player = squad.insideCenter!
+        number13.player = squad.outsideCenter!
+        number14.player = squad.rightWing!
+        number15.player = squad.fullback!
     }
 }
 
