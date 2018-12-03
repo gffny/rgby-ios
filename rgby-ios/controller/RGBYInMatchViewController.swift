@@ -17,7 +17,7 @@ class RGBYInMatchViewController: UIViewController, UITableViewDataSource, RGBYMa
     @IBOutlet weak var teamAScore: UILabel!
     @IBOutlet weak var teamBName: UILabel!
     @IBOutlet weak var teamBScore: UILabel!
-    @IBOutlet weak var fieldView: UIImageView!
+    @IBOutlet weak var fieldView: RGBYFieldView!
     @IBOutlet weak var scoreView: RGBYInMatchScoreView!
     @IBOutlet weak var matchClock: RGBYMatchClock!
 
@@ -30,6 +30,7 @@ class RGBYInMatchViewController: UIViewController, UITableViewDataSource, RGBYMa
         print("RGBYInGameViewController:: viewDidLoad");
         let fieldTap = UITapGestureRecognizer(target: self, action: #selector(handleFieldTap))
         self.fieldView.addGestureRecognizer(fieldTap)
+        self.fieldView.modeSwitch.addTarget(self, action: #selector(handleModeSwitch), for: .touchUpInside)
         self.scoreView.eventTableView.dataSource = self
         self.matchDetail = RGBYDemoData.demoMatchDetail
         self.matchDetail.delegate = self
@@ -58,7 +59,10 @@ class RGBYInMatchViewController: UIViewController, UITableViewDataSource, RGBYMa
         print("RGBYInGameViewController:: handleFieldTap")
         self.fieldTapLocation = sender.location(in: self.fieldView)
         // record or pass the tap location to the next VC
-        // create a view controller class for the match incident input
+        // convert that to % x and % y
+        let x = self.fieldTapLocation.x / self.fieldView.frame.width
+        let y = self.fieldTapLocation.y / self.fieldView.frame.height
+        self.fieldTapLocation = CGPoint(x: x, y: y)
         performSegue(withIdentifier: "presentMatchIncidentInput", sender: self)
     }
 
@@ -88,7 +92,8 @@ class RGBYInMatchViewController: UIViewController, UITableViewDataSource, RGBYMa
     func matchScoreUpdated() {
         self.teamAScore.text = String(self.matchDetail.myTeamScore)
         self.teamBScore.text = String(self.matchDetail.oppTeamScore)
-        scoreView.eventTableView.reloadData()
+        self.fieldView.updateEventArray(matchEventArray: self.matchDetail.matchEventArray)
+        self.scoreView.eventTableView.reloadData()
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

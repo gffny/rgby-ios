@@ -6,7 +6,7 @@
 //  Copyright © 2018 gffny.com. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 enum RGBYEventType {
     
@@ -78,6 +78,19 @@ enum RGBYEventType {
             return 3
         case .MISSED_TACKLE, .LINE_BREAK, .FOUL, .PENALTY, .KICK_FROM_PLAY, .KICK_TO_TOUCH, .SCRUM, .TAP, .POACH, .TACKLE:
             return 0
+        }
+    }
+    
+    var eventIcon: UIImage {
+        switch self {
+        case .TRY, .CONVERSION:
+            return UIImage(named: "TryIcon")!
+        case .KICK_AT_GOAL:
+            return UIImage(named: "PenaltyIcon")!
+        case .DROP_GOAL:
+            return UIImage(named: "DropGoalIcon")!
+        case .MISSED_TACKLE, .LINE_BREAK, .FOUL, .PENALTY, .KICK_FROM_PLAY, .KICK_TO_TOUCH, .SCRUM, .TAP, .POACH, .TACKLE:
+            return UIImage(named: "Blah")!
         }
     }
     

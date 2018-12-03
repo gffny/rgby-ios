@@ -28,7 +28,7 @@ class RGBYMatchClock: UIControl {
     }
 
     func setupView() {
-    print("RGBYScoreTypeSelectView::setupView")
+        print("RGBYScoreTypeSelectView::setupView")
         // load the view from the nib
         Bundle.main.loadNibNamed(nibName, owner: self, options: nil)
         // set the view bounds

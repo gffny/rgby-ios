@@ -13,7 +13,7 @@ class RGBYInMatchFieldViewController: UIViewController, RGBYMatchDetailTimerDele
     private static var CLOCK_START_MATCH = "Start Match"
     private static var CLOCK_SECOND_HALF = "Start 2nd Half"
 
-    @IBOutlet weak var fieldView: UIImageView!
+    @IBOutlet weak var fieldView: RGBYFieldView!
     @IBOutlet weak var teamAName: UILabel!
     @IBOutlet weak var teamAScore: UILabel!
     @IBOutlet weak var matchClock: RGBYMatchClock!
@@ -29,6 +29,7 @@ class RGBYInMatchFieldViewController: UIViewController, RGBYMatchDetailTimerDele
         print("RGBYInGameViewController:: viewDidLoad");
         let fieldTap = UITapGestureRecognizer(target: self, action: #selector(handleFieldTap))
         self.fieldView.addGestureRecognizer(fieldTap)
+        self.fieldView.modeSwitch.addTarget(self, action: #selector(handleModeSwitch), for: .touchUpInside)
         self.matchDetail = RGBYDemoData.demoMatchDetail
         self.matchDetail.delegate = self
         self.teamAName.text = self.matchDetail.myMatchDaySquad.team.shortTitle
@@ -58,14 +59,17 @@ class RGBYInMatchFieldViewController: UIViewController, RGBYMatchDetailTimerDele
     func matchScoreUpdated() {
         self.teamAScore.text = String(self.matchDetail.myTeamScore)
         self.teamBScore.text = String(self.matchDetail.oppTeamScore)
+        self.fieldView.updateEventArray(matchEventArray: self.matchDetail.matchEventArray)
     }
 
     @objc func handleFieldTap(_ sender:UITapGestureRecognizer) {
         // do other task
         print("RGBYInGameViewController:: handleFieldTap")
         self.fieldTapLocation = sender.location(in: self.fieldView)
-        // record or pass the tap location to the next VC
-        // create a view controller class for the match incident input
+        // convert that to % x and % y
+        let x = self.fieldTapLocation.x / self.fieldView.frame.width
+        let y = self.fieldTapLocation.y / self.fieldView.frame.height
+        self.fieldTapLocation = CGPoint(x: x, y: y)
         performSegue(withIdentifier: "presentMatchIncidentInput", sender: self)
     }
     

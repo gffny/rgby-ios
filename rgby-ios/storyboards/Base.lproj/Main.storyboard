@@ -80,34 +80,12 @@
                                     <constraint firstAttribute="height" constant="150" id="yCA-UA-npt"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vmB-XS-bID" userLabel="FieldView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vmB-XS-bID" userLabel="FieldView" customClass="RGBYFieldView" customModule="rgby_ios" customModuleProvider="target">
                                 <rect key="frame" x="464" y="170" width="540" height="315"/>
-                                <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.55000000000000004" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" image="RugbyUnionPitch" highlightedImage="RugbyUnionPitch" translatesAutoresizingMaskIntoConstraints="NO" id="Gy5-xk-Sf5">
-                                        <rect key="frame" x="0.0" y="0.0" width="540" height="315"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <button opaque="NO" alpha="0.65000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hKH-8y-UqY" userLabel="Mode Switch">
-                                        <rect key="frame" x="490" y="265" width="50" height="50"/>
-                                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="50" id="9fc-qi-x1O"/>
-                                            <constraint firstAttribute="height" constant="50" id="OvR-yc-p6h"/>
-                                        </constraints>
-                                        <state key="normal" title="^"/>
-                                        <connections>
-                                            <action selector="handleModeSwitch:" destination="wL6-oV-McU" eventType="touchUpInside" id="WH4-61-Drf"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="hKH-8y-UqY" secondAttribute="bottom" id="0yr-9a-vE4"/>
                                     <constraint firstAttribute="width" constant="540" id="FRO-tq-YxC"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="315" id="NbW-ap-bjt"/>
                                     <constraint firstAttribute="height" constant="315" id="NhY-bE-l1g"/>
-                                    <constraint firstAttribute="trailing" secondItem="hKH-8y-UqY" secondAttribute="trailing" id="epV-qU-oe6"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="540" id="zpx-AU-fed"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uKN-Si-VxE" userLabel="ScoreView" customClass="RGBYInMatchScoreView" customModule="rgby_ios" customModuleProvider="target">
@@ -272,33 +250,10 @@
                                     <constraint firstAttribute="bottom" secondItem="eTx-Jk-V3P" secondAttribute="bottom" id="yS9-Pu-CfB"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L1W-T9-YuV">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L1W-T9-YuV" customClass="RGBYFieldView" customModule="rgby_ios" customModuleProvider="target">
                                 <rect key="frame" x="20" y="180" width="984" height="578"/>
-                                <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.55000000000000004" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" image="RugbyUnionPitch" highlightedImage="RugbyUnionPitch" translatesAutoresizingMaskIntoConstraints="NO" id="rxS-C1-5HI">
-                                        <rect key="frame" x="0.0" y="0.0" width="984" height="578"/>
-                                    </imageView>
-                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="rxS-C1-5HI" firstAttribute="top" secondItem="L1W-T9-YuV" secondAttribute="top" id="3JI-nT-KGi"/>
-                                    <constraint firstAttribute="trailing" secondItem="rxS-C1-5HI" secondAttribute="trailing" id="G0P-dO-Qct"/>
-                                    <constraint firstItem="rxS-C1-5HI" firstAttribute="leading" secondItem="L1W-T9-YuV" secondAttribute="leading" id="usl-kL-un6"/>
-                                    <constraint firstAttribute="bottom" secondItem="rxS-C1-5HI" secondAttribute="bottom" id="ygn-Zu-Up2"/>
-                                </constraints>
                             </view>
-                            <button opaque="NO" alpha="0.64999997615814209" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="knR-Qr-iqc" userLabel="Mode Shift">
-                                <rect key="frame" x="874" y="618" width="150" height="150"/>
-                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="150" id="uCE-ER-21a"/>
-                                    <constraint firstAttribute="width" constant="150" id="ztH-9P-QCJ"/>
-                                </constraints>
-                                <state key="normal" title="^"/>
-                                <connections>
-                                    <action selector="handleModeSwitch:" destination="UEZ-2z-zhg" eventType="touchUpInside" id="u17-pJ-aSn"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -306,8 +261,6 @@
                             <constraint firstItem="KUl-QY-YGM" firstAttribute="trailing" secondItem="Hf3-mr-ASa" secondAttribute="trailing" constant="10" id="CIa-Lp-ysb"/>
                             <constraint firstItem="Hf3-mr-ASa" firstAttribute="leading" secondItem="KUl-QY-YGM" secondAttribute="leading" constant="10" id="Ylp-Zx-mv8"/>
                             <constraint firstItem="Hf3-mr-ASa" firstAttribute="top" secondItem="eid-2J-hVZ" secondAttribute="top" constant="20" id="hYG-wm-dYc"/>
-                            <constraint firstItem="KUl-QY-YGM" firstAttribute="bottom" secondItem="knR-Qr-iqc" secondAttribute="bottom" id="wxz-ce-Qsk"/>
-                            <constraint firstItem="KUl-QY-YGM" firstAttribute="trailing" secondItem="knR-Qr-iqc" secondAttribute="trailing" id="yCz-Cy-0UN"/>
                             <constraint firstItem="L1W-T9-YuV" firstAttribute="leading" secondItem="KUl-QY-YGM" secondAttribute="leading" constant="20" id="yL7-GB-w3V"/>
                             <constraint firstItem="L1W-T9-YuV" firstAttribute="top" secondItem="Hf3-mr-ASa" secondAttribute="bottom" constant="10" id="z6S-d8-9pI"/>
                             <constraint firstItem="KUl-QY-YGM" firstAttribute="trailing" secondItem="L1W-T9-YuV" secondAttribute="trailing" constant="20" id="zzt-ff-QB7"/>
@@ -373,9 +326,6 @@
             <point key="canvasLocation" x="393" y="3644"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="RugbyUnionPitch" width="1100.636962890625" height="606.26751708984375"/>
-    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Qed-AH-LDI"/>
     </inferredMetricsTieBreakers>
