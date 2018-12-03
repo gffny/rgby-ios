@@ -1,56 +1,63 @@
 //
-//  RGBYInGameViewController.swift
+//  RGBYInMatchFieldViewController.swift
 //  rgby-ios
 //
-//  Created by John D. Gaffney on 11/9/18.
+//  Created by John D. Gaffney on 12/2/18.
 //  Copyright © 2018 gffny.com. All rights reserved.
 //
 
 import UIKit
 
-class RGBYInMatchViewController: UIViewController, UITableViewDataSource, RGBYMatchDetailTimerDelegate {
+class RGBYInMatchFieldViewController: UIViewController, RGBYMatchDetailTimerDelegate {
 
     private static var CLOCK_START_MATCH = "Start Match"
     private static var CLOCK_SECOND_HALF = "Start 2nd Half"
 
+    @IBOutlet weak var fieldView: UIImageView!
     @IBOutlet weak var teamAName: UILabel!
     @IBOutlet weak var teamAScore: UILabel!
-    @IBOutlet weak var teamBName: UILabel!
-    @IBOutlet weak var teamBScore: UILabel!
-    @IBOutlet weak var fieldView: UIImageView!
-    @IBOutlet weak var scoreView: RGBYInMatchScoreView!
     @IBOutlet weak var matchClock: RGBYMatchClock!
-
+    @IBOutlet weak var teamBScore: UILabel!
+    @IBOutlet weak var teamBName: UILabel!
+    
     var matchDetail: RGBYMatchDetail = RGBYDemoData.demoMatchDetail
     var fieldTapLocation: CGPoint = CGPoint(x: 100, y: 100)
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         print("RGBYInGameViewController:: viewDidLoad");
         let fieldTap = UITapGestureRecognizer(target: self, action: #selector(handleFieldTap))
         self.fieldView.addGestureRecognizer(fieldTap)
-        self.scoreView.eventTableView.dataSource = self
         self.matchDetail = RGBYDemoData.demoMatchDetail
         self.matchDetail.delegate = self
         self.teamAName.text = self.matchDetail.myMatchDaySquad.team.shortTitle
         self.teamBName.text = self.matchDetail.oppMatchDaySquad.team.shortTitle
         matchScoreUpdated()
-        setupMatchClock()
+    }
+
+    func setupMatchClock() {
+        self.matchClock.addTarget(self, action: #selector(handleClockAction), for: .valueChanged)
+        self.matchClock.setClockText(text: RGBYInMatchFieldViewController.CLOCK_START_MATCH)
     }
 
     @objc func handleClockAction(_ sender:RGBYMatchClock) {
         // if clock is "start match"
-        if sender.clockActionButton.titleLabel?.text == RGBYInMatchViewController.CLOCK_START_MATCH {
+        if sender.clockActionButton.titleLabel?.text == RGBYInMatchFieldViewController.CLOCK_START_MATCH {
             self.matchDetail.startPeriod()
-        } else if sender.clockActionButton.titleLabel?.text == RGBYInMatchViewController.CLOCK_SECOND_HALF {
+        } else if sender.clockActionButton.titleLabel?.text == RGBYInMatchFieldViewController.CLOCK_SECOND_HALF {
             self.matchDetail.startPeriod()
         } else {
             self.matchDetail.stopPeriod()
             if self.matchDetail.currentPeriod == 1 {
-                sender.setClockText(text: RGBYInMatchViewController.CLOCK_SECOND_HALF)
+                sender.setClockText(text: RGBYInMatchFieldViewController.CLOCK_SECOND_HALF)
             }
         }
+    }
+
+    func matchScoreUpdated() {
+        self.teamAScore.text = String(self.matchDetail.myTeamScore)
+        self.teamBScore.text = String(self.matchDetail.oppTeamScore)
     }
 
     @objc func handleFieldTap(_ sender:UITapGestureRecognizer) {
@@ -61,43 +68,23 @@ class RGBYInMatchViewController: UIViewController, UITableViewDataSource, RGBYMa
         // create a view controller class for the match incident input
         performSegue(withIdentifier: "presentMatchIncidentInput", sender: self)
     }
-
-    @IBAction func handleModeSwitch(_ sender: Any) {
-        print("RGBYInMatchFieldViewController:: present mode switch")
-        performSegue(withIdentifier: "presentModeSwitch", sender: self)
-    }
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is RGBYInMatchIncidentInputViewController {
             let destVC = segue.destination as! RGBYInMatchIncidentInputViewController
             destVC.setData(matchDetail: self.matchDetail, incidentFieldLocation: self.fieldTapLocation)
         }
     }
+    
+    @IBAction func handleModeSwitch(_ sender: Any) {
+        print("RGBYInMatchFieldViewController:: present mode switch")
+        performSegue(withIdentifier: "presentModeSwitch", sender: self)
 
-    func setupMatchClock() {
-        self.matchClock.addTarget(self, action: #selector(handleClockAction), for: .valueChanged)
-        self.matchClock.setClockText(text: RGBYInMatchViewController.CLOCK_START_MATCH)
     }
 
     func periodTimerUpdated() {
         if self.matchDetail.currentPeriod < 3 {
-            self.matchClock.setClockText(text: String("\(RGBYUtils.formatMatchClock(time: self.matchDetail.currentPeriodTimeInSec))"))
+            self.matchClock.setClockText(text: String("\(RGBYUtils.formatMatchClock(time: matchDetail.currentPeriodTimeInSec))"))
         }
-    }
-
-    func matchScoreUpdated() {
-        self.teamAScore.text = String(self.matchDetail.myTeamScore)
-        self.teamBScore.text = String(self.matchDetail.oppTeamScore)
-        scoreView.eventTableView.reloadData()
-    }
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.matchDetail.matchEventArray.count
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "rgbyMatchEventCell")! as! RGBYMatchDetailTableViewCell
-        cell.setData(matchEvent: self.matchDetail.matchEventArray[indexPath.row])
-        return cell
     }
 }

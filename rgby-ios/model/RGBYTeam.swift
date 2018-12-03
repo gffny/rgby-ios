@@ -12,17 +12,29 @@ class RGBYTeam {
     
     var id: String?
     var title: String?
+    private var _shortTitle: String?
     var club: RGBYClub?
     var player: [RGBYPlayer] = []
 
-    init(id: String, title:String) {
+    init(id: String, title:String, shortTitle: String) {
         self.id = id
         self.title = title
+        self._shortTitle = shortTitle
     }
 
-    init(id: String, title: String, club: RGBYClub) {
+    init(id: String, title: String, shortTitle: String, club: RGBYClub) {
         self.id = id
         self.title = title
+        self._shortTitle = shortTitle
         self.club = club
+    }
+    
+    var shortTitle: String {
+        get {
+            if (self._shortTitle ?? "").isEmpty {
+                return self.title!
+            }
+            return self._shortTitle!
+        }
     }
 }

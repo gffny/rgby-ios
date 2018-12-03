@@ -60,6 +60,7 @@ class RGBYMatchDetail: NSObject {
             }
         }
         NotificationCenter.default.post(name: .matchDetailDataUpdateNotification, object: nil)
+        delegate?.matchScoreUpdated()
     }
     
     func startPeriod() {
@@ -94,6 +95,7 @@ class RGBYMatchDetail: NSObject {
 
 public protocol RGBYMatchDetailTimerDelegate : NSObjectProtocol {
     func periodTimerUpdated() -> Void
+    func matchScoreUpdated() -> Void
 }
 
 extension Notification.Name {

@@ -47,7 +47,7 @@ enum RGBYEventType {
     
     var resultingEvents: [RGBYEventType] {
         switch self {
-        case .MISSED_TACKLE, .LINE_BREAK, .CONVERSION, .KICK_FROM_PLAY, .DROP_GOAL, .KICK_AT_GOAL, .KICK_TO_TOUCH, .TAP, .POACH, .TACKLE:
+    case .MISSED_TACKLE, .LINE_BREAK, .CONVERSION, .KICK_FROM_PLAY, .DROP_GOAL, .KICK_AT_GOAL, .KICK_TO_TOUCH, .TAP, .POACH, .TACKLE:
             return []
         case .PENALTY: return [.SCRUM, .KICK_AT_GOAL, .KICK_TO_TOUCH, .TRY]
         case .FOUL:

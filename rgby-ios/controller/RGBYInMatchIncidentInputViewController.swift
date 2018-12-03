@@ -114,7 +114,7 @@ class RGBYInMatchIncidentInputViewController: UIViewController  {
         } else if (sender.selectedScoreType == RGBYScoreTypeSelectView.CONVERSION) {
             self.matchEvent.eventType = .CONVERSION
         } else if (sender.selectedScoreType == RGBYScoreTypeSelectView.PENALTY) {
-            self.matchEvent.eventType = .PENALTY
+            self.matchEvent.eventType = .KICK_AT_GOAL
         } else if (sender.selectedScoreType == RGBYScoreTypeSelectView.DROP_GOAL) {
             self.matchEvent.eventType = .DROP_GOAL
         }

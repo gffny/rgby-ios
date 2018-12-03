@@ -9,11 +9,7 @@
 import UIKit
 
 class RGBYInMatchScoreView: UIView {
-    
-    @IBOutlet weak var myTeamNameLabel: UILabel!
-    @IBOutlet weak var oppositionTeamNameLabel: UILabel!
-    @IBOutlet weak var myTeamScoreLabel: UILabel!
-    @IBOutlet weak var oppositionTeamScoreLabel: UILabel!
+
     @IBOutlet weak var eventTableView: UITableView!
 
 }

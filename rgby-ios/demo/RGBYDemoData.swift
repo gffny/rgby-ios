@@ -11,8 +11,8 @@ import Foundation
 class RGBYDemoData {
     
     static var demoClub:RGBYClub = RGBYClub(id: "club-1", title: "MIT RFC", imageURL: URL(fileURLWithPath: "http://rugby.mit.edu/sites/all/themes/danland/logo.png"))
-    static var demoTeam:RGBYTeam = RGBYTeam(id: "team-1", title: "MIT RFC 1st XV", club: demoClub)
-    static var demoOppTeam:RGBYTeam = RGBYTeam(id: "team-2", title: "Boston NZ Kiwis RFC 1st XV")
+    static var demoTeam:RGBYTeam = RGBYTeam(id: "team-1", title: "MIT RFC 1st XV", shortTitle: "MITRFC", club: demoClub)
+    static var demoOppTeam:RGBYTeam = RGBYTeam(id: "team-2", title: "Boston NZ Kiwis RFC 1st XV", shortTitle: "BNZ Kiwi")
     static var demoCompetition:RGBYCompetition = RGBYCompetition(id: "comp-1", title: "NERFU DIII League 2018")
     static var demoMatch:RGBYMatch = RGBYMatch(id: "match-1", title: "The Match?", date: Date(), location: "Briggs Field, Vassar St., Cambridge, MA 02143", homeTeam: demoTeam, awayTeam: demoOppTeam)
 

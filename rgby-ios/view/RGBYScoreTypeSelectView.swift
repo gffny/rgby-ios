@@ -41,14 +41,14 @@ class RGBYScoreTypeSelectView: UIControl {
         // load the view from the nib
         Bundle.main.loadNibNamed(nibName, owner: self, options: nil)
         // set the view bounds
-        contentView.frame = bounds
-        contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        self.contentView.frame = bounds
+        self.contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         // add it to this view
-        addSubview(contentView)
-        tryButton.addTarget(self, action: #selector(handleScoreTypeSelected(sender:)), for: .touchUpInside)
-        convButton.addTarget(self, action: #selector(handleScoreTypeSelected(sender:)), for: .touchUpInside)
-        penaltyButton.addTarget(self, action: #selector(handleScoreTypeSelected(sender:)), for: .touchUpInside)
-        tryButton.addTarget(self, action: #selector(handleScoreTypeSelected(sender:)), for: .touchUpInside)
+        self.addSubview(contentView)
+        self.tryButton.addTarget(self, action: #selector(handleScoreTypeSelected(sender:)), for: .touchUpInside)
+        self.convButton.addTarget(self, action: #selector(handleScoreTypeSelected(sender:)), for: .touchUpInside)
+        self.penaltyButton.addTarget(self, action: #selector(handleScoreTypeSelected(sender:)), for: .touchUpInside)
+        self.dropGoalButton.addTarget(self, action: #selector(handleScoreTypeSelected(sender:)), for: .touchUpInside)
     }
 }
 
@@ -62,13 +62,13 @@ extension RGBYScoreTypeSelectView {
     @objc fileprivate func handleScoreTypeSelected(sender: UIButton) {
         print("RGBYScoreTypeSelectView:: handleScoreTypeSelected")
         if (sender == tryButton) {
-            selectedScoreType = RGBYScoreTypeSelectView.TRY
+            self.selectedScoreType = RGBYScoreTypeSelectView.TRY
         } else if (sender == convButton) {
-            selectedScoreType = RGBYScoreTypeSelectView.CONVERSION
+            self.selectedScoreType = RGBYScoreTypeSelectView.CONVERSION
         } else if (sender == penaltyButton) {
-            selectedScoreType = RGBYScoreTypeSelectView.PENALTY
+            self.selectedScoreType = RGBYScoreTypeSelectView.PENALTY
         } else if (sender == dropGoalButton) {
-            selectedScoreType = RGBYScoreTypeSelectView.DROP_GOAL
+            self.selectedScoreType = RGBYScoreTypeSelectView.DROP_GOAL
         }
         self.performAction()
     }
