@@ -18,14 +18,12 @@ class RGBYIncidentTypeSelectView: UIControl {
     @IBOutlet weak var scoreButton: UIButton!
     @IBOutlet weak var turnOverButton: UIButton!
     @IBOutlet weak var tackleButton: UIButton!
-    @IBOutlet weak var goBackButton: UIButton!
     
     public static var PENALTY: String = "penalty"
     public static var FOUL: String = "foul"
     public static var SCORE: String = "score"
     public static var TURN_OVER: String = "turnover"
     public static var TACKLE: String = "tackle"
-    public static var GO_BACK: String = "goback"
 
     var selectedIncident: String?
 
@@ -56,7 +54,6 @@ class RGBYIncidentTypeSelectView: UIControl {
         scoreButton.addTarget(self, action: #selector(handleIncidentSelected(sender:)), for: .touchUpInside)
         turnOverButton.addTarget(self, action: #selector(handleIncidentSelected(sender:)), for: .touchUpInside)
         tackleButton.addTarget(self, action: #selector(handleIncidentSelected(sender:)), for: .touchUpInside)
-        goBackButton.addTarget(self, action: #selector(handleIncidentSelected(sender:)), for: .touchUpInside)
     }
 }
 
@@ -90,10 +87,6 @@ extension RGBYIncidentTypeSelectView {
             // handle tackle
             print("RGBYIncidentTypeSelectView:: tackle")
             selectedIncident = RGBYIncidentTypeSelectView.TACKLE
-        } else if (sender == goBackButton) {
-            // handle tackle
-            print("RGBYIncidentTypeSelectView:: tackle")
-            selectedIncident = RGBYIncidentTypeSelectView.GO_BACK
         }
         // maybe handle some styling here if need be for the button tapping
         self.performAction()

@@ -97,12 +97,16 @@ class RGBYInMatchViewController: UIViewController, UITableViewDataSource, RGBYMa
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.matchDetail.matchEventArray.count
+        return self.matchDetail.matchEventArray.filter({ (event: RGBYMatchEvent) -> Bool in
+            return RGBYEventType.scoreEvents.contains(event.eventType!)
+        }).count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "rgbyMatchEventCell")! as! RGBYMatchDetailTableViewCell
-        cell.setData(matchEvent: self.matchDetail.matchEventArray[indexPath.row])
+        cell.setData(matchEvent: self.matchDetail.matchEventArray.filter({ (event: RGBYMatchEvent) -> Bool in
+            return RGBYEventType.scoreEvents.contains(event.eventType!)
+        })[indexPath.row])
         return cell
     }
 }

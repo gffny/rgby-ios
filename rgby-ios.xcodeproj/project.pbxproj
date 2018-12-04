@@ -43,6 +43,12 @@
 		50F21C0B21B4D1CA00ABDCC5 /* RGBYUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F21C0A21B4D1CA00ABDCC5 /* RGBYUtils.swift */; };
 		50F21C0D21B4E53E00ABDCC5 /* RGBYFieldView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50F21C0C21B4E53E00ABDCC5 /* RGBYFieldView.xib */; };
 		50F21C0F21B4E68F00ABDCC5 /* RGBYFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F21C0E21B4E68F00ABDCC5 /* RGBYFieldView.swift */; };
+		50F21C1121B4FA6F00ABDCC5 /* RGBYPenaltyTypeSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F21C1021B4FA6F00ABDCC5 /* RGBYPenaltyTypeSelectView.swift */; };
+		50F21C1321B5943F00ABDCC5 /* RGBYPenaltyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F21C1221B5943F00ABDCC5 /* RGBYPenaltyType.swift */; };
+		50F21C1521B6E08100ABDCC5 /* RGBYFoulTypeSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F21C1421B6E08100ABDCC5 /* RGBYFoulTypeSelectView.swift */; };
+		50F21C1721B6E0AA00ABDCC5 /* RGBYFoulType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F21C1621B6E0AA00ABDCC5 /* RGBYFoulType.swift */; };
+		50F21C1921B6E81200ABDCC5 /* RGBYTurnOverTypeSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F21C1821B6E81200ABDCC5 /* RGBYTurnOverTypeSelectView.swift */; };
+		50F21C1B21B6E8D000ABDCC5 /* RGBYTurnOverType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F21C1A21B6E8D000ABDCC5 /* RGBYTurnOverType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +111,12 @@
 		50F21C0A21B4D1CA00ABDCC5 /* RGBYUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBYUtils.swift; sourceTree = "<group>"; };
 		50F21C0C21B4E53E00ABDCC5 /* RGBYFieldView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RGBYFieldView.xib; sourceTree = "<group>"; };
 		50F21C0E21B4E68F00ABDCC5 /* RGBYFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBYFieldView.swift; sourceTree = "<group>"; };
+		50F21C1021B4FA6F00ABDCC5 /* RGBYPenaltyTypeSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBYPenaltyTypeSelectView.swift; sourceTree = "<group>"; };
+		50F21C1221B5943F00ABDCC5 /* RGBYPenaltyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBYPenaltyType.swift; sourceTree = "<group>"; };
+		50F21C1421B6E08100ABDCC5 /* RGBYFoulTypeSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBYFoulTypeSelectView.swift; sourceTree = "<group>"; };
+		50F21C1621B6E0AA00ABDCC5 /* RGBYFoulType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBYFoulType.swift; sourceTree = "<group>"; };
+		50F21C1821B6E81200ABDCC5 /* RGBYTurnOverTypeSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBYTurnOverTypeSelectView.swift; sourceTree = "<group>"; };
+		50F21C1A21B6E8D000ABDCC5 /* RGBYTurnOverType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBYTurnOverType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,9 +248,12 @@
 				500200B321A9C4000043CAF8 /* RGBYPlayerButton.swift */,
 				500200BF21ACCDB00043CAF8 /* RGBYTeamSelectView.swift */,
 				5017FC2A21ADC1B60054B781 /* RGBYIncidentTypeSelectView.swift */,
+				50F21C1021B4FA6F00ABDCC5 /* RGBYPenaltyTypeSelectView.swift */,
 				5017FC3021ADF4E80054B781 /* RGBYScoreTypeSelectView.swift */,
 				503459B821B4622F00D267E7 /* RGBYMatchClock.swift */,
 				50F21C0E21B4E68F00ABDCC5 /* RGBYFieldView.swift */,
+				50F21C1421B6E08100ABDCC5 /* RGBYFoulTypeSelectView.swift */,
+				50F21C1821B6E81200ABDCC5 /* RGBYTurnOverTypeSelectView.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -248,6 +263,9 @@
 			children = (
 				5027B5DE219DDDD500D940E9 /* RGBYPlayerPosition.swift */,
 				50C6591121990E4400DB1B5C /* RGBYEventType.swift */,
+				50F21C1221B5943F00ABDCC5 /* RGBYPenaltyType.swift */,
+				50F21C1621B6E0AA00ABDCC5 /* RGBYFoulType.swift */,
+				50F21C1A21B6E8D000ABDCC5 /* RGBYTurnOverType.swift */,
 			);
 			path = enum;
 			sourceTree = "<group>";
@@ -407,12 +425,17 @@
 			files = (
 				50F21C0F21B4E68F00ABDCC5 /* RGBYFieldView.swift in Sources */,
 				5017FC2B21ADC1B60054B781 /* RGBYIncidentTypeSelectView.swift in Sources */,
+				50F21C1521B6E08100ABDCC5 /* RGBYFoulTypeSelectView.swift in Sources */,
+				50F21C1721B6E0AA00ABDCC5 /* RGBYFoulType.swift in Sources */,
 				5027B5D4219DB35700D940E9 /* RGBYInMatchScoreView.swift in Sources */,
 				50C6591221990E4400DB1B5C /* RGBYEventType.swift in Sources */,
+				50F21C1B21B6E8D000ABDCC5 /* RGBYTurnOverType.swift in Sources */,
+				50F21C1921B6E81200ABDCC5 /* RGBYTurnOverTypeSelectView.swift in Sources */,
 				503ABE8E21AF8E2A00D45F71 /* RGBYCompetition.swift in Sources */,
 				503ABE9421B06FFF00D45F71 /* RGBYDemoData.swift in Sources */,
 				500CDC632195E78E0053508A /* AppDelegate.swift in Sources */,
 				500200C021ACCDB00043CAF8 /* RGBYTeamSelectView.swift in Sources */,
+				50F21C1121B4FA6F00ABDCC5 /* RGBYPenaltyTypeSelectView.swift in Sources */,
 				50F21C0B21B4D1CA00ABDCC5 /* RGBYUtils.swift in Sources */,
 				5027B5DD219DDA7500D940E9 /* RGBYPlayer.swift in Sources */,
 				5027B5CC219CD03500D940E9 /* RGBYInMatchIncidentInputViewController.swift in Sources */,
@@ -423,6 +446,7 @@
 				5027B5DF219DDDD500D940E9 /* RGBYPlayerPosition.swift in Sources */,
 				503459B921B4622F00D267E7 /* RGBYMatchClock.swift in Sources */,
 				5017FC3121ADF4E80054B781 /* RGBYScoreTypeSelectView.swift in Sources */,
+				50F21C1321B5943F00ABDCC5 /* RGBYPenaltyType.swift in Sources */,
 				50F21C0821B4CB4100ABDCC5 /* RGBYInMatchFieldViewController.swift in Sources */,
 				5027B5D2219CF15E00D940E9 /* RGBYMatchDetail.swift in Sources */,
 				500200B421A9C4000043CAF8 /* RGBYPlayerButton.swift in Sources */,

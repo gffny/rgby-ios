@@ -43,15 +43,21 @@ class RGBYInMatchIncidentInputViewController: UIViewController  {
         incidentTypeSelectView.addTarget(self, action: #selector(handleIncidentTypeSelect), for: .valueChanged)
         containerView.addSubview(incidentTypeSelectView)
     }
+    
+    func showPenaltyTypeSelectView() {
+        let penaltyTypeSelectView = RGBYPenaltyTypeSelectView(frame: containerView.frame)
+        penaltyTypeSelectView.frame = containerView.bounds
+        penaltyTypeSelectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        penaltyTypeSelectView.addTarget(self, action: #selector(handlePenaltyTypeSelect), for: .valueChanged)
+        containerView.addSubview(penaltyTypeSelectView)
+    }
 
-    func showTeamSelectView() {
-        let teamSelectView = RGBYTeamSelectView(frame: containerView.frame)
-        teamSelectView.setTeamValues(myTeam: matchDetail!.myMatchDaySquad, oppositionTeam: matchDetail!.oppMatchDaySquad)
-        // configure incidentTypeSelectView
-        teamSelectView.frame = containerView.bounds
-        teamSelectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        teamSelectView.addTarget(self, action: #selector(handleTeamSelect), for: .valueChanged)
-        containerView.addSubview(teamSelectView)
+    func showFoulTypeSelectView() {
+        let foulTypeSelectView = RGBYFoulTypeSelectView(frame: containerView.frame)
+        foulTypeSelectView.frame = containerView.bounds
+        foulTypeSelectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        foulTypeSelectView.addTarget(self, action: #selector(handleFoulTypeSelect), for: .valueChanged)
+        containerView.addSubview(foulTypeSelectView)
     }
 
     func showScoreTypeSelectView() {
@@ -61,6 +67,24 @@ class RGBYInMatchIncidentInputViewController: UIViewController  {
         scoreTypeSelectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         scoreTypeSelectView.addTarget(self, action: #selector(handleScoreTypeSelect), for: .valueChanged)
         containerView.addSubview(scoreTypeSelectView)
+    }
+    
+    func showTurnOverTypeSelectView() {
+        let turnOverTypeSelectView = RGBYTurnOverTypeSelectView(frame: containerView.frame)
+        turnOverTypeSelectView.frame = containerView.bounds
+        turnOverTypeSelectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        turnOverTypeSelectView.addTarget(self, action: #selector(handleTurnOverTypeSelect), for: .valueChanged)
+        containerView.addSubview(turnOverTypeSelectView)
+    }
+
+    func showTeamSelectView() {
+        let teamSelectView = RGBYTeamSelectView(frame: containerView.frame)
+        teamSelectView.setTeamValues(myTeam: matchDetail!.myMatchDaySquad, oppositionTeam: matchDetail!.oppMatchDaySquad)
+        // configure incidentTypeSelectView
+        teamSelectView.frame = containerView.bounds
+        teamSelectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        teamSelectView.addTarget(self, action: #selector(handleTeamSelect), for: .valueChanged)
+        containerView.addSubview(teamSelectView)
     }
 
     func showPlayerSelectView() {
@@ -73,37 +97,69 @@ class RGBYInMatchIncidentInputViewController: UIViewController  {
     }
 
     @objc func handleIncidentTypeSelect(_ sender: RGBYIncidentTypeSelectView) {
-        print("RGBYInMatchIncidentViewController:: handleInputTypeSelect")
+        print("RGBYInMatchIncidentViewController:: handleIncidentTypeSelect")
         sender.removeFromSuperview()
         if sender.selectedIncident == RGBYIncidentTypeSelectView.PENALTY {
             print("RGBYInMatchIncidentViewController - show penalty window")
-            //showTeamSelectView()
+            showPenaltyTypeSelectView()
         } else if sender.selectedIncident == RGBYIncidentTypeSelectView.FOUL {
             print("RGBYInMatchIncidentViewController - show foul window")
+            showFoulTypeSelectView()
         } else if sender.selectedIncident == RGBYIncidentTypeSelectView.SCORE {
             print("RGBYInMatchIncidentViewController - show score window")
-            sender.removeFromSuperview()
             showScoreTypeSelectView()
         } else if sender.selectedIncident == RGBYIncidentTypeSelectView.TURN_OVER {
             print("RGBYInMatchIncidentViewController - show turn over window")
+            showTurnOverTypeSelectView()
         } else if sender.selectedIncident == RGBYIncidentTypeSelectView.TACKLE {
             print("RGBYInMatchIncidentViewController - show tackle window")
-        } else if sender.selectedIncident == RGBYIncidentTypeSelectView.GO_BACK {
-            print("RGBYInMatchIncidentViewController - show go back window")
-            self.dismiss(animated: true)
+            self.matchEvent.eventType = RGBYEventType.MISSED_TACKLE
+            showTeamSelectView()
         }
+    }
+    
+    @objc func handlePenaltyTypeSelect(_ sender: RGBYPenaltyTypeSelectView) {
+        print("RGBYInMatchIncidentViewController:: handlePenaltyTypeSelect")
+        sender.removeFromSuperview()
+        self.matchEvent.eventType = RGBYEventType.PENALTY
+        self.matchEvent.additionalIncidentType = sender.selectedButton?.titleLabel?.text
+        showTeamSelectView()
+    }
+
+    @objc func handleFoulTypeSelect(_ sender: RGBYFoulTypeSelectView) {
+        print("RGBYInMatchIncidentViewController:: handleFoulTypeSelect")
+        sender.removeFromSuperview()
+        self.matchEvent.eventType = RGBYEventType.FOUL
+        self.matchEvent.additionalIncidentType = sender.selectedButton?.titleLabel?.text
+        showTeamSelectView()
+    }
+
+    @objc func handleTurnOverTypeSelect(_ sender: RGBYTurnOverTypeSelectView) {
+        print("RGBYInMatchIncidentViewController:: handleTurnOverTypeSelect")
+        sender.removeFromSuperview()
+        switch sender.selectedButton?.titleLabel?.text {
+        case RGBYTurnOverType.KICK_AWAY.displayTitle:
+            self.matchEvent.eventType = RGBYEventType.KICK_FROM_PLAY
+        case RGBYTurnOverType.TACKLE_HELD_UP.displayTitle:
+            self.matchEvent.eventType = RGBYEventType.HELD_UP
+        case RGBYTurnOverType.POACH.displayTitle:
+            self.matchEvent.eventType = RGBYEventType.POACH
+        case RGBYTurnOverType.TACKLE_TO_TOUCH.displayTitle:
+            self.matchEvent.eventType = RGBYEventType.PLAYER_IN_TOUCH
+        case .none:
+            print("Turn over type is not valid")
+        case .some(_):
+            print("Turn over type is not valid")
+        }
+        showTeamSelectView()
     }
 
     @objc func handleTeamSelect(_ sender: RGBYTeamSelectView) {
         print("RGBYInMatchIncidentViewController:: handleTeamSelect")
-        if sender.goBackSelected {
-            self.dismiss(animated: true)
-        } else {
-            self.matchEvent.team = sender.selectedTeam
-            self.matchEvent.isMyTeam = sender.isMyTeam
-            sender.removeFromSuperview()
-            showPlayerSelectView()
-        }
+        self.matchEvent.team = sender.selectedTeam
+        self.matchEvent.isMyTeam = sender.isMyTeam
+        sender.removeFromSuperview()
+        showPlayerSelectView()
     }
 
     @objc func handleScoreTypeSelect(_ sender: RGBYScoreTypeSelectView) {

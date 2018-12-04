@@ -20,6 +20,7 @@ class RGBYMatchEvent {
     var periodTimeInSec: Int
     var fieldLocation: CGPoint?
     var isMyTeam: Bool?
+    var additionalIncidentType: String?
 
     init(eventPeriod: Int, periodTimeInSec: Int, fieldLocation: CGPoint) {
         self.eventPeriod = eventPeriod

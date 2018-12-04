@@ -51,20 +51,22 @@ class RGBYFieldView: UIControl {
             let newEvent = matchEventArray[startIndex]
             self.matchEventArray.append(newEvent)
             self.addEventOnView(newEvent: newEvent)
-            startIndex+=1
-            
+            startIndex += 1
         }
     }
 
     func addEventOnView(newEvent: RGBYMatchEvent) {
         print("adding new event to view")
-        let frontimgview = UIImageView(image: newEvent.eventType!.eventIcon)
-        let x = self.contentView.frame.width * newEvent.fieldLocation!.x
-        let y = self.contentView.frame.height * newEvent.fieldLocation!.y
-        let w = self.contentView.frame.width / 20
-        let h = self.contentView.frame.height / 20
-        frontimgview.frame = CGRect(x: x - (w/2), y: y - (h/2), width: w, height: h)
-        self.incidentView.addSubview(frontimgview) // Add the front image on top of the background
+        if RGBYEventType.scoreEvents.contains(newEvent.eventType!) {
+            let frontimgview = UIImageView(image: newEvent.eventType!.eventIcon)
+            let x = self.contentView.frame.width * newEvent.fieldLocation!.x
+            let y = self.contentView.frame.height * newEvent.fieldLocation!.y
+            let w = self.contentView.frame.width / 20
+            let h = self.contentView.frame.height / 20
+            frontimgview.frame = CGRect(x: x - (w / 2), y: y - (h / 2), width: w, height: h)
+            // Add the front image on top of the background
+            self.incidentView.addSubview(frontimgview)
+        }
     }
 
     @objc func handleFieldTap(sender: UITapGestureRecognizer) {

@@ -13,7 +13,6 @@ class RGBYTeamSelectView: UIControl {
     
     let nibName = "RGBYTeamSelectView"
 
-    var goBackSelected:Bool = false
     var selectedTeam: RGBYMatchDaySquad?
     var isMyTeam: Bool = true
     var _myTeam: RGBYMatchDaySquad?
@@ -22,7 +21,6 @@ class RGBYTeamSelectView: UIControl {
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var myTeamButton: UIButton!
     @IBOutlet weak var oppositionTeamButton: UIButton!
-    @IBOutlet weak var goBackButton: UIButton!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -43,7 +41,6 @@ class RGBYTeamSelectView: UIControl {
         addSubview(contentView)
         myTeamButton.addTarget(self, action: #selector(handleTeamSelected(button:)), for: .touchUpInside)
         oppositionTeamButton.addTarget(self, action: #selector(handleTeamSelected(button:)), for: .touchUpInside)
-        goBackButton.addTarget(self, action: #selector(handleGoBackSelected), for: .touchUpInside)
     }
 
     func setTeamValues(myTeam: RGBYMatchDaySquad, oppositionTeam: RGBYMatchDaySquad) {
@@ -59,11 +56,6 @@ extension RGBYTeamSelectView {
     //MARK: MAIN ACTION: .valueChanged
     fileprivate func performAction() {
         sendActions(for: .valueChanged)
-    }
-    
-    @objc fileprivate func handleGoBackSelected() {
-        goBackSelected = true
-        self.performAction()
     }
     
     //MARK: CHANGING APPEREANCE OF BUTTON ON TAP

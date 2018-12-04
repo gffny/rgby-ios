@@ -35,6 +35,7 @@ class RGBYInMatchFieldViewController: UIViewController, RGBYMatchDetailTimerDele
         self.teamAName.text = self.matchDetail.myMatchDaySquad.team.shortTitle
         self.teamBName.text = self.matchDetail.oppMatchDaySquad.team.shortTitle
         matchScoreUpdated()
+        setupMatchClock()
     }
 
     func setupMatchClock() {

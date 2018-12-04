@@ -10,7 +10,7 @@ import UIKit
 
 enum RGBYEventType {
     
-    case MISSED_TACKLE, LINE_BREAK, FOUL, PENALTY, TRY, CONVERSION, KICK_FROM_PLAY, DROP_GOAL, KICK_AT_GOAL, KICK_TO_TOUCH, SCRUM, TAP, POACH, TACKLE
+    case MISSED_TACKLE, LINE_BREAK, FOUL, PENALTY, TRY, CONVERSION, KICK_FROM_PLAY, DROP_GOAL, KICK_AT_GOAL, KICK_TO_TOUCH, SCRUM, TAP, POACH, TACKLE, HELD_UP, PLAYER_IN_TOUCH
     
     var displayName: String {
         switch self {
@@ -42,12 +42,16 @@ enum RGBYEventType {
             return "Poach"
         case .TACKLE:
             return "Tackle"
+        case .PLAYER_IN_TOUCH:
+            return "Player in Touch"
+        case .HELD_UP:
+            return "Tackle Held Up"
         }
     }
     
     var resultingEvents: [RGBYEventType] {
         switch self {
-    case .MISSED_TACKLE, .LINE_BREAK, .CONVERSION, .KICK_FROM_PLAY, .DROP_GOAL, .KICK_AT_GOAL, .KICK_TO_TOUCH, .TAP, .POACH, .TACKLE:
+        case .MISSED_TACKLE, .LINE_BREAK, .CONVERSION, .KICK_FROM_PLAY, .DROP_GOAL, .KICK_AT_GOAL, .KICK_TO_TOUCH, .TAP, .POACH, .TACKLE, .PLAYER_IN_TOUCH, .HELD_UP:
             return []
         case .PENALTY: return [.SCRUM, .KICK_AT_GOAL, .KICK_TO_TOUCH, .TRY]
         case .FOUL:
@@ -61,7 +65,9 @@ enum RGBYEventType {
 
     var hasPlayerAttribute: Bool {
         switch self {
-        case .MISSED_TACKLE, .LINE_BREAK, .FOUL, .PENALTY, .TRY, .CONVERSION, .KICK_FROM_PLAY, .DROP_GOAL, .KICK_AT_GOAL, .KICK_TO_TOUCH, .TAP, .POACH, .TACKLE:
+        case .MISSED_TACKLE, .LINE_BREAK, .FOUL, .PENALTY, .TRY, .CONVERSION, .KICK_FROM_PLAY:
+            return true
+        case .DROP_GOAL, .KICK_AT_GOAL, .KICK_TO_TOUCH, .TAP, .POACH, .TACKLE, .PLAYER_IN_TOUCH, .HELD_UP:
             return true
         case .SCRUM:
             return false
@@ -76,7 +82,9 @@ enum RGBYEventType {
             return 2
         case .KICK_AT_GOAL, .DROP_GOAL:
             return 3
-        case .MISSED_TACKLE, .LINE_BREAK, .FOUL, .PENALTY, .KICK_FROM_PLAY, .KICK_TO_TOUCH, .SCRUM, .TAP, .POACH, .TACKLE:
+        case .MISSED_TACKLE, .LINE_BREAK, .FOUL, .PENALTY, .KICK_FROM_PLAY, .KICK_TO_TOUCH:
+            return 0
+        case .SCRUM, .TAP, .POACH, .TACKLE, .HELD_UP, .PLAYER_IN_TOUCH:
             return 0
         }
     }
@@ -89,7 +97,9 @@ enum RGBYEventType {
             return UIImage(named: "PenaltyIcon")!
         case .DROP_GOAL:
             return UIImage(named: "DropGoalIcon")!
-        case .MISSED_TACKLE, .LINE_BREAK, .FOUL, .PENALTY, .KICK_FROM_PLAY, .KICK_TO_TOUCH, .SCRUM, .TAP, .POACH, .TACKLE:
+        case .MISSED_TACKLE, .LINE_BREAK, .FOUL, .PENALTY, .KICK_FROM_PLAY, .KICK_TO_TOUCH:
+            return UIImage(named: "Blah")!
+        case .SCRUM, .TAP, .POACH, .TACKLE, .PLAYER_IN_TOUCH, .HELD_UP:
             return UIImage(named: "Blah")!
         }
     }
