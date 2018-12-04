@@ -28,6 +28,7 @@ class RGBYDemoData {
     static var demoCJS:RGBYPlayer = RGBYPlayer(firstName: "CJ", lastName: "Stander", preferredPosition: .NUMBER_8)
     static var demoKM:RGBYPlayer = RGBYPlayer(firstName: "Kieran", lastName: "Marmion", preferredPosition: .SCRUM_HALF)
     static var demoJSe:RGBYPlayer = RGBYPlayer(firstName: "Johnny", lastName: "Sexton", preferredPosition: .OUT_HALF)
+    static var gffny: RGBYPlayer = RGBYPlayer(firstName: "John", lastName: "Gaffney", preferredPosition: .OUT_HALF, imageURL: URL(string: "https://pbs.twimg.com/profile_images/901474596909699072/lIXjjFex.jpg"))
     static var demoJSt:RGBYPlayer = RGBYPlayer(firstName: "Jacob", lastName: "Stockdale", preferredPosition: .LEFT_WING)
     static var demoBA:RGBYPlayer = RGBYPlayer(firstName: "Bundee", lastName: "Aki", preferredPosition: .INSIDE_CENTER)
     static var demoGR:RGBYPlayer = RGBYPlayer(firstName: "Gary", lastName: "Ringrose", preferredPosition: .OUTSIDE_CENTER)

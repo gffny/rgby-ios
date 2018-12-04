@@ -35,6 +35,8 @@ class RGBYInMatchIncidentInputViewController: UIViewController  {
     }
 
     func showIncidentTypeSelectView() {
+        // set the view label
+        self.incidentInputLabel.text = "Select Incident Type..."
         // add the incident type screen
         let incidentTypeSelectView = RGBYIncidentTypeSelectView(frame: containerView.frame)
         // configure incidentTypeSelectView
@@ -45,6 +47,9 @@ class RGBYInMatchIncidentInputViewController: UIViewController  {
     }
     
     func showPenaltyTypeSelectView() {
+        // set the view label
+        self.incidentInputLabel.text = "Select Penalty Type..."
+        // add the penalty view
         let penaltyTypeSelectView = RGBYPenaltyTypeSelectView(frame: containerView.frame)
         penaltyTypeSelectView.frame = containerView.bounds
         penaltyTypeSelectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -53,6 +58,9 @@ class RGBYInMatchIncidentInputViewController: UIViewController  {
     }
 
     func showFoulTypeSelectView() {
+        // set the view label
+        self.incidentInputLabel.text = "Select Foul Type..."
+        // add the foul view
         let foulTypeSelectView = RGBYFoulTypeSelectView(frame: containerView.frame)
         foulTypeSelectView.frame = containerView.bounds
         foulTypeSelectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -61,6 +69,9 @@ class RGBYInMatchIncidentInputViewController: UIViewController  {
     }
 
     func showScoreTypeSelectView() {
+        // set the view label
+        self.incidentInputLabel.text = "Select Score Type..."
+        // add the score view
         let scoreTypeSelectView = RGBYScoreTypeSelectView(frame: containerView.frame)
         // configure incidentTypeSelectView
         scoreTypeSelectView.frame = containerView.bounds
@@ -70,6 +81,9 @@ class RGBYInMatchIncidentInputViewController: UIViewController  {
     }
     
     func showTurnOverTypeSelectView() {
+        // set the view label
+        self.incidentInputLabel.text = "Select Turn Over Type..."
+        // add the turn over view
         let turnOverTypeSelectView = RGBYTurnOverTypeSelectView(frame: containerView.frame)
         turnOverTypeSelectView.frame = containerView.bounds
         turnOverTypeSelectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -78,6 +92,9 @@ class RGBYInMatchIncidentInputViewController: UIViewController  {
     }
 
     func showTeamSelectView() {
+        // set the view label
+        self.incidentInputLabel.text = "Select Responsible Team..."
+        // add the team select view
         let teamSelectView = RGBYTeamSelectView(frame: containerView.frame)
         teamSelectView.setTeamValues(myTeam: matchDetail!.myMatchDaySquad, oppositionTeam: matchDetail!.oppMatchDaySquad)
         // configure incidentTypeSelectView
@@ -88,6 +105,9 @@ class RGBYInMatchIncidentInputViewController: UIViewController  {
     }
 
     func showPlayerSelectView() {
+        // set the view label
+        self.incidentInputLabel.text = "Select Responsible Player..."
+        // add the player select view
         let playerSelectView = RGBYPlayerSelectView(frame: containerView.frame)
         playerSelectView.setTeam(squad: (matchEvent.team)!)
         playerSelectView.frame = containerView.bounds
