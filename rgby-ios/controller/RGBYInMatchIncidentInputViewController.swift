@@ -184,4 +184,9 @@ class RGBYInMatchIncidentInputViewController: UIViewController  {
         self.matchDetail?.appendMatchEvent(newEvent: matchEvent)
         self.dismiss(animated: true)
     }
+
+    @IBAction func handleCloseButton(_ sender: Any) {
+        print("RGBYInMatchIncidentViewController:: handleCloseButton")
+        self.dismiss(animated: true)
+    }
 }

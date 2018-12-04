@@ -249,11 +249,11 @@
 				500200BF21ACCDB00043CAF8 /* RGBYTeamSelectView.swift */,
 				5017FC2A21ADC1B60054B781 /* RGBYIncidentTypeSelectView.swift */,
 				50F21C1021B4FA6F00ABDCC5 /* RGBYPenaltyTypeSelectView.swift */,
+				50F21C1421B6E08100ABDCC5 /* RGBYFoulTypeSelectView.swift */,
+				50F21C1821B6E81200ABDCC5 /* RGBYTurnOverTypeSelectView.swift */,
 				5017FC3021ADF4E80054B781 /* RGBYScoreTypeSelectView.swift */,
 				503459B821B4622F00D267E7 /* RGBYMatchClock.swift */,
 				50F21C0E21B4E68F00ABDCC5 /* RGBYFieldView.swift */,
-				50F21C1421B6E08100ABDCC5 /* RGBYFoulTypeSelectView.swift */,
-				50F21C1821B6E81200ABDCC5 /* RGBYTurnOverTypeSelectView.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";

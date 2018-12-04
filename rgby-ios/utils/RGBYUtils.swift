@@ -6,7 +6,7 @@
 //  Copyright © 2018 gffny.com. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class RGBYUtils {
 
@@ -20,5 +20,14 @@ class RGBYUtils {
         } else {
             return String("\(minutes):\(seconds)")
         }
+    }
+    
+    static func formatIncidentButton(yPos: Int, width: Int, height: Int, text: String, buttonColor: UIColor) -> UIButton {
+        let button = UIButton(frame: CGRect(x: 0, y: yPos, width: width, height: height))
+        button.titleLabel?.font = UIFont(name:"HelveticaNeue-CondensedBold", size: 30.0)
+        button.setTitleColor(.black, for: .normal)
+        button.setTitle(text, for: .normal)
+        button.backgroundColor = buttonColor
+        return button
     }
 }

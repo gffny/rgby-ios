@@ -291,7 +291,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Incident Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3GM-iA-bir">
-                                <rect key="frame" x="5" y="40" width="1024" height="100"/>
+                                <rect key="frame" x="5" y="20" width="1024" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="AOe-ud-hgO"/>
                                 </constraints>
@@ -300,18 +300,33 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j51-mx-NS6">
-                                <rect key="frame" x="5" y="140" width="1014" height="623"/>
-                                <color key="backgroundColor" red="0.66666668650000005" green="0.069611343640000004" blue="0.034837604219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="5" y="120" width="1014" height="643"/>
                             </containerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WMV-TI-GRX">
+                                <rect key="frame" x="969" y="20" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="gxX-zU-UAJ"/>
+                                    <constraint firstAttribute="width" constant="50" id="unh-f1-4UG"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="50"/>
+                                <state key="normal" title="X">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="handleCloseButton:" destination="rNm-TO-wKa" eventType="touchUpInside" id="NMu-an-vJ4"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="WMV-TI-GRX" firstAttribute="top" secondItem="Qg0-Q7-rVl" secondAttribute="top" id="3B4-Hw-wkS"/>
+                            <constraint firstItem="Qg0-Q7-rVl" firstAttribute="trailing" secondItem="WMV-TI-GRX" secondAttribute="trailing" constant="5" id="3hM-l4-97W"/>
                             <constraint firstItem="3GM-iA-bir" firstAttribute="trailing" secondItem="Qg0-Q7-rVl" secondAttribute="trailing" constant="5" id="Hee-x2-nX2"/>
                             <constraint firstItem="j51-mx-NS6" firstAttribute="top" secondItem="3GM-iA-bir" secondAttribute="bottom" id="JMv-1K-oRq"/>
                             <constraint firstItem="Qg0-Q7-rVl" firstAttribute="trailing" secondItem="j51-mx-NS6" secondAttribute="trailing" constant="5" id="PlF-f9-Gvc"/>
                             <constraint firstItem="3GM-iA-bir" firstAttribute="leading" secondItem="Qg0-Q7-rVl" secondAttribute="leading" constant="5" id="WwQ-U7-YBX"/>
                             <constraint firstItem="Qg0-Q7-rVl" firstAttribute="bottom" secondItem="j51-mx-NS6" secondAttribute="bottom" constant="5" id="pZQ-oQ-0vE"/>
-                            <constraint firstItem="3GM-iA-bir" firstAttribute="top" secondItem="Qg0-Q7-rVl" secondAttribute="top" constant="20" id="tkf-bT-1T6"/>
+                            <constraint firstItem="3GM-iA-bir" firstAttribute="top" secondItem="Qg0-Q7-rVl" secondAttribute="top" id="tkf-bT-1T6"/>
                             <constraint firstItem="j51-mx-NS6" firstAttribute="leading" secondItem="Qg0-Q7-rVl" secondAttribute="leading" constant="5" id="vja-0F-S3h"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Qg0-Q7-rVl"/>

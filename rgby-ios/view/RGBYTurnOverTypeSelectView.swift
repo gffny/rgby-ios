@@ -30,15 +30,8 @@ class RGBYTurnOverTypeSelectView: UIControl {
         var yPos: Int = 0
         var onOff: Bool = true
         for turnOverType:RGBYTurnOverType in RGBYTurnOverType.listCases {
-            print(turnOverType.displayTitle)
-            let button = UIButton(frame: CGRect(x: 0, y: yPos, width: Int(self.frame.width), height: y))
-            button.titleLabel?.font = UIFont(name:"HelveticaNeue-CondensedBold", size: 30.0)
-            button.titleLabel?.textColor = .black
-            button.setTitle(turnOverType.displayTitle, for: .normal)
+            let button = RGBYUtils.formatIncidentButton(yPos: yPos, width: Int(self.frame.width), height: y, text: turnOverType.displayTitle, buttonColor: (onOff ? .gray : .white))
             button.addTarget(self, action: #selector(handleOptionSelect), for: .touchUpInside)
-            if onOff {
-                button.backgroundColor = .gray
-            }
             self.addSubview(button)
             yPos += y
             onOff = !onOff

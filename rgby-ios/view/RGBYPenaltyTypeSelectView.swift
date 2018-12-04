@@ -30,15 +30,8 @@ class RGBYPenaltyTypeSelectView: UIControl {
         var yPos: Int = 0
         var onOff: Bool = true
         for penaltyType:RGBYPenaltyType in RGBYPenaltyType.listCases {
-            print(penaltyType.displayTitle)
-            let button = UIButton(frame: CGRect(x: 0, y: yPos, width: Int(self.frame.width), height: y))
-            button.titleLabel?.font = UIFont(name:"HelveticaNeue-CondensedBold", size: 30.0)
-            button.titleLabel?.textColor = .black
-            button.setTitle(penaltyType.displayTitle, for: .normal)
+            let button = RGBYUtils.formatIncidentButton(yPos: yPos, width: Int(self.frame.width), height: y, text: penaltyType.displayTitle, buttonColor: (onOff ? .gray : .white))
             button.addTarget(self, action: #selector(handleOptionSelect), for: .touchUpInside)
-            if onOff {
-                button.backgroundColor = .gray
-            }
             self.addSubview(button)
             yPos += y
             onOff = !onOff
