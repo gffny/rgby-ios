@@ -16,6 +16,7 @@ class RGBYProfileView: UIControl {
     @IBOutlet weak var lastName: UILabel!
     @IBOutlet weak var firstName: UILabel!
     @IBOutlet weak var position: UILabel!
+    @IBOutlet weak var removeButton: UIButton!
     @IBOutlet var contentView: UIView!
     
     var player: RGBYPlayer?
@@ -46,9 +47,13 @@ class RGBYProfileView: UIControl {
         penImage.layer.borderColor = UIColor.white.cgColor
         penImage.layer.cornerRadius = penImage.frame.height/2
         penImage.clipsToBounds = true
-        lastName.text = "Gaffney"
-        firstName.text = "John"
-        position.text = "Outhalf"
+        removeButton.layer.borderWidth = 2
+        removeButton.layer.masksToBounds = false
+        removeButton.layer.borderColor = UIColor.black.cgColor
+        removeButton.layer.cornerRadius = removeButton.frame.height/2
+        lastName.text = "Player"
+        firstName.text = "P"
+        position.text = "Position"
     }
     
     func setPlayerData(player: RGBYPlayer) {
