@@ -14,23 +14,23 @@ class RGBYMatchDaySquadSelectionView: UIControl {
 
     @IBOutlet weak var matchDayTitleLabel: UILabel!
     @IBOutlet weak var availablePlayerList: UIScrollView!
-    @IBOutlet weak var squadView: UIView!
+    @IBOutlet weak var squadView: UIScrollView!
     
-    @IBOutlet weak var thpProfile: RGBYProfileView!
-    @IBOutlet weak var hkrProfile: RGBYProfileView!
-    @IBOutlet weak var lhpProfile: RGBYProfileView!
-    @IBOutlet weak var thsrProfile: RGBYProfileView!
-    @IBOutlet weak var lhsrrofile: RGBYProfileView!
-    @IBOutlet weak var bsfProfile: RGBYProfileView!
-    @IBOutlet weak var osfProfile: RGBYProfileView!
-    @IBOutlet weak var no8Profile: RGBYProfileView!
-    @IBOutlet weak var shProfile: RGBYProfileView!
-    @IBOutlet weak var ohProfile: RGBYProfileView!
-    @IBOutlet weak var lwProfile: RGBYProfileView!
-    @IBOutlet weak var icProfile: RGBYProfileView!
-    @IBOutlet weak var ocProfile: RGBYProfileView!
-    @IBOutlet weak var rwProfile: RGBYProfileView!
-    @IBOutlet weak var fbProfile: RGBYProfileView!
+    @IBOutlet weak var n1Profile: RGBYProfileView!
+    @IBOutlet weak var n2Profile: RGBYProfileView!
+    @IBOutlet weak var n3Profile: RGBYProfileView!
+    @IBOutlet weak var n4Profile: RGBYProfileView!
+    @IBOutlet weak var n5Profile: RGBYProfileView!
+    @IBOutlet weak var n6Profile: RGBYProfileView!
+    @IBOutlet weak var n7Profile: RGBYProfileView!
+    @IBOutlet weak var n8Profile: RGBYProfileView!
+    @IBOutlet weak var n9Profile: RGBYProfileView!
+    @IBOutlet weak var n10Profile: RGBYProfileView!
+    @IBOutlet weak var n11Profile: RGBYProfileView!
+    @IBOutlet weak var n12Profile: RGBYProfileView!
+    @IBOutlet weak var n13Profile: RGBYProfileView!
+    @IBOutlet weak var n14Profile: RGBYProfileView!
+    @IBOutlet weak var n15Profile: RGBYProfileView!
 
     // 8 subs
     @IBOutlet weak var sub1Profile: RGBYProfileView!
@@ -45,7 +45,6 @@ class RGBYMatchDaySquadSelectionView: UIControl {
     @IBOutlet var contentView: UIView!
 
     var selectedView: RGBYProfileView?
-    
     var profileArray: [RGBYProfileView] = []
 
     required init?(coder aDecoder: NSCoder) {
@@ -68,9 +67,16 @@ class RGBYMatchDaySquadSelectionView: UIControl {
         self.contentView.frame = bounds
         self.contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(contentView)
-        self.setData(playerList: [RGBYDemoData.gffny, RGBYDemoData.demoJSe])
-        self.profileArray = [self.thpProfile, self.hkrProfile, self.lhpProfile]
-
+        self.setData(playerList: RGBYDemoData.demoTeam.playerList)
+        // set the
+        self.profileArray = [self.n1Profile, self.n2Profile, self.n3Profile, self.n4Profile, self.n5Profile, self.n6Profile, self.n7Profile, self.n8Profile, self.n9Profile, self.n10Profile, self.n11Profile, self.n12Profile, self.n13Profile, self.n14Profile, self.n15Profile, self.sub1Profile, self.sub2Profile, self.sub3Profile, self.sub4Profile, self.sub5Profile, self.sub6Profile, self.sub7Profile, self.sub8Profile]
+        let tapGR = UITapGestureRecognizer(target: self, action: #selector(handleCloseButton))
+        tapGR.numberOfTapsRequired = 2
+        self.squadView.addGestureRecognizer(tapGR)
+        self.squadView.contentSize = CGSize(width: self.squadView.frame.width, height: 900)
+        for (index, profile) in self.profileArray.enumerated() {
+            profile.positionNumber.text = "\(index+1)"
+        }
     }
     
     func setData(playerList: [RGBYPlayer]) {
@@ -83,50 +89,54 @@ class RGBYMatchDaySquadSelectionView: UIControl {
             playerView.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handleDrag)))
             self.availablePlayerList.addSubview(playerView)
         }
-    
-        // handle the dragging
-        
-        // TODO CHANGE THIS TO POPULATE ALL AVAILABLE PLAYERS THIS IS JUST A STUB
-        
-        //jlb.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handleDrag)))
-        //self.availablePlayerList.addSubview(jvdf)
-        // add it to this view
+        self.availablePlayerList.contentSize = CGSize(width: self.availablePlayerList.frame.width, height: CGFloat(playerList.count*100))
     }
 
     @objc func handleDrag(_ sender: UIPanGestureRecognizer) {
-        self.selectedView = sender.view! as! RGBYProfileView
-        if sender.state == .began {
-            print("began")
-            // self.selectedView!.bringSubviewToFront(self.selectedView!)
-        } else if sender.state == .ended {
-            // move additional views down
-            // filter the list of views to the required type
-//            let availablePlayerArray = self.availablePlayerList.subviews.filter { (view: UIView) -> Bool in
-//                return view is RGBYProfileView
-//            }
-//            if var selectedIndex = availablePlayerArray.firstIndex(of: sender.view!) {
-//                selectedIndex += 1
-//                while selectedIndex < availablePlayerArray.count {
-//                    print(selectedIndex)
-//                    // move label up
-//                    let buttonFrame = availablePlayerArray[selectedIndex].frame
-//                    availablePlayerArray[selectedIndex].frame = CGRect(x: buttonFrame.origin.x, y: buttonFrame.origin.y-100, width: buttonFrame.width, height: buttonFrame.height)
-//                    selectedIndex += 1
-//                }
-//            }
+        self.selectedView = sender.view! as? RGBYProfileView
+        if sender.state == .ended {
+            // find the destination position
             for (_, profile) in self.profileArray.enumerated() {
-                if profile.frame.contains(sender.location(in: self.squadView)) {
+                let frame = self.squadView.convert(profile.frame, from:self.squadView)
+                if frame.contains(sender.location(in: self.squadView)) {
+                    if profile.player != nil {
+                        // unset player profile if already set
+                        reenablePlayerView(player: profile.player!)
+                    }
+                    // set the profile content
                     profile.setPlayerData(player: selectedView!.player!)
                     profile.removeButton.isHidden = false
+                    profile.removeButton.isEnabled = true
+                    // disable and style the selected player
                     self.selectedView?.isEnabled = false
                     self.selectedView?.alpha = CGFloat(0.7)
-
                 }
             }
-            //self.squadView.addSubview(sender.view!)
+            // reset the selected view
             self.selectedView = nil
         }
+    }
 
+    @objc func handleCloseButton(_ sender: UITapGestureRecognizer) {
+        for (_, profile) in self.profileArray.enumerated() {
+            if profile.frame.contains(sender.location(in: self.squadView)) && profile.player != nil {
+                print("re-enable \(profile.player?.firstName) \(profile.player?.lastName)")
+                reenablePlayerView(player: profile.player!)
+                profile.resetProfileView()
+            }
+        }
+    }
+
+    func reenablePlayerView(player: RGBYPlayer) {
+        let profileList = self.availablePlayerList.subviews.filter({ (view) -> Bool in
+            return view is RGBYProfileView
+        }) as! [RGBYProfileView]
+        for (_, profile) in profileList.enumerated() {
+            if player.id == profile.player!.id {
+                profile.isEnabled = true
+                profile.alpha = CGFloat(1)
+            }
+        }
     }
 }
 

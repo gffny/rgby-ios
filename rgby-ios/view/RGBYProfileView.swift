@@ -9,7 +9,7 @@
 import UIKit
 
 class RGBYProfileView: UIControl {
-    
+
     let nibName = "RGBYProfileView"
 
     @IBOutlet weak var penImage: UIImageView!
@@ -17,22 +17,23 @@ class RGBYProfileView: UIControl {
     @IBOutlet weak var firstName: UILabel!
     @IBOutlet weak var position: UILabel!
     @IBOutlet weak var removeButton: UIButton!
+    @IBOutlet weak var positionNumber: UILabel!
     @IBOutlet var contentView: UIView!
-    
+
     var player: RGBYPlayer?
-    
+
     required init?(coder aDecoder: NSCoder) {
         print("RGBYProfileView:: init(coder)")
         super.init(coder: aDecoder)
         defaultView()
     }
-    
+
     override init(frame: CGRect) {
         print("RGBYProfileView:: init(coder)")
         super.init(frame: frame)
         defaultView()
     }
-    
+
     func defaultView() {
         // load the view from the nib
         Bundle.main.loadNibNamed(nibName, owner: self, options: nil)
@@ -41,21 +42,23 @@ class RGBYProfileView: UIControl {
         self.contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         addSubview(contentView)
         // set the pen image, etc
-        penImage.image = UIImage(named: "AppIcon")
-        penImage.layer.borderWidth = 3
-        penImage.layer.masksToBounds = false
-        penImage.layer.borderColor = UIColor.white.cgColor
-        penImage.layer.cornerRadius = penImage.frame.height/2
-        penImage.clipsToBounds = true
-        removeButton.layer.borderWidth = 2
-        removeButton.layer.masksToBounds = false
-        removeButton.layer.borderColor = UIColor.black.cgColor
-        removeButton.layer.cornerRadius = removeButton.frame.height/2
-        lastName.text = "Player"
-        firstName.text = "P"
-        position.text = "Position"
+        self.penImage.image = UIImage(named: "AppIcon")
+        self.penImage.layer.borderWidth = 3
+        self.penImage.layer.masksToBounds = false
+        self.penImage.layer.borderColor = UIColor.white.cgColor
+        self.penImage.layer.cornerRadius = self.penImage.frame.height/2
+        self.penImage.clipsToBounds = true
+        self.removeButton.layer.borderWidth = 2
+        self.removeButton.layer.masksToBounds = false
+        self.removeButton.layer.borderColor = UIColor.black.cgColor
+        self.removeButton.layer.cornerRadius = self.removeButton.frame.height/2
+        self.positionNumber.layer.borderWidth = 3
+        self.positionNumber.layer.masksToBounds = false
+        self.positionNumber.layer.borderColor = UIColor.white.cgColor
+        self.positionNumber.layer.cornerRadius = self.positionNumber.frame.height/2
+        resetProfileView()
     }
-    
+
     func setPlayerData(player: RGBYPlayer) {
         self.player = player
         if let penImageUrl = player.imageURL {
@@ -63,9 +66,23 @@ class RGBYProfileView: UIControl {
             if let imageData = data {
                 penImage.image = UIImage(data: imageData)
             }
+        } else {
+            // set default pen image
+            penImage.image = UIImage(named: "AppIcon")
         }
         self.lastName.text = player.lastName
         self.firstName.text = player.firstName
         self.position.text = player.preferredPosition.displayName
+        self.positionNumber.isHidden = true
+        self.penImage.isHidden = false
+    }
+    
+    func resetProfileView() {
+        self.lastName.text = "Unselected"
+        self.firstName.text = ""
+        self.position.text = ""
+        self.player = nil
+        self.positionNumber.isHidden = false
+        self.penImage.isHidden = true
     }
 }
