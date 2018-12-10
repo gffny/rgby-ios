@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RGBYMatchDaySquadSelectionView: UIControl {
+class RGBYMatchDaySquadSelectionView: UIControl, UIScrollViewDelegate {
 
     let nibName = "RGBYMatchDaySquadSelectionView"
 
@@ -48,6 +48,7 @@ class RGBYMatchDaySquadSelectionView: UIControl {
     var selectedView: RGBYProfileView?
     var movePointer: RGBYProfileView?
     var profileArray: [RGBYProfileView] = []
+    var allPositionsSelected: Bool = false
 
     required init?(coder aDecoder: NSCoder) {
         print("RGBYMatchDaySquadSelectionView:: init(coder)")
@@ -72,13 +73,15 @@ class RGBYMatchDaySquadSelectionView: UIControl {
         self.setData(playerList: RGBYDemoData.demoTeam.playerList)
         // set the
         self.profileArray = [self.n1Profile, self.n2Profile, self.n3Profile, self.n4Profile, self.n5Profile, self.n6Profile, self.n7Profile, self.n8Profile, self.n9Profile, self.n10Profile, self.n11Profile, self.n12Profile, self.n13Profile, self.n14Profile, self.n15Profile, self.sub1Profile, self.sub2Profile, self.sub3Profile, self.sub4Profile, self.sub5Profile, self.sub6Profile, self.sub7Profile, self.sub8Profile]
-        let tapGR = UITapGestureRecognizer(target: self, action: #selector(handleCloseButton))
+        let tapGR = UITapGestureRecognizer(target: self, action: #selector(handlePlayerUnselect))
         tapGR.numberOfTapsRequired = 2
         self.squadView.addGestureRecognizer(tapGR)
-        self.squadView.contentSize = CGSize(width: self.squadView.frame.width, height: 1100)
+        self.squadView.contentSize = CGSize(width: self.squadView.frame.width, height: 1064)
+        self.squadView.delegate = self
         for (index, profile) in self.profileArray.enumerated() {
             profile.positionNumber.text = "\(index+1)"
         }
+        updateSelectionCompleteButton()
     }
     
     func setData(playerList: [RGBYPlayer]) {
@@ -87,11 +90,11 @@ class RGBYMatchDaySquadSelectionView: UIControl {
         for (index, player) in playerList.enumerated() {
             let playerView = RGBYProfileView(frame: playerCell.frame)
             playerView.setPlayerData(player: player)
-            playerView.frame.origin.y += CGFloat(100*index)
+            playerView.frame.origin.y += CGFloat(102*index)
             playerView.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handleDrag)))
             self.availablePlayerList.addSubview(playerView)
         }
-        self.availablePlayerList.contentSize = CGSize(width: self.availablePlayerList.frame.width, height: CGFloat(playerList.count*100))
+        self.availablePlayerList.contentSize = CGSize(width: self.availablePlayerList.frame.width, height: CGFloat(playerList.count*102))
     }
 
     @objc func handleDrag(_ sender: UIPanGestureRecognizer) {
@@ -122,8 +125,6 @@ class RGBYMatchDaySquadSelectionView: UIControl {
                     }
                     // set the profile content
                     profile.setPlayerData(player: selectedView!.player!)
-                    profile.removeButton.isHidden = false
-                    profile.removeButton.isEnabled = true
                     // disable and style the selected player
                     self.selectedView?.isEnabled = false
                     self.selectedView?.alpha = 0.7
@@ -140,14 +141,50 @@ class RGBYMatchDaySquadSelectionView: UIControl {
         }
     }
 
-    @objc func handleCloseButton(_ sender: UITapGestureRecognizer) {
+    @objc func handlePlayerUnselect(_ sender: UITapGestureRecognizer) {
         for (_, profile) in self.profileArray.enumerated() {
             if profile.frame.contains(sender.location(in: self.squadView)) && profile.player != nil {
-                print("re-enable \(profile.player?.firstName) \(profile.player?.lastName)")
+                print("re-enable player \(profile.player?.firstName) \(profile.player?.lastName)")
                 reenablePlayerView(player: profile.player!)
                 profile.resetProfileView()
+                self.allPositionsSelected = false
+                updateSelectionCompleteButton()
             }
         }
+    }
+    
+    func updateSelectionCompleteButton() {
+        // only show the complete selection button when the squad view is towards the bottom
+        let scrollContentSizeHeight = self.squadView.contentSize.height
+        let scrollOffset = self.squadView.contentOffset.y + self.squadView.frame.size.height
+        
+        // conditions
+        // all positions selected = always show done button
+        // not all positions selected
+        // - not within x of bottom = don't show
+        // - between x of bottom and bottom (increase the alpha)
+        if allPositionsSelected {
+            self.doneButton.alpha = 1
+            self.doneButton.isEnabled = true
+        } else {
+            // reset
+            self.doneButton.alpha = 0
+            self.doneButton.isEnabled = false
+            // then check other conditions
+            if scrollOffset < scrollContentSizeHeight - 200 {
+                // then we are not at bottom
+                self.doneButton.alpha = 0
+                self.doneButton.isEnabled = false
+            } else {
+                // then we are at the end
+                self.doneButton.isEnabled = true
+                self.doneButton.alpha = (200-(scrollContentSizeHeight-scrollOffset))/200
+            }
+        }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        updateSelectionCompleteButton()
     }
 
     func reenablePlayerView(player: RGBYPlayer) {
@@ -157,7 +194,7 @@ class RGBYMatchDaySquadSelectionView: UIControl {
         for (_, profile) in profileList.enumerated() {
             if player.id == profile.player!.id {
                 profile.isEnabled = true
-                profile.alpha = CGFloat(1)
+                profile.alpha = 1
             }
         }
     }

@@ -16,7 +16,6 @@ class RGBYProfileView: UIControl {
     @IBOutlet weak var lastName: UILabel!
     @IBOutlet weak var firstName: UILabel!
     @IBOutlet weak var position: UILabel!
-    @IBOutlet weak var removeButton: UIButton!
     @IBOutlet weak var positionNumber: UILabel!
     @IBOutlet var contentView: UIView!
 
@@ -48,14 +47,11 @@ class RGBYProfileView: UIControl {
         self.penImage.layer.borderColor = UIColor.white.cgColor
         self.penImage.layer.cornerRadius = self.penImage.frame.height/2
         self.penImage.clipsToBounds = true
-        self.removeButton.layer.borderWidth = 2
-        self.removeButton.layer.masksToBounds = false
-        self.removeButton.layer.borderColor = UIColor.black.cgColor
-        self.removeButton.layer.cornerRadius = self.removeButton.frame.height/2
         self.positionNumber.layer.borderWidth = 3
         self.positionNumber.layer.masksToBounds = false
         self.positionNumber.layer.borderColor = UIColor.white.cgColor
         self.positionNumber.layer.cornerRadius = self.positionNumber.frame.height/2
+        self.contentView.backgroundColor = UIColor.lightGray
         resetProfileView()
     }
 

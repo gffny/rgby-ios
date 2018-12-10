@@ -17,7 +17,6 @@
                 <outlet property="penImage" destination="LMe-Jr-Dxq" id="pFB-QM-vS1"/>
                 <outlet property="position" destination="1rW-Bx-ijL" id="Rhw-W1-mTE"/>
                 <outlet property="positionNumber" destination="hAR-r0-adq" id="hMW-ox-P9c"/>
-                <outlet property="removeButton" destination="g6X-r9-6H5" id="ciZ-2Z-5Cv"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -74,19 +73,6 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g6X-r9-6H5">
-                            <rect key="frame" x="141.5" y="0.0" width="25" height="25"/>
-                            <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="25" id="48m-jz-u5d"/>
-                                <constraint firstAttribute="height" constant="25" id="HPD-xu-RGj"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="25"/>
-                            <state key="normal" title="X">
-                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="titleShadowColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </state>
-                        </button>
                     </subviews>
                     <constraints>
                         <constraint firstItem="NOF-MQ-S5m" firstAttribute="height" secondItem="u0M-20-Ztr" secondAttribute="height" id="DXC-su-5km"/>
@@ -96,10 +82,8 @@
                         <constraint firstAttribute="trailing" secondItem="1rW-Bx-ijL" secondAttribute="trailing" id="UOX-f3-RC8"/>
                         <constraint firstAttribute="bottom" secondItem="1rW-Bx-ijL" secondAttribute="bottom" id="ajl-fC-udX"/>
                         <constraint firstAttribute="trailing" secondItem="u0M-20-Ztr" secondAttribute="trailing" id="azi-6h-3eM"/>
-                        <constraint firstAttribute="trailing" secondItem="g6X-r9-6H5" secondAttribute="trailing" id="cAC-lc-yZ9"/>
                         <constraint firstAttribute="trailing" secondItem="NOF-MQ-S5m" secondAttribute="trailing" id="eDp-1t-K4c"/>
                         <constraint firstItem="NOF-MQ-S5m" firstAttribute="leading" secondItem="3vv-33-Qe9" secondAttribute="leading" constant="5" id="gjA-eC-Bva"/>
-                        <constraint firstAttribute="top" secondItem="g6X-r9-6H5" secondAttribute="top" id="hGg-kw-eU1"/>
                         <constraint firstItem="u0M-20-Ztr" firstAttribute="top" secondItem="3vv-33-Qe9" secondAttribute="top" id="kNz-1h-VIa"/>
                         <constraint firstItem="u0M-20-Ztr" firstAttribute="leading" secondItem="3vv-33-Qe9" secondAttribute="leading" constant="5" id="oXh-bW-ekf"/>
                         <constraint firstItem="1rW-Bx-ijL" firstAttribute="leading" secondItem="3vv-33-Qe9" secondAttribute="leading" constant="5" id="q5R-Co-nen"/>
