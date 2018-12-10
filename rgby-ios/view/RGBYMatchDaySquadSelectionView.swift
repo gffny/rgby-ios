@@ -48,6 +48,8 @@ class RGBYMatchDaySquadSelectionView: UIControl, UIScrollViewDelegate {
     var selectedView: RGBYProfileView?
     var movePointer: RGBYProfileView?
     var profileArray: [RGBYProfileView] = []
+    var team: RGBYTeam?
+    var match: RGBYMatch?
 
     required init?(coder aDecoder: NSCoder) {
         print("RGBYMatchDaySquadSelectionView:: init(coder)")
@@ -69,8 +71,7 @@ class RGBYMatchDaySquadSelectionView: UIControl, UIScrollViewDelegate {
         self.contentView.frame = bounds
         self.contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(contentView)
-        self.setData(playerList: RGBYDemoData.demoTeam.playerList)
-        // set the
+        // set the profile array values
         self.profileArray = [self.n1Profile, self.n2Profile, self.n3Profile, self.n4Profile, self.n5Profile, self.n6Profile, self.n7Profile, self.n8Profile, self.n9Profile, self.n10Profile, self.n11Profile, self.n12Profile, self.n13Profile, self.n14Profile, self.n15Profile, self.sub1Profile, self.sub2Profile, self.sub3Profile, self.sub4Profile, self.sub5Profile, self.sub6Profile, self.sub7Profile, self.sub8Profile]
         let tapGR = UITapGestureRecognizer(target: self, action: #selector(handlePlayerUnselect))
         tapGR.numberOfTapsRequired = 2
@@ -82,18 +83,20 @@ class RGBYMatchDaySquadSelectionView: UIControl, UIScrollViewDelegate {
         }
         updateSelectionCompleteButton()
     }
-    
-    func setData(playerList: [RGBYPlayer]) {
+
+    func setMatchDayData(team: RGBYTeam, match: RGBYMatch) {
+        self.team = team
+        self.match = match
         let playerCell = self.availablePlayerList.subviews[0] as! RGBYProfileView
         playerCell.removeFromSuperview()
-        for (index, player) in playerList.enumerated() {
+        for (index, player) in self.team!.playerList.enumerated() {
             let playerView = RGBYProfileView(frame: playerCell.frame)
             playerView.setPlayerData(player: player)
             playerView.frame.origin.y += CGFloat(102*index)
             playerView.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handleDrag)))
             self.availablePlayerList.addSubview(playerView)
         }
-        self.availablePlayerList.contentSize = CGSize(width: self.availablePlayerList.frame.width, height: CGFloat(playerList.count*102))
+        self.availablePlayerList.contentSize = CGSize(width: self.availablePlayerList.frame.width, height: CGFloat(self.team!.playerList.count*102))
     }
 
     func reenablePlayerView(player: RGBYPlayer) {
@@ -144,14 +147,18 @@ class RGBYMatchDaySquadSelectionView: UIControl, UIScrollViewDelegate {
         }
     }
 
+    func matchDaySquad() -> RGBYMatchDaySquad {
+        return RGBYMatchDaySquad(match: self.match!, team: self.team!, looseHeadProp: self.n1Profile.player!, hooker: self.n2Profile.player!, tightHeadProp: self.n3Profile.player!, looseHeadSecondRow: self.n4Profile.player!, tightHeadSecondRow: self.n5Profile.player!, blindSideFlanker: self.n6Profile.player!, opensideFlanker: self.n7Profile.player!, number8: self.n8Profile.player!, scrumHalf: self.n9Profile.player!, outHalf: self.n10Profile.player!, leftWing: self.n11Profile.player!, insideCenter: self.n12Profile.player!, outsideCenter: self.n13Profile.player!, rightWing: self.n14Profile.player!, fullback: self.n15Profile.player!, subsitutes: [self.sub1Profile.player!, self.sub2Profile.player!, self.sub3Profile.player!, self.sub4Profile.player!, self.sub5Profile.player!, self.sub6Profile.player!, self.sub7Profile.player!, self.sub8Profile.player!])
+    }
+
     // UI EVENT HANDLERS
-    
+
     @objc func handleDrag(_ sender: UIPanGestureRecognizer) {
         self.selectedView = sender.view! as? RGBYProfileView
         if sender.state == .began {
             // set the original transform
             self.selectedView?.alpha = 0.7
-            //let center = sender.location(in: self.contentView)
+            // TODO make view methods to handle these changes
             self.movePointer = RGBYProfileView(frame: (self.selectedView!.frame))
             self.movePointer!.setPlayerData(player: self.selectedView!.player!)
             self.movePointer!.alpha = 0.7
@@ -194,7 +201,6 @@ class RGBYMatchDaySquadSelectionView: UIControl, UIScrollViewDelegate {
     @objc func handlePlayerUnselect(_ sender: UITapGestureRecognizer) {
         for (_, profile) in self.profileArray.enumerated() {
             if profile.frame.contains(sender.location(in: self.squadView)) && profile.player != nil {
-                print("re-enable player \(profile.player?.firstName) \(profile.player?.lastName)")
                 reenablePlayerView(player: profile.player!)
                 profile.resetProfileView()
                 updateSelectionCompleteButton()
@@ -205,9 +211,4 @@ class RGBYMatchDaySquadSelectionView: UIControl, UIScrollViewDelegate {
     @objc func scrollViewDidScroll(_ scrollView: UIScrollView) {
         updateSelectionCompleteButton()
     }
-
-}
-
-extension RGBYMatchDaySquadSelectionView {
-    
 }

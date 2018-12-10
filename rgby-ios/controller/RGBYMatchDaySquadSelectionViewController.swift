@@ -17,6 +17,7 @@ class RGBYMatchDaySquadSelectionViewController: UIViewController {
         // Do any additional setup after loading the view
         print("RGBYInMatchIncidentViewController:: viewDidLoad");
         // show the initial view - incident type input view
+        self.selectionView.setMatchDayData(team: RGBYDemoData.demoTeam, match: RGBYDemoData.demoMatch)
         self.selectionView.doneButton.addTarget(self, action: #selector(handleSelectionCompletion), for: .touchUpInside)
     }
 
