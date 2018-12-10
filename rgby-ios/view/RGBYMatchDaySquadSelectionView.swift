@@ -46,8 +46,7 @@ class RGBYMatchDaySquadSelectionView: UIControl {
     @IBOutlet var contentView: UIView!
 
     var selectedView: RGBYProfileView?
-    var origTransform: CGAffineTransform?
-    var origLocation: CGPoint?
+    var movePointer: RGBYProfileView?
     var profileArray: [RGBYProfileView] = []
 
     required init?(coder aDecoder: NSCoder) {
@@ -97,18 +96,21 @@ class RGBYMatchDaySquadSelectionView: UIControl {
 
     @objc func handleDrag(_ sender: UIPanGestureRecognizer) {
         self.selectedView = sender.view! as? RGBYProfileView
-        let yDiff = self.contentView.frame.height-self.availablePlayerList.frame.height
         if sender.state == .began {
             // set the original transform
-            self.origTransform = self.selectedView?.transform
-            self.origLocation = self.selectedView?.center
-            self.selectedView?.alpha = 0.8
-            let center = sender.location(in: self.contentView)
-            self.selectedView?.transform = CGAffineTransform.identity.rotated(by: (CGFloat.pi / 4) * 3).scaledBy(x: -1, y: -1)
-            self.selectedView?.center = CGPoint(x: center.x, y: center.y-yDiff)
+            self.selectedView?.alpha = 0.7
+            //let center = sender.location(in: self.contentView)
+            self.movePointer = RGBYProfileView(frame: (self.selectedView!.frame))
+            self.movePointer!.setPlayerData(player: self.selectedView!.player!)
+            self.movePointer!.alpha = 0.7
+            self.movePointer!.layer.borderWidth = 3
+            self.movePointer!.layer.masksToBounds = false
+            self.movePointer!.layer.borderColor = UIColor.black.cgColor
+            self.movePointer!.layer.cornerRadius = self.movePointer!.frame.height/2
+            self.addSubview(self.movePointer!)
         } else if sender.state == .changed {
             let center = sender.location(in: self.contentView)
-            self.selectedView?.center = CGPoint(x: center.x, y: center.y-yDiff)
+            self.movePointer!.center = CGPoint(x: center.x, y: center.y)
         } else if sender.state == .ended {
             // find the destination position
             for (_, profile) in self.profileArray.enumerated() {
@@ -124,18 +126,16 @@ class RGBYMatchDaySquadSelectionView: UIControl {
                     profile.removeButton.isEnabled = true
                     // disable and style the selected player
                     self.selectedView?.isEnabled = false
-                    self.selectedView?.alpha = CGFloat(0.7)
+                    self.selectedView?.alpha = 0.7
                 }
             }
-            // reset the selected view
-            self.selectedView?.transform = self.origTransform!
-            self.selectedView?.center = self.origLocation!
             // if the view is enabled then set the alpha to 1
             if (self.selectedView?.isEnabled)! {
                 self.selectedView?.alpha = 1
             }
-            self.origLocation = nil
-            self.origTransform = nil
+            // remove the move pointer
+            self.movePointer?.removeFromSuperview()
+            self.movePointer = nil
             self.selectedView = nil
         }
     }
