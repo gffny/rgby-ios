@@ -28,8 +28,21 @@ class RGBYProfileView: UIControl {
     }
 
     override init(frame: CGRect) {
-        print("RGBYProfileView:: init(coder)")
+        print("RGBYProfileView:: init(frame)")
         super.init(frame: frame)
+        defaultView()
+    }
+
+    init(frame: CGRect, isMovePointer: Bool) {
+        print("RGBYProfileView:: init(frame) as movePointer")
+        super.init(frame: frame)
+        if isMovePointer {
+            self.alpha = 0.7
+            self.layer.borderWidth = 3
+            self.layer.masksToBounds = false
+            self.layer.borderColor = UIColor.black.cgColor
+            self.layer.cornerRadius = self.frame.height/2
+        }
         defaultView()
     }
 
@@ -80,5 +93,16 @@ class RGBYProfileView: UIControl {
         self.player = nil
         self.positionNumber.isHidden = false
         self.penImage.isHidden = true
+    }
+
+    // view defaults
+    func enable() {
+        self.isEnabled = true
+        self.alpha = 1
+    }
+
+    func disable() {
+        self.isEnabled = false
+        self.alpha = 0.7
     }
 }

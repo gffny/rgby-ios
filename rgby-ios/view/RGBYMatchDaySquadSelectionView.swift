@@ -105,8 +105,7 @@ class RGBYMatchDaySquadSelectionView: UIControl, UIScrollViewDelegate {
         }) as! [RGBYProfileView]
         for (_, profile) in profileList.enumerated() {
             if player.id == profile.player!.id {
-                profile.isEnabled = true
-                profile.alpha = 1
+                profile.enable()
             }
         }
     }
@@ -156,16 +155,8 @@ class RGBYMatchDaySquadSelectionView: UIControl, UIScrollViewDelegate {
     @objc func handleDrag(_ sender: UIPanGestureRecognizer) {
         self.selectedView = sender.view! as? RGBYProfileView
         if sender.state == .began {
-            // set the original transform
-            self.selectedView?.alpha = 0.7
-            // TODO make view methods to handle these changes
-            self.movePointer = RGBYProfileView(frame: (self.selectedView!.frame))
+            self.movePointer = RGBYProfileView(frame: (self.selectedView!.frame), isMovePointer: true)
             self.movePointer!.setPlayerData(player: self.selectedView!.player!)
-            self.movePointer!.alpha = 0.7
-            self.movePointer!.layer.borderWidth = 3
-            self.movePointer!.layer.masksToBounds = false
-            self.movePointer!.layer.borderColor = UIColor.black.cgColor
-            self.movePointer!.layer.cornerRadius = self.movePointer!.frame.height/2
             self.addSubview(self.movePointer!)
         } else if sender.state == .changed {
             let center = sender.location(in: self.contentView)
@@ -173,8 +164,9 @@ class RGBYMatchDaySquadSelectionView: UIControl, UIScrollViewDelegate {
         } else if sender.state == .ended {
             // find the destination position
             for (_, profile) in self.profileArray.enumerated() {
-                let frame = self.squadView.convert(profile.frame, from:self.squadView)
-                if frame.contains(sender.location(in: self.squadView)) {
+                // is the destination position in a profile frame
+                if self.squadView.convert(profile.frame, from:self.squadView).contains(sender.location(in: self.squadView)) {
+                    // check if the frame is already enabled
                     if profile.player != nil {
                         // unset player profile if already set
                         reenablePlayerView(player: profile.player!)
@@ -182,13 +174,12 @@ class RGBYMatchDaySquadSelectionView: UIControl, UIScrollViewDelegate {
                     // set the profile content
                     profile.setPlayerData(player: selectedView!.player!)
                     // disable and style the selected player
-                    self.selectedView?.isEnabled = false
-                    self.selectedView?.alpha = 0.7
+                    self.selectedView?.disable()
                 }
             }
-            // if the view is enabled then set the alpha to 1
+            // if the view is enabled then enable it
             if (self.selectedView?.isEnabled)! {
-                self.selectedView?.alpha = 1
+                self.selectedView?.enable()
             }
             // remove the move pointer
             self.movePointer?.removeFromSuperview()
