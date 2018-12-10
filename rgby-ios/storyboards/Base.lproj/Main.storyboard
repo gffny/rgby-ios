@@ -362,6 +362,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="GwU-Ke-dYL"/>
                     </view>
+                    <connections>
+                        <outlet property="selectionView" destination="vjc-SW-wJb" id="cze-de-LuI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r0s-cT-Xvp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

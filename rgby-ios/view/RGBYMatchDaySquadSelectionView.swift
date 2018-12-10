@@ -48,7 +48,6 @@ class RGBYMatchDaySquadSelectionView: UIControl, UIScrollViewDelegate {
     var selectedView: RGBYProfileView?
     var movePointer: RGBYProfileView?
     var profileArray: [RGBYProfileView] = []
-    var allPositionsSelected: Bool = false
 
     required init?(coder aDecoder: NSCoder) {
         print("RGBYMatchDaySquadSelectionView:: init(coder)")
@@ -76,7 +75,7 @@ class RGBYMatchDaySquadSelectionView: UIControl, UIScrollViewDelegate {
         let tapGR = UITapGestureRecognizer(target: self, action: #selector(handlePlayerUnselect))
         tapGR.numberOfTapsRequired = 2
         self.squadView.addGestureRecognizer(tapGR)
-        self.squadView.contentSize = CGSize(width: self.squadView.frame.width, height: 1064)
+        self.squadView.contentSize = CGSize(width: self.squadView.frame.width, height: 1018)
         self.squadView.delegate = self
         for (index, profile) in self.profileArray.enumerated() {
             profile.positionNumber.text = "\(index+1)"
@@ -97,6 +96,56 @@ class RGBYMatchDaySquadSelectionView: UIControl, UIScrollViewDelegate {
         self.availablePlayerList.contentSize = CGSize(width: self.availablePlayerList.frame.width, height: CGFloat(playerList.count*102))
     }
 
+    func reenablePlayerView(player: RGBYPlayer) {
+        let profileList = self.availablePlayerList.subviews.filter({ (view) -> Bool in
+            return view is RGBYProfileView
+        }) as! [RGBYProfileView]
+        for (_, profile) in profileList.enumerated() {
+            if player.id == profile.player!.id {
+                profile.isEnabled = true
+                profile.alpha = 1
+            }
+        }
+    }
+
+    func updateSelectionCompleteButton() {
+        // only show the complete selection button when the squad view is towards the bottom
+        let scrollContentSizeHeight = self.squadView.contentSize.height
+        let scrollOffset = self.squadView.contentOffset.y + self.squadView.frame.size.height
+        // conditions
+        // all positions selected = always show done button
+        // not all positions selected
+        // - not within x of bottom = don't show
+        // - between x of bottom and bottom (increase the alpha)
+        var allPositionsSelected = true
+        for (_, profile) in self.profileArray.enumerated() {
+            // check each profile for a player value
+            if profile.player == nil {
+                allPositionsSelected = false
+            }
+        }
+        if allPositionsSelected {
+            self.doneButton.alpha = 1
+            self.doneButton.isEnabled = true
+        } else {
+            // reset button style
+            self.doneButton.alpha = 0
+            self.doneButton.isEnabled = false
+            // then check other conditions
+            if scrollOffset < scrollContentSizeHeight - 200 {
+                // then we are not at bottom
+                self.doneButton.alpha = 0
+                self.doneButton.isEnabled = false
+            } else {
+                // then we are towards the end
+                self.doneButton.isEnabled = allPositionsSelected
+                self.doneButton.alpha = (200-(scrollContentSizeHeight-scrollOffset))/200
+            }
+        }
+    }
+
+    // UI EVENT HANDLERS
+    
     @objc func handleDrag(_ sender: UIPanGestureRecognizer) {
         self.selectedView = sender.view! as? RGBYProfileView
         if sender.state == .began {
@@ -138,6 +187,7 @@ class RGBYMatchDaySquadSelectionView: UIControl, UIScrollViewDelegate {
             self.movePointer?.removeFromSuperview()
             self.movePointer = nil
             self.selectedView = nil
+            updateSelectionCompleteButton()
         }
     }
 
@@ -147,57 +197,15 @@ class RGBYMatchDaySquadSelectionView: UIControl, UIScrollViewDelegate {
                 print("re-enable player \(profile.player?.firstName) \(profile.player?.lastName)")
                 reenablePlayerView(player: profile.player!)
                 profile.resetProfileView()
-                self.allPositionsSelected = false
                 updateSelectionCompleteButton()
             }
         }
     }
-    
-    func updateSelectionCompleteButton() {
-        // only show the complete selection button when the squad view is towards the bottom
-        let scrollContentSizeHeight = self.squadView.contentSize.height
-        let scrollOffset = self.squadView.contentOffset.y + self.squadView.frame.size.height
-        
-        // conditions
-        // all positions selected = always show done button
-        // not all positions selected
-        // - not within x of bottom = don't show
-        // - between x of bottom and bottom (increase the alpha)
-        if allPositionsSelected {
-            self.doneButton.alpha = 1
-            self.doneButton.isEnabled = true
-        } else {
-            // reset
-            self.doneButton.alpha = 0
-            self.doneButton.isEnabled = false
-            // then check other conditions
-            if scrollOffset < scrollContentSizeHeight - 200 {
-                // then we are not at bottom
-                self.doneButton.alpha = 0
-                self.doneButton.isEnabled = false
-            } else {
-                // then we are at the end
-                self.doneButton.isEnabled = true
-                self.doneButton.alpha = (200-(scrollContentSizeHeight-scrollOffset))/200
-            }
-        }
-    }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+
+    @objc func scrollViewDidScroll(_ scrollView: UIScrollView) {
         updateSelectionCompleteButton()
     }
 
-    func reenablePlayerView(player: RGBYPlayer) {
-        let profileList = self.availablePlayerList.subviews.filter({ (view) -> Bool in
-            return view is RGBYProfileView
-        }) as! [RGBYProfileView]
-        for (_, profile) in profileList.enumerated() {
-            if player.id == profile.player!.id {
-                profile.isEnabled = true
-                profile.alpha = 1
-            }
-        }
-    }
 }
 
 extension RGBYMatchDaySquadSelectionView {
