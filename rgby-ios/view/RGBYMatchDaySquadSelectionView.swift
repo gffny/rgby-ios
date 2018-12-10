@@ -15,6 +15,7 @@ class RGBYMatchDaySquadSelectionView: UIControl {
     @IBOutlet weak var matchDayTitleLabel: UILabel!
     @IBOutlet weak var availablePlayerList: UIScrollView!
     @IBOutlet weak var squadView: UIScrollView!
+    @IBOutlet weak var doneButton: UIButton!
     
     @IBOutlet weak var n1Profile: RGBYProfileView!
     @IBOutlet weak var n2Profile: RGBYProfileView!
@@ -45,6 +46,8 @@ class RGBYMatchDaySquadSelectionView: UIControl {
     @IBOutlet var contentView: UIView!
 
     var selectedView: RGBYProfileView?
+    var origTransform: CGAffineTransform?
+    var origLocation: CGPoint?
     var profileArray: [RGBYProfileView] = []
 
     required init?(coder aDecoder: NSCoder) {
@@ -73,7 +76,7 @@ class RGBYMatchDaySquadSelectionView: UIControl {
         let tapGR = UITapGestureRecognizer(target: self, action: #selector(handleCloseButton))
         tapGR.numberOfTapsRequired = 2
         self.squadView.addGestureRecognizer(tapGR)
-        self.squadView.contentSize = CGSize(width: self.squadView.frame.width, height: 900)
+        self.squadView.contentSize = CGSize(width: self.squadView.frame.width, height: 1100)
         for (index, profile) in self.profileArray.enumerated() {
             profile.positionNumber.text = "\(index+1)"
         }
@@ -94,7 +97,19 @@ class RGBYMatchDaySquadSelectionView: UIControl {
 
     @objc func handleDrag(_ sender: UIPanGestureRecognizer) {
         self.selectedView = sender.view! as? RGBYProfileView
-        if sender.state == .ended {
+        let yDiff = self.contentView.frame.height-self.availablePlayerList.frame.height
+        if sender.state == .began {
+            // set the original transform
+            self.origTransform = self.selectedView?.transform
+            self.origLocation = self.selectedView?.center
+            self.selectedView?.alpha = 0.8
+            let center = sender.location(in: self.contentView)
+            self.selectedView?.transform = CGAffineTransform.identity.rotated(by: (CGFloat.pi / 4) * 3).scaledBy(x: -1, y: -1)
+            self.selectedView?.center = CGPoint(x: center.x, y: center.y-yDiff)
+        } else if sender.state == .changed {
+            let center = sender.location(in: self.contentView)
+            self.selectedView?.center = CGPoint(x: center.x, y: center.y-yDiff)
+        } else if sender.state == .ended {
             // find the destination position
             for (_, profile) in self.profileArray.enumerated() {
                 let frame = self.squadView.convert(profile.frame, from:self.squadView)
@@ -113,6 +128,14 @@ class RGBYMatchDaySquadSelectionView: UIControl {
                 }
             }
             // reset the selected view
+            self.selectedView?.transform = self.origTransform!
+            self.selectedView?.center = self.origLocation!
+            // if the view is enabled then set the alpha to 1
+            if (self.selectedView?.isEnabled)! {
+                self.selectedView?.alpha = 1
+            }
+            self.origLocation = nil
+            self.origTransform = nil
             self.selectedView = nil
         }
     }

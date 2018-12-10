@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="availablePlayerList" destination="4c9-6b-AhP" id="HUB-Xk-0p9"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="0kN-hg-qtp"/>
+                <outlet property="doneButton" destination="Vpe-ya-fb5" id="Kvm-q2-mf9"/>
                 <outlet property="matchDayTitleLabel" destination="5t2-6q-9kG" id="Cgj-hZ-mzv"/>
                 <outlet property="n10Profile" destination="AnJ-Fy-Zgm" id="Mn3-6S-Jq6"/>
                 <outlet property="n11Profile" destination="Kz4-9r-ezg" id="J01-6l-HGg"/>
@@ -244,6 +245,17 @@
                                         <constraint firstAttribute="width" constant="220" id="b3W-d2-jRe"/>
                                     </constraints>
                                 </view>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vpe-ya-fb5" userLabel="Done">
+                                    <rect key="frame" x="0.0" y="900" width="682.5" height="100"/>
+                                    <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="100" id="sun-x7-NeI"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="30"/>
+                                    <state key="normal" title="Complete Selection">
+                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                </button>
                             </subviews>
                             <constraints>
                                 <constraint firstItem="Gie-sf-FHk" firstAttribute="leading" secondItem="Kz4-9r-ezg" secondAttribute="trailing" id="0IP-sg-Vq2"/>
@@ -253,10 +265,12 @@
                                 <constraint firstItem="AnJ-Fy-Zgm" firstAttribute="top" secondItem="1qv-WM-ZaA" secondAttribute="bottom" id="59V-Dx-DX5"/>
                                 <constraint firstItem="1qv-WM-ZaA" firstAttribute="top" secondItem="I8Z-rE-Ciu" secondAttribute="bottom" id="5rq-z9-oJP"/>
                                 <constraint firstItem="oH4-A6-GCI" firstAttribute="top" secondItem="1nZ-63-TSu" secondAttribute="top" id="5th-mJ-fcJ"/>
+                                <constraint firstAttribute="leading" secondItem="XJW-v4-dFd" secondAttribute="leading" constant="-220" id="6gc-dj-VJe"/>
                                 <constraint firstItem="Vcd-v7-6mv" firstAttribute="top" secondItem="vvC-63-3ht" secondAttribute="bottom" id="7yy-4A-vfF"/>
                                 <constraint firstItem="XJW-v4-dFd" firstAttribute="top" secondItem="Vcd-v7-6mv" secondAttribute="bottom" id="817-Zs-TjK"/>
                                 <constraint firstItem="qRM-JT-kMu" firstAttribute="top" secondItem="AnJ-Fy-Zgm" secondAttribute="bottom" id="AL2-zv-1Gb"/>
                                 <constraint firstItem="aZn-eG-Znd" firstAttribute="leading" secondItem="oH4-A6-GCI" secondAttribute="trailing" id="Aas-y2-AQh"/>
+                                <constraint firstItem="Vpe-ya-fb5" firstAttribute="leading" secondItem="1nZ-63-TSu" secondAttribute="leading" id="DoF-5U-qZF"/>
                                 <constraint firstItem="AMb-x7-3nd" firstAttribute="leading" secondItem="1nZ-63-TSu" secondAttribute="leading" id="G0Y-MR-bSb"/>
                                 <constraint firstItem="pCH-gA-cnN" firstAttribute="top" secondItem="1QO-uJ-F0Y" secondAttribute="bottom" constant="100" id="GE1-7E-q8K"/>
                                 <constraint firstItem="I8Z-rE-Ciu" firstAttribute="leading" secondItem="96p-RJ-40O" secondAttribute="trailing" id="Hh5-rn-BvH"/>
@@ -279,6 +293,7 @@
                                 <constraint firstItem="Vcd-v7-6mv" firstAttribute="leading" secondItem="wgt-Z9-Yb0" secondAttribute="trailing" id="Wgn-x8-RaR"/>
                                 <constraint firstItem="96p-RJ-40O" firstAttribute="top" secondItem="oH4-A6-GCI" secondAttribute="bottom" id="YSg-dB-Nlp"/>
                                 <constraint firstItem="2lA-2d-brR" firstAttribute="leading" secondItem="1nZ-63-TSu" secondAttribute="leading" id="YXv-bc-VLc"/>
+                                <constraint firstAttribute="trailing" secondItem="Vpe-ya-fb5" secondAttribute="trailing" id="YjY-nB-MLn"/>
                                 <constraint firstItem="Vcd-v7-6mv" firstAttribute="top" secondItem="vvC-63-3ht" secondAttribute="bottom" id="Zh9-N3-GI0"/>
                                 <constraint firstItem="I8Z-rE-Ciu" firstAttribute="top" secondItem="aZn-eG-Znd" secondAttribute="bottom" id="aPX-PZ-xCl"/>
                                 <constraint firstItem="wgt-Z9-Yb0" firstAttribute="leading" secondItem="2lA-2d-brR" secondAttribute="trailing" id="aVF-NG-GWk"/>
@@ -289,6 +304,7 @@
                                 <constraint firstItem="96p-RJ-40O" firstAttribute="leading" secondItem="1nZ-63-TSu" secondAttribute="leading" id="fRu-cx-Egv"/>
                                 <constraint firstItem="1QO-uJ-F0Y" firstAttribute="leading" secondItem="aZn-eG-Znd" secondAttribute="trailing" id="kk2-XH-eJ9"/>
                                 <constraint firstItem="qRM-JT-kMu" firstAttribute="leading" secondItem="W2D-op-ljF" secondAttribute="trailing" id="lXa-YX-sFL"/>
+                                <constraint firstItem="Vpe-ya-fb5" firstAttribute="top" secondItem="VMj-mR-8ZJ" secondAttribute="bottom" id="mO8-v7-3ON"/>
                                 <constraint firstItem="oH4-A6-GCI" firstAttribute="leading" secondItem="1nZ-63-TSu" secondAttribute="leading" id="o2x-Bg-SHZ"/>
                                 <constraint firstItem="W2D-op-ljF" firstAttribute="leading" secondItem="1nZ-63-TSu" secondAttribute="leading" id="pMh-Ub-FPN"/>
                                 <constraint firstItem="vvC-63-3ht" firstAttribute="top" secondItem="2yc-Pl-5Lj" secondAttribute="bottom" id="seG-j4-gVn"/>
