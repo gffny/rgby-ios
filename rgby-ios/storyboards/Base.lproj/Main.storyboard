@@ -300,14 +300,14 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="19h-IC-Mwv" userLabel="FixtureTableView">
-                                                        <rect key="frame" x="0.0" y="45" width="300" height="348"/>
+                                                        <rect key="frame" x="10" y="45" width="280" height="348"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <prototypes>
                                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="rgbyFixtureCell" rowHeight="50" id="co4-RA-gr5" customClass="RGBYFixtureTableViewCell" customModule="rgby_ios" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="28" width="300" height="50"/>
+                                                                <rect key="frame" x="0.0" y="28" width="280" height="50"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="co4-RA-gr5" id="xJp-cz-yiW" userLabel="rgbyFixtureCell">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="300" height="49.5"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="280" height="49.5"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AGs-np-vKg" userLabel="oppositionLabel">
@@ -364,11 +364,11 @@
                                                 <constraints>
                                                     <constraint firstItem="X2X-oa-0SP" firstAttribute="leading" secondItem="2zb-Ib-m0i" secondAttribute="leading" id="0dx-sZ-Dq2"/>
                                                     <constraint firstAttribute="trailing" secondItem="X2X-oa-0SP" secondAttribute="trailing" id="Vw7-G1-zy9"/>
-                                                    <constraint firstAttribute="trailing" secondItem="19h-IC-Mwv" secondAttribute="trailing" id="Wr2-cc-cf4"/>
+                                                    <constraint firstAttribute="trailing" secondItem="19h-IC-Mwv" secondAttribute="trailing" constant="10" id="Wr2-cc-cf4"/>
                                                     <constraint firstAttribute="bottom" secondItem="19h-IC-Mwv" secondAttribute="bottom" id="hqb-NH-cfu"/>
                                                     <constraint firstItem="X2X-oa-0SP" firstAttribute="top" secondItem="2zb-Ib-m0i" secondAttribute="top" id="lAU-qd-GMv"/>
                                                     <constraint firstItem="19h-IC-Mwv" firstAttribute="top" secondItem="X2X-oa-0SP" secondAttribute="bottom" id="mbu-ER-X87"/>
-                                                    <constraint firstItem="19h-IC-Mwv" firstAttribute="leading" secondItem="2zb-Ib-m0i" secondAttribute="leading" id="sEN-IC-uoy"/>
+                                                    <constraint firstItem="19h-IC-Mwv" firstAttribute="leading" secondItem="2zb-Ib-m0i" secondAttribute="leading" constant="10" id="sEN-IC-uoy"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
