@@ -177,7 +177,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u7J-7P-Izz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-997.26562499999989" y="2476.5625"/>
+            <point key="canvasLocation" x="-468" y="3512"/>
         </scene>
         <!--Landing Screen View Controller-->
         <scene sceneID="JP6-59-Xp7">
@@ -311,7 +311,7 @@
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AGs-np-vKg" userLabel="oppositionLabel">
-                                                                            <rect key="frame" x="55" y="0.0" width="245" height="25.5"/>
+                                                                            <rect key="frame" x="55" y="0.0" width="225" height="25.5"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="25" id="uSw-zj-Lu7"/>
                                                                             </constraints>
@@ -320,7 +320,7 @@
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B9m-Te-04p" userLabel="secondaryDetailLabel">
-                                                                            <rect key="frame" x="55" y="25.5" width="245" height="25"/>
+                                                                            <rect key="frame" x="55" y="25.5" width="225" height="25"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="25" id="mED-LE-cyH"/>
                                                                             </constraints>
@@ -507,7 +507,7 @@
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wea-zs-l3q" userLabel="PenView">
                                                                     <rect key="frame" x="0.0" y="0.0" width="100" height="99.5"/>
                                                                     <subviews>
-                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DropGoalIcon" translatesAutoresizingMaskIntoConstraints="NO" id="8Kz-Og-19i">
+                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8Kz-Og-19i">
                                                                             <rect key="frame" x="10" y="15" width="70" height="70"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="70" id="NDo-OE-iPL"/>
@@ -527,7 +527,7 @@
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="60" id="nnP-HD-msZ"/>
                                                                     </constraints>
-                                                                    <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="20"/>
+                                                                    <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="25"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
@@ -620,11 +620,12 @@
                         <outlet property="squadListTable" destination="mrS-wg-6Lz" id="13J-nw-VTX"/>
                         <outlet property="teamLogo" destination="UOc-Pv-RpT" id="ohy-ig-rmf"/>
                         <outlet property="teamName" destination="4n6-RD-FwO" id="EB4-9H-Xdj"/>
+                        <segue destination="wL6-oV-McU" kind="show" id="HS9-li-v4k"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="krt-o7-1Qp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1371.09375" y="3511.71875"/>
+            <point key="canvasLocation" x="-1334" y="3512"/>
         </scene>
         <!--In Match Field View Controller-->
         <scene sceneID="B3a-sV-hr7">
@@ -727,7 +728,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9QV-2x-7Yf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-380.859375" y="3511.71875"/>
+            <point key="canvasLocation" x="636" y="2622"/>
         </scene>
         <!--In Match Incident Input View Controller-->
         <scene sceneID="VRd-hf-q7l">
@@ -785,7 +786,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="37b-tQ-31E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="451.17187499999994" y="3511.71875"/>
+            <point key="canvasLocation" x="636" y="3512"/>
         </scene>
         <!--Match Day Squad Selection View Controller-->
         <scene sceneID="w3O-yQ-eNn">
@@ -835,27 +836,12 @@
             </objects>
             <point key="canvasLocation" x="-2095.3125" y="3511.71875"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="SUE-Yc-Lmq">
-            <objects>
-                <viewController id="voP-a3-pj9" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="bo7-9u-M0H">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="uKX-1g-yzN"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jtL-Rt-mD7" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-        </scene>
     </scenes>
     <resources>
-        <image name="DropGoalIcon" width="368.6400146484375" height="368.6400146484375"/>
         <image name="hamburger" width="75" height="75"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Dsd-dK-aqA"/>
         <segue reference="Qed-AH-LDI"/>
+        <segue reference="Dsd-dK-aqA"/>
     </inferredMetricsTieBreakers>
 </document>
