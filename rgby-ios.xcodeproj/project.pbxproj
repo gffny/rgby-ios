@@ -24,6 +24,8 @@
 		5017FC2D21ADC59B0054B781 /* RGBYIncidentTypeSelectView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5017FC2C21ADC59B0054B781 /* RGBYIncidentTypeSelectView.xib */; };
 		5017FC2F21ADF3F60054B781 /* RGBYScoreTypeSelectView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5017FC2E21ADF3F60054B781 /* RGBYScoreTypeSelectView.xib */; };
 		5017FC3121ADF4E80054B781 /* RGBYScoreTypeSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5017FC3021ADF4E80054B781 /* RGBYScoreTypeSelectView.swift */; };
+		50250FCC21BEBC89001823D9 /* RGBYLandingScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50250FCB21BEBC89001823D9 /* RGBYLandingScreenViewController.swift */; };
+		50250FCE21BECA41001823D9 /* RGBYLandingScreenNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50250FCD21BECA41001823D9 /* RGBYLandingScreenNavigationController.swift */; };
 		5027B5CC219CD03500D940E9 /* RGBYInMatchIncidentInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5027B5CB219CD03500D940E9 /* RGBYInMatchIncidentInputViewController.swift */; };
 		5027B5D2219CF15E00D940E9 /* RGBYMatchDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5027B5D1219CF15E00D940E9 /* RGBYMatchDetail.swift */; };
 		5027B5D4219DB35700D940E9 /* RGBYInMatchScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5027B5D3219DB35700D940E9 /* RGBYInMatchScoreView.swift */; };
@@ -97,6 +99,8 @@
 		5017FC2C21ADC59B0054B781 /* RGBYIncidentTypeSelectView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RGBYIncidentTypeSelectView.xib; sourceTree = "<group>"; };
 		5017FC2E21ADF3F60054B781 /* RGBYScoreTypeSelectView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RGBYScoreTypeSelectView.xib; sourceTree = "<group>"; };
 		5017FC3021ADF4E80054B781 /* RGBYScoreTypeSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBYScoreTypeSelectView.swift; sourceTree = "<group>"; };
+		50250FCB21BEBC89001823D9 /* RGBYLandingScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBYLandingScreenViewController.swift; sourceTree = "<group>"; };
+		50250FCD21BECA41001823D9 /* RGBYLandingScreenNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBYLandingScreenNavigationController.swift; sourceTree = "<group>"; };
 		5027B5CB219CD03500D940E9 /* RGBYInMatchIncidentInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBYInMatchIncidentInputViewController.swift; sourceTree = "<group>"; };
 		5027B5D1219CF15E00D940E9 /* RGBYMatchDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBYMatchDetail.swift; sourceTree = "<group>"; };
 		5027B5D3219DB35700D940E9 /* RGBYInMatchScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBYInMatchScoreView.swift; sourceTree = "<group>"; };
@@ -249,6 +253,8 @@
 				50F21C0721B4CB4100ABDCC5 /* RGBYInMatchFieldViewController.swift */,
 				5027B5CB219CD03500D940E9 /* RGBYInMatchIncidentInputViewController.swift */,
 				50A5CA2421B70A5700F82FE7 /* RGBYMatchDaySquadSelectionViewController.swift */,
+				50250FCB21BEBC89001823D9 /* RGBYLandingScreenViewController.swift */,
+				50250FCD21BECA41001823D9 /* RGBYLandingScreenNavigationController.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -459,6 +465,7 @@
 				5027B5CC219CD03500D940E9 /* RGBYInMatchIncidentInputViewController.swift in Sources */,
 				503ABE8A21AF8D4600D45F71 /* RGBYClub.swift in Sources */,
 				503ABE9021AF8E9900D45F71 /* RGBYMatch.swift in Sources */,
+				50250FCE21BECA41001823D9 /* RGBYLandingScreenNavigationController.swift in Sources */,
 				500CDC662195E78E0053508A /* rgby_ios.xcdatamodeld in Sources */,
 				500200B221A9C32B0043CAF8 /* RGBYPlayerSelectView.swift in Sources */,
 				5027B5DF219DDDD500D940E9 /* RGBYPlayerPosition.swift in Sources */,
@@ -467,6 +474,7 @@
 				50A5CA2D21B7342C00F82FE7 /* RGBYProfileView.swift in Sources */,
 				5017FC3121ADF4E80054B781 /* RGBYScoreTypeSelectView.swift in Sources */,
 				50F21C1321B5943F00ABDCC5 /* RGBYPenaltyType.swift in Sources */,
+				50250FCC21BEBC89001823D9 /* RGBYLandingScreenViewController.swift in Sources */,
 				50F21C0821B4CB4100ABDCC5 /* RGBYInMatchFieldViewController.swift in Sources */,
 				5027B5D2219CF15E00D940E9 /* RGBYMatchDetail.swift in Sources */,
 				500200B421A9C4000043CAF8 /* RGBYPlayerButton.swift in Sources */,

@@ -30,4 +30,29 @@ class RGBYUtils {
         button.backgroundColor = buttonColor
         return button
     }
+    
+    static func mmddyyyhhmm() -> DateFormatter {
+        let df = DateFormatter()
+        df.dateFormat = "MM/dd/yyyy HH:mm"
+        return df
+    }
+
+    static func mmmddyyyhhmm() -> DateFormatter {
+        let df = DateFormatter()
+        df.dateFormat = "dd MMM yyyy hh:mma"
+        return df
+    }
+
+    static func formatPenImage(imageURL: URL? = nil) -> UIImage {
+        if imageURL == nil {
+            return UIImage(named: "AppIcon")!
+        }
+        let data = try? Data(contentsOf: imageURL!)
+        if let imageData = data {
+            return UIImage(data: imageData)!
+        } else {
+            // set default pen image
+            return UIImage(named: "AppIcon")!
+        }
+    }
 }

@@ -16,13 +16,15 @@ class RGBYMatch {
     var location: String?
     var homeTeam: RGBYTeam?
     var awayTeam: RGBYTeam?
+    var isHomeMatch: Bool?
     
-    init(id: String, title: String, date: Date, location: String, homeTeam: RGBYTeam, awayTeam: RGBYTeam) {
+    init(id: String, title: String, date: Date, location: String, homeTeam: RGBYTeam, awayTeam: RGBYTeam, isHomeMatch: Bool) {
         self.id = id
         self.title = title
         self.date = date
         self.location = location
         self.homeTeam = homeTeam
         self.awayTeam = awayTeam
+        self.isHomeMatch = isHomeMatch
     }
 }

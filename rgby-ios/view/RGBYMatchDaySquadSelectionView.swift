@@ -87,6 +87,7 @@ class RGBYMatchDaySquadSelectionView: UIControl, UIScrollViewDelegate {
     func setMatchDayData(team: RGBYTeam, match: RGBYMatch) {
         self.team = team
         self.match = match
+        self.matchDayTitleLabel.text = "\(self.match!.title ?? "Match Day"): Squad Selection"
         let playerCell = self.availablePlayerList.subviews[0] as! RGBYProfileView
         playerCell.removeFromSuperview()
         for (index, player) in self.team!.playerList.enumerated() {

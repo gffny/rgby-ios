@@ -10,10 +10,14 @@ import Foundation
 
 class RGBYDemoData {
     
-    static var demoClub:RGBYClub = RGBYClub(id: "club-1", title: "MIT RFC", imageURL: URL(fileURLWithPath: "http://rugby.mit.edu/sites/all/themes/danland/logo.png"))
-    static var demoOppTeam:RGBYTeam = RGBYTeam(id: "team-2", title: "Boston NZ Kiwis RFC 1st XV", shortTitle: "BNZ Kiwi")
-    static var demoCompetition:RGBYCompetition = RGBYCompetition(id: "comp-1", title: "NERFU DIII League 2018")
+    static var demoClub: RGBYClub = RGBYClub(id: "club-1", title: "MIT RFC", imageURL: URL(string: "https://s3.amazonaws.com/rgby-cch/clublogo.png")!)
+
+    static var demoOppClub: RGBYClub = RGBYClub(id: "club-2", title: "Boston NZ Kiwis RFC", imageURL: URL(string: "https://s3.amazonaws.com/rgby-cch/nz-kiwis.png")!)
+
+    static var demoOppTeam:RGBYTeam = RGBYTeam(id: "team-2", title: "BNZ Kiwis 1st XV", shortTitle: "BNZ Kiwis", club: demoOppClub)
     
+    static var demoCompetition:RGBYCompetition = RGBYCompetition(id: "comp-1", title: "NERFU DIII League 2018")
+
     static var demoCH:RGBYPlayer = RGBYPlayer(id: "01", firstName: "Cian", lastName: "Healy", preferredPosition: .LOOSE_HEAD_PROP);
     static var demoRB:RGBYPlayer = RGBYPlayer(id: "02", firstName: "Rory", lastName: "Best", preferredPosition: .HOOKER)
     static var demoTF:RGBYPlayer = RGBYPlayer(id: "03", firstName: "Tadhg", lastName: "Furlong", preferredPosition: .TIGHT_HEAD_PROP)
@@ -41,7 +45,7 @@ class RGBYDemoData {
 
     static var demoTeam:RGBYTeam = RGBYTeam(id: "team-1", title: "MIT RFC 1st XV", shortTitle: "MITRFC", club: demoClub, playerList: [demoCH, demoRB, demoTF, demoJR, demoDT, demoPOM, demoDL, demoCJS, demoKM, demoJSe, gffny, demoJSt, demoBA, demoGR, demoKE, demoRK, demoSC, demoJMcG, demoAP, demoIH, demoJvdF, demoLMcG, demoJC, demoJL])
 
-    static var demoMatch:RGBYMatch = RGBYMatch(id: "match-1", title: "The Match?", date: Date(), location: "Briggs Field, Vassar St., Cambridge, MA 02143", homeTeam: demoTeam, awayTeam: demoOppTeam)
+    static var demoMatch:RGBYMatch = RGBYMatch(id: "match-1", title: "MIT RFC vs BNZ Kiwis", date: RGBYUtils.mmddyyyhhmm().date(from: "03/17/2019 12:00")!, location: "Briggs Field, Vassar St., Cambridge, MA 02143", homeTeam: demoTeam, awayTeam: demoOppTeam, isHomeMatch: true)
     
     static var demoMatchDaySquadMIT:RGBYMatchDaySquad = RGBYMatchDaySquad(match: demoMatch, team: demoTeam, looseHeadProp: demoCH, hooker: demoRB, tightHeadProp: demoTF, looseHeadSecondRow: demoJR, tightHeadSecondRow: demoDT, blindSideFlanker: demoPOM, opensideFlanker: demoDL, number8: demoCJS, scrumHalf: demoKM, outHalf: demoJSe, leftWing: demoJSt, insideCenter: demoBA, outsideCenter: demoGR, rightWing: demoKE, fullback: demoRK, subsitutes: [demoSC, demoJMcG, demoAP, demoIH, demoJvdF, demoLMcG, demoJC, demoJL])
     
