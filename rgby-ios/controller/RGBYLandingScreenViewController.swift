@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class RGBYLandingScreenViewController: UIViewController, UITableViewDataSource {
 
@@ -66,7 +67,7 @@ class RGBYLandingScreenViewController: UIViewController, UITableViewDataSource {
         self.team = team
         if let clubImageUrl = team.club?.imageURL {
             //TODO hanlde catching data load errors here!
-            let data = try? Data(contentsOf: clubImageUrl)
+            let data = try? Data(contentsOf: URL(string: clubImageUrl)!)
             if let imageData = data {
                 self.teamLogo.image = UIImage(data: imageData)
             }
@@ -88,7 +89,7 @@ class RGBYLandingScreenViewController: UIViewController, UITableViewDataSource {
         let nextFixture = self.upcomingFixtureList![0]
         if let oppTeam = nextFixture.isHomeMatch! ? nextFixture.awayTeam : nextFixture.homeTeam {
             if let clubImageUrl = oppTeam.club?.imageURL {
-                let data = try? Data(contentsOf: clubImageUrl)
+                let data = try? Data(contentsOf: URL(string: clubImageUrl)!)
                 if let imageData = data {
                     self.oppImage.image = UIImage(data: imageData)
                     styleSectionBox(view: self.oppImage, borderWidth: 3, cornerRadius: self.oppImage.frame.height/2)

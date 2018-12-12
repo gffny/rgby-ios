@@ -58,8 +58,8 @@ class RGBYDataAPI {
                 print("response: ", utf8Representation)
                 do {
                     //Decode JSON Response Data
-                    let matchList = try JSONDecoder().decode([RGBYMatch].self, from: responseData!)
-                    success(matchList)
+//                    let matchList = try JSONDecoder().decode([RGBYMatch].self, from: responseData!)
+                    success([])
                 } catch let parsingError {
                     print("Error", parsingError)
                 }

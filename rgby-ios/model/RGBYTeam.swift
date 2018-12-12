@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import RealmSwift
 
-class RGBYTeam: Codable {
+class RGBYTeam {
     
     var id: String?
     var title: String?

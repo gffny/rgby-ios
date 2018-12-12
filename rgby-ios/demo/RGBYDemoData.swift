@@ -10,9 +10,9 @@ import Foundation
 
 class RGBYDemoData {
     
-    static var demoClub: RGBYClub = RGBYClub(id: "club-1", title: "MIT RFC", imageURL: URL(string: "https://s3.amazonaws.com/rgby-cch/clublogo.png")!)
+    static var demoClub: RGBYClub = RGBYClub(id: "club-1", title: "MIT RFC", imageURL: "https://s3.amazonaws.com/rgby-cch/clublogo.png")
 
-    static var demoOppClub: RGBYClub = RGBYClub(id: "club-2", title: "Boston NZ Kiwis RFC", imageURL: URL(string: "https://s3.amazonaws.com/rgby-cch/nz-kiwis.png")!)
+    static var demoOppClub: RGBYClub = RGBYClub(id: "club-2", title: "Boston NZ Kiwis RFC", imageURL: "https://s3.amazonaws.com/rgby-cch/nz-kiwis.png")
 
     static var demoOppTeam:RGBYTeam = RGBYTeam(id: "team-2", title: "BNZ Kiwis 1st XV", shortTitle: "BNZ Kiwis", club: demoOppClub)
     

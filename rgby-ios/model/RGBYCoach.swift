@@ -7,14 +7,19 @@
 //
 
 import Foundation
+import RealmSwift
 
-class RGBYCoach: Codable {
+final class RGBYCoach: Object, Codable {
 
-    var id: String?
-    var lastUpdate: Date?
-    var clubId: String?
-    var teamList: [String]?
-    var fName: String?
-    var lName: String?
+    @objc dynamic var id: String
+    @objc dynamic var lastUpdate: Date
+    @objc dynamic var clubId: String? = nil
+    //@objc dynamic var teamList: [String]?
+    @objc dynamic var fName: String? = nil
+    @objc dynamic var lName: String? = nil
+
+    override static func primaryKey() -> String? {
+        return "id"
+    }
 
 }

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RealmSwift
 
 class RGBYPlayer: Codable {
 
@@ -30,4 +31,5 @@ class RGBYPlayer: Codable {
         self.preferredPosition = preferredPosition
         self.imageURL = imageURL
     }
+
 }

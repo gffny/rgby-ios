@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,15 +18,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
         // check if there have been any updates to the data in the API
+
         RGBYDataAPI.getCoach(onSuccess: { (result) -> Void in
-            print("retrieved coach data for coach with id: \(result.id!)")
+            print("retrieved coach data for coach with id: \(result.id)")
             // check if the data has been updated since last login
-            if result.lastUpdate! < Date.init() {
+            if result.lastUpdate < Date.init() {
                 print("current coach data is behind api data; requesting data update")
                 // request update of core data
-                // TODO Match List
+                //FIXME Match List
                 RGBYDataAPI.getMatchList(onSuccess: { (result) -> Void in
                     // TODO store updated data in local repo
                     print(result.count)
