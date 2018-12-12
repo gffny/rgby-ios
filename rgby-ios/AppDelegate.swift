@@ -12,11 +12,37 @@ import CoreData
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    static var RGBY_IOS_PERSISTENT_CONTAINER_NAME = "rgby_ios"
+    
     var window: UIWindow?
-    var matchDetail: RGBYMatchDetail!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        self.matchDetail = RGBYDemoData.demoMatchDetail
+        
+        // check if there have been any updates to the data in the API
+        RGBYDataAPI.getCoach(onSuccess: { (result) -> Void in
+            print("retrieved coach data for coach with id: \(result.id!)")
+            // check if the data has been updated since last login
+            if result.lastUpdate! < Date.init() {
+                print("current coach data is behind api data; requesting data update")
+                // request update of core data
+                // TODO Match List
+                RGBYDataAPI.getMatchList(onSuccess: { (result) -> Void in
+                    // TODO store updated data in local repo
+                    print(result.count)
+                }, onFailure: {_ in
+                    print("error")
+                })
+                // TODO Squad List
+                RGBYDataAPI.getSquadList(onSuccess: { (result) in
+                    // TODO store updated player data in local repo
+                    print(result.count)
+                }, onFailure: {_ in
+                    print("error")
+                })
+            }
+        }, onFailure: {_ in
+            print("error")
+        })
         self.configureStyle()
         return true
     }
@@ -26,7 +52,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().isTranslucent = true
         UINavigationBar.appearance().tintColor = UIColor.white
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont(name: "Helvetica Neue", size: 16.0)!]
-    
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -58,6 +83,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController:UIViewController, onto primaryViewController:UIViewController) -> Bool {
         return false
     }
+
     // MARK: - Core Data stack
 
     lazy var persistentContainer: NSPersistentContainer = {
@@ -67,7 +93,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
          application to it. This property is optional since there are legitimate
          error conditions that could cause the creation of the store to fail.
         */
-        let container = NSPersistentContainer(name: "rgby_ios")
+        let container = NSPersistentContainer(name: AppDelegate.RGBY_IOS_PERSISTENT_CONTAINER_NAME)
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.

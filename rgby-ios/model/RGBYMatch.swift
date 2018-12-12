@@ -8,7 +8,7 @@
 
 import Foundation
 
-class RGBYMatch {
+class RGBYMatch: Codable {
     
     var id: String?
     var title: String?
@@ -17,7 +17,7 @@ class RGBYMatch {
     var homeTeam: RGBYTeam?
     var awayTeam: RGBYTeam?
     var isHomeMatch: Bool?
-    
+
     init(id: String, title: String, date: Date, location: String, homeTeam: RGBYTeam, awayTeam: RGBYTeam, isHomeMatch: Bool) {
         self.id = id
         self.title = title

@@ -8,14 +8,14 @@
 
 import Foundation
 
-class RGBYPlayer {
+class RGBYPlayer: Codable {
 
     var id: String
     var firstName: String
     var lastName: String
     var preferredPosition: RGBYPlayerPosition
     var imageURL: URL?
-    
+
     init(id: String, firstName: String, lastName: String, preferredPosition: RGBYPlayerPosition) {
         self.id = id
         self.firstName = firstName

@@ -620,12 +620,12 @@
                         <outlet property="squadListTable" destination="mrS-wg-6Lz" id="13J-nw-VTX"/>
                         <outlet property="teamLogo" destination="UOc-Pv-RpT" id="ohy-ig-rmf"/>
                         <outlet property="teamName" destination="4n6-RD-FwO" id="EB4-9H-Xdj"/>
-                        <segue destination="wL6-oV-McU" kind="show" id="HS9-li-v4k"/>
+                        <segue destination="xb5-RC-nZf" kind="show" identifier="presentMatchDaySelection" id="UUv-kq-BiR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="krt-o7-1Qp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1334" y="3512"/>
+            <point key="canvasLocation" x="-2157" y="3512"/>
         </scene>
         <!--In Match Field View Controller-->
         <scene sceneID="B3a-sV-hr7">
@@ -797,7 +797,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vjc-SW-wJb" customClass="RGBYMatchDaySquadSelectionView" customModule="rgby_ios" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
+                                <rect key="frame" x="0.0" y="70" width="1024" height="698"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
@@ -816,7 +816,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r0s-cT-Xvp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1829" y="4698"/>
+            <point key="canvasLocation" x="-1269" y="3512"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="TS3-SX-4x3">
@@ -834,14 +834,14 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LIW-Wf-V9a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2095.3125" y="3511.71875"/>
+            <point key="canvasLocation" x="-2958" y="3512"/>
         </scene>
     </scenes>
     <resources>
         <image name="hamburger" width="75" height="75"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Qed-AH-LDI"/>
         <segue reference="Dsd-dK-aqA"/>
+        <segue reference="Qed-AH-LDI"/>
     </inferredMetricsTieBreakers>
 </document>

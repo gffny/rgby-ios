@@ -46,6 +46,7 @@ class RGBYLandingScreenViewController: UIViewController, UITableViewDataSource {
         setUpcomingFixtureList(fixtureList: [RGBYDemoData.demoMatch, RGBYDemoData.demoMatch, RGBYDemoData.demoMatch])
         self.fixtureTable.dataSource = self
         self.squadListTable.dataSource = self
+        self.oppImage.superview!.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(presentNextFixture)))
         // set the bounds of the club/team detail
         styleSectionBox(view: self.teamLogo.superview!, borderWidth: 1, cornerRadius: 10)
         styleSectionBox(view: self.teamLogo, borderWidth: 3, cornerRadius: self.teamLogo.frame.height/2)
@@ -162,10 +163,21 @@ class RGBYLandingScreenViewController: UIViewController, UITableViewDataSource {
         return tableView.dequeueReusableCell(withIdentifier: "invalid")!
     }
 
+    // INTERACTION HANDLERS
+    @objc func presentNextFixture() {
+        performSegue(withIdentifier: "presentMatchDaySelection", sender: self)
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "presentMatchDaySelection" {
+            let vc = segue.destination as! RGBYMatchDaySquadSelectionViewController
+            vc.setMatchDayData(team: self.team!, match: self.upcomingFixtureList![0])
+        }
+    }
 }
 
 class RGBYProfileTableViewCell: UITableViewCell {
-    
+
     @IBOutlet weak var penImage: UIImageView!
     @IBOutlet weak var playerNameLabel: UILabel!
     @IBOutlet weak var positionLabel: UILabel!

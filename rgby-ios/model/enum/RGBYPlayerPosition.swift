@@ -8,9 +8,22 @@
 
 import Foundation
 
-enum RGBYPlayerPosition {
+enum RGBYPlayerPosition: String, Codable {
     
-    case LOOSE_HEAD_PROP, HOOKER, TIGHT_HEAD_PROP, SECOND_ROW, BLINDSIDE_FLANKER, OPENSIDE_FLANKER, NUMBER_8, SCRUM_HALF, OUT_HALF, LEFT_WING, INSIDE_CENTER, OUTSIDE_CENTER, RIGHT_WING, FULLBACK
+    case LOOSE_HEAD_PROP = "Loose Head Prop"
+    case HOOKER = "Hooker"
+    case TIGHT_HEAD_PROP = "Tight Head Prop"
+    case SECOND_ROW = "Second Row"
+    case BLINDSIDE_FLANKER = "Blindside Flanker"
+    case OPENSIDE_FLANKER = "Openside Flanker"
+    case NUMBER_8 = "Number 8"
+    case SCRUM_HALF = "Scrumhalf"
+    case OUT_HALF = "Outhalf"
+    case LEFT_WING = "Left Wing"
+    case INSIDE_CENTER = "Inside Center"
+    case OUTSIDE_CENTER = "Outside Center"
+    case RIGHT_WING = "Right Winge"
+    case FULLBACK = "Fullback"
 
     static var listTeamPositions: [RGBYPlayerPosition] {
         return [.LOOSE_HEAD_PROP, .HOOKER, .TIGHT_HEAD_PROP, .SECOND_ROW, .SECOND_ROW, .BLINDSIDE_FLANKER, .OPENSIDE_FLANKER, .NUMBER_8, .SCRUM_HALF, .OUT_HALF, .LEFT_WING, .INSIDE_CENTER, .OUTSIDE_CENTER, .RIGHT_WING, .FULLBACK]

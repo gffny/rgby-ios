@@ -8,7 +8,7 @@
 
 import Foundation
 
-class RGBYTeam {
+class RGBYTeam: Codable {
     
     var id: String?
     var title: String?

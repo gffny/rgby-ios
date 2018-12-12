@@ -20,7 +20,7 @@ class RGBYInMatchFieldViewController: UIViewController, RGBYMatchDetailTimerDele
     @IBOutlet weak var teamBScore: UILabel!
     @IBOutlet weak var teamBName: UILabel!
     
-    var matchDetail: RGBYMatchDetail = RGBYDemoData.demoMatchDetail
+    var matchDetail: RGBYMatchDetail?
     var fieldTapLocation: CGPoint = CGPoint(x: 100, y: 100)
     
     override func viewDidLoad() {
@@ -30,10 +30,9 @@ class RGBYInMatchFieldViewController: UIViewController, RGBYMatchDetailTimerDele
         let fieldTap = UITapGestureRecognizer(target: self, action: #selector(handleFieldTap))
         self.fieldView.addGestureRecognizer(fieldTap)
         self.fieldView.modeSwitch.addTarget(self, action: #selector(handleModeSwitch), for: .touchUpInside)
-        self.matchDetail = RGBYDemoData.demoMatchDetail
-        self.matchDetail.delegate = self
-        self.teamAName.text = self.matchDetail.myMatchDaySquad.team.shortTitle
-        self.teamBName.text = self.matchDetail.oppMatchDaySquad.team.shortTitle
+        self.matchDetail!.delegate = self
+        self.teamAName.text = self.matchDetail!.myMatchDaySquad.team.shortTitle
+        self.teamBName.text = self.matchDetail!.oppMatchDaySquad.team.shortTitle
         matchScoreUpdated()
         setupMatchClock()
     }
@@ -46,21 +45,21 @@ class RGBYInMatchFieldViewController: UIViewController, RGBYMatchDetailTimerDele
     @objc func handleClockAction(_ sender:RGBYMatchClock) {
         // if clock is "start match"
         if sender.clockActionButton.titleLabel?.text == RGBYInMatchFieldViewController.CLOCK_START_MATCH {
-            self.matchDetail.startPeriod()
+            self.matchDetail!.startPeriod()
         } else if sender.clockActionButton.titleLabel?.text == RGBYInMatchFieldViewController.CLOCK_SECOND_HALF {
-            self.matchDetail.startPeriod()
+            self.matchDetail!.startPeriod()
         } else {
-            self.matchDetail.stopPeriod()
-            if self.matchDetail.currentPeriod == 1 {
+            self.matchDetail!.stopPeriod()
+            if self.matchDetail!.currentPeriod == 1 {
                 sender.setClockText(text: RGBYInMatchFieldViewController.CLOCK_SECOND_HALF)
             }
         }
     }
 
     func matchScoreUpdated() {
-        self.teamAScore.text = String(self.matchDetail.myTeamScore)
-        self.teamBScore.text = String(self.matchDetail.oppTeamScore)
-        self.fieldView.updateEventArray(matchEventArray: self.matchDetail.matchEventArray)
+        self.teamAScore.text = String(self.matchDetail!.myTeamScore)
+        self.teamBScore.text = String(self.matchDetail!.oppTeamScore)
+        self.fieldView.updateEventArray(matchEventArray: self.matchDetail!.matchEventArray)
     }
 
     @objc func handleFieldTap(_ sender:UITapGestureRecognizer) {
@@ -77,19 +76,21 @@ class RGBYInMatchFieldViewController: UIViewController, RGBYMatchDetailTimerDele
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is RGBYInMatchIncidentInputViewController {
             let destVC = segue.destination as! RGBYInMatchIncidentInputViewController
-            destVC.setData(matchDetail: self.matchDetail, incidentFieldLocation: self.fieldTapLocation)
+            destVC.setData(matchDetail: self.matchDetail!, incidentFieldLocation: self.fieldTapLocation)
+        } else if segue.destination is RGBYInMatchViewController {
+            let destVC = segue.destination as! RGBYInMatchViewController
+            destVC.matchDetail = self.matchDetail
         }
     }
-    
+
     @IBAction func handleModeSwitch(_ sender: Any) {
         print("RGBYInMatchFieldViewController:: present mode switch")
         performSegue(withIdentifier: "presentModeSwitch", sender: self)
-
     }
 
     func periodTimerUpdated() {
-        if self.matchDetail.currentPeriod < 3 {
-            self.matchClock.setClockText(text: String("\(RGBYUtils.formatMatchClock(time: matchDetail.currentPeriodTimeInSec))"))
+        if self.matchDetail!.currentPeriod < 3 {
+            self.matchClock.setClockText(text: String("\(RGBYUtils.formatMatchClock(time: matchDetail!.currentPeriodTimeInSec))"))
         }
     }
 }
