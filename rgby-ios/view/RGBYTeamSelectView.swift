@@ -15,11 +15,9 @@ class RGBYTeamSelectView: UIControl {
 
     var selectedTeam: RGBYMatchDaySquad?
     var isMyTeam: Bool = true
-    var _myTeam: RGBYMatchDaySquad?
-    var _oppositionTeam: RGBYMatchDaySquad?
 
     @IBOutlet weak var contentView: UIView!
-    @IBOutlet weak var myTeamButton: UIButton!
+    @IBOutlet weak var teamButton: UIButton!
     @IBOutlet weak var oppositionTeamButton: UIButton!
     
     required init?(coder aDecoder: NSCoder) {
@@ -39,15 +37,13 @@ class RGBYTeamSelectView: UIControl {
         contentView.frame = bounds
         contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         addSubview(contentView)
-        myTeamButton.addTarget(self, action: #selector(handleTeamSelected(button:)), for: .touchUpInside)
+        teamButton.addTarget(self, action: #selector(handleTeamSelected(button:)), for: .touchUpInside)
         oppositionTeamButton.addTarget(self, action: #selector(handleTeamSelected(button:)), for: .touchUpInside)
     }
 
-    func setTeamValues(myTeam: RGBYMatchDaySquad, oppositionTeam: RGBYMatchDaySquad) {
-        _myTeam = myTeam
-        myTeamButton.setTitle(_myTeam?.team.title, for: .normal)
-        _oppositionTeam = oppositionTeam
-        oppositionTeamButton.setTitle(_oppositionTeam?.team.title, for: .normal)
+    func setTeamValues(team: RGBYTeam, oppositionTeam: RGBYTeam) {
+        teamButton.setTitle(team.title, for: .normal)
+        oppositionTeamButton.setTitle(oppositionTeam.title, for: .normal)
     }
 }
 
@@ -60,12 +56,10 @@ extension RGBYTeamSelectView {
     
     //MARK: CHANGING APPEREANCE OF BUTTON ON TAP
     @objc fileprivate func handleTeamSelected(button: UIButton) {
-        if button == myTeamButton {
+        if button == teamButton {
             isMyTeam = true
-            selectedTeam = _myTeam
         } else if button == oppositionTeamButton {
             isMyTeam = false
-            selectedTeam = _oppositionTeam
         }
         // maybe handle some styling here if need be for the button tapping
         self.performAction()

@@ -14,20 +14,33 @@ import RealmSwift
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     static var RGBY_IOS_PERSISTENT_CONTAINER_NAME = "rgby_ios"
-    
+
+    // FIXME change this to be a user when handling logins
+    static var COACH_ID = "12345"
+    static var TEAM_ID = "team-1"
+
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // check if there have been any updates to the data in the API
+        // FIXME no need to use a specific Realm configuration just yet
+        
+        // check if we want to load demo data
+        RGBYDemoData.loadDemoData(in: try! Realm())
 
-        RGBYDataAPI.getCoach(onSuccess: { (result) -> Void in
+        // check if there have been any updates to the data in the API
+        RGBYDataAPI.getCoach(id: AppDelegate.COACH_ID, onSuccess: { (result) -> Void in
             print("retrieved coach data for coach with id: \(result.id)")
-            // check if the data has been updated since last login
-            if result.lastUpdate < Date.init() {
+            // get the logged in coaches detail
+            var coach = RGBYCoach.get(id: result.id, in: try! Realm())
+            if coach == nil {
+                coach = RGBYCoach.create(coach: result, in: try! Realm())
+            }
+            // check if the api data last update is newer than the stored last update
+            else if result.lastUpdate > coach!.lastUpdate {
                 print("current coach data is behind api data; requesting data update")
                 // request update of core data
                 //FIXME Match List
-                RGBYDataAPI.getMatchList(onSuccess: { (result) -> Void in
+                RGBYDataAPI.getMatchList(teamId: AppDelegate.TEAM_ID, onSuccess: { (result) -> Void in
                     // TODO store updated data in local repo
                     print(result.count)
                 }, onFailure: {_ in
@@ -41,13 +54,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     print("error")
                 })
             }
+            coach = RGBYCoach.updateLastLogin(coach: coach!, in: try! Realm())
+            print("updated coach last login to "+RGBYUtils.mmddyyyhhmm().string(from: (coach?.lastLogin)!))
         }, onFailure: {_ in
             print("error")
         })
         self.configureStyle()
         return true
     }
-    
+
     func configureStyle() {
         UINavigationBar.appearance().barTintColor = UIColor.darkGray
         UINavigationBar.appearance().isTranslucent = true

@@ -13,6 +13,8 @@ class RGBYLandingScreenViewController: UIViewController, UITableViewDataSource {
 
     @IBOutlet var mainViewConstraint: NSLayoutConstraint!
 
+    @IBOutlet weak var lastLoginLabel: UILabel!
+    
     // club section
     @IBOutlet weak var teamLogo: UIImageView!
     @IBOutlet weak var clubName: UILabel!
@@ -42,9 +44,17 @@ class RGBYLandingScreenViewController: UIViewController, UITableViewDataSource {
         // Do any additional setup after loading the view
         print("RGBYLandingScreenViewController:: viewDidLoad");
         // show the initial view
-        // TODO where does this data come from?!
-        setTeamData(team: RGBYDemoData.demoTeam)
-        setUpcomingFixtureList(fixtureList: [RGBYDemoData.demoMatch, RGBYDemoData.demoMatch, RGBYDemoData.demoMatch])
+        if let coach = RGBYCoach.get(id: AppDelegate.COACH_ID) {
+            self.lastLoginLabel.text = "Coach \(coach.fName) \(coach.lName)\nUpdated Data: \(RGBYUtils.mmmddyyyhhmm().string(from: coach.lastUpdate))"
+        }
+        if let team = RGBYTeam.get(id: AppDelegate.TEAM_ID) {
+            // TODO where does this data come from?!
+            // setTeamData(team: RGBYDemoData.demoTeam)
+            setTeamData(team: team)
+            // get fixture list from database?
+            let fixtureList = RGBYMatch.upcomingFor(team: team)
+            setUpcomingFixtureList(fixtureList: Array(fixtureList))
+        }
         self.fixtureTable.dataSource = self
         self.squadListTable.dataSource = self
         self.oppImage.superview!.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(presentNextFixture)))
@@ -84,10 +94,10 @@ class RGBYLandingScreenViewController: UIViewController, UITableViewDataSource {
         // update the upcoming fixture list
         self.upcomingFixtureList = fixtureList
         self.fixtureTable.reloadData()
-        
+
         // update the next fixure section
         let nextFixture = self.upcomingFixtureList![0]
-        if let oppTeam = nextFixture.isHomeMatch! ? nextFixture.awayTeam : nextFixture.homeTeam {
+        if let oppTeam = nextFixture.opposition {
             if let clubImageUrl = oppTeam.club?.imageURL {
                 let data = try? Data(contentsOf: URL(string: clubImageUrl)!)
                 if let imageData = data {
@@ -96,14 +106,14 @@ class RGBYLandingScreenViewController: UIViewController, UITableViewDataSource {
                 }
             } else {
                 // if no image then set vs / @
-                self.oppLabel.text = nextFixture.isHomeMatch! ? "vs" : "@"
+                self.oppLabel.text = nextFixture.isHomeMatch ? "vs" : "@"
                  styleSectionBox(view: self.oppLabel, borderWidth: 5, cornerRadius: self.oppLabel.frame.height/2)
                 self.oppLabel.isHidden = false
                 self.oppImage.isHidden = true
             }
             self.oppClubName.text = (oppTeam.club != nil) ? oppTeam.club!.title : oppTeam.title
             self.oppTeamName.text = oppTeam.title
-            self.oppSecDetail.text = RGBYUtils.mmmddyyyhhmm().string(from: nextFixture.date!)
+            self.oppSecDetail.text = RGBYUtils.mmmddyyyhhmm().string(from: nextFixture.date)
             self.oppTerDetail.text = nextFixture.location
             styleSectionBox(view: self.oppTerDetail.superview!, borderWidth: 1, cornerRadius: 10)
         }
@@ -140,12 +150,12 @@ class RGBYLandingScreenViewController: UIViewController, UITableViewDataSource {
             let fixture = self.upcomingFixtureList![indexPath.row]
             styleSectionBox(view: cell.typeLabel, borderWidth: 2, cornerRadius: cell.typeLabel.frame.height/2)
             cell.oppositionLabel.text = fixture.title
-            if fixture.isHomeMatch! {
+            if fixture.isHomeMatch {
                 cell.typeLabel.text = "vs"
-                cell.secondaryDetailLabel.text = "\(RGBYUtils.mmddyyyhhmm().string(from: fixture.date!)) - \(fixture.location ?? "Home Game")"
+                cell.secondaryDetailLabel.text = "\(RGBYUtils.mmddyyyhhmm().string(from: fixture.date)) - \(fixture.location )"
             } else {
                 cell.typeLabel.text = "@"
-                cell.secondaryDetailLabel.text = "\(RGBYUtils.mmddyyyhhmm().string(from: fixture.date!)) - \(fixture.location ?? "Unknown Location")"
+                cell.secondaryDetailLabel.text = "\(RGBYUtils.mmddyyyhhmm().string(from: fixture.date)) - \(fixture.location )"
             }
             styleSectionBox(view: cell, borderWidth: 0, cornerRadius: 20)
             cell.backgroundColor = indexPath.row % 2 == 0 ? UIColor.lightGray : UIColor.white
@@ -153,12 +163,13 @@ class RGBYLandingScreenViewController: UIViewController, UITableViewDataSource {
         } else if tableView == self.squadListTable {
             // if this is the squad list
             let cell = tableView.dequeueReusableCell(withIdentifier: "rgbyTeamSquadListCell") as! RGBYProfileTableViewCell
-            let player = self.team?.playerList[indexPath.row]
-            cell.penImage.image = RGBYUtils.formatPenImage(imageURL: player?.imageURL)
-            styleSectionBox(view: cell.penImage, borderWidth: 2, cornerRadius: cell.penImage.frame.height/2)
-            cell.playerNameLabel.text = "\(player!.firstName) \(player!.lastName)"
-            cell.positionLabel.text = player?.preferredPosition.displayName
-            styleSectionBox(view: cell, borderWidth: 1, cornerRadius: 10)
+            if let player = self.team?.playerList[indexPath.row] {
+                cell.penImage.image = RGBYUtils.formatPenImage(imageURL: URL(string: player.imageURL))
+                styleSectionBox(view: cell.penImage, borderWidth: 2, cornerRadius: cell.penImage.frame.height/2)
+                cell.playerNameLabel.text = "\(player.fName) \(player.lName)"
+                cell.positionLabel.text = player.preferredPosition.displayName
+                styleSectionBox(view: cell, borderWidth: 1, cornerRadius: 10)
+            }
             return cell
         }
         return tableView.dequeueReusableCell(withIdentifier: "invalid")!

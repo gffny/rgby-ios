@@ -8,40 +8,72 @@
 
 import Foundation
 import RealmSwift
-import Realm
 
-class RGBYClub: Object, Codable {
+@objcMembers class RGBYClub: Object, Codable {
+    enum Property: String {
+        case id, title, imageURL
+    }
 
-    @objc dynamic var id: String = ""
-    @objc dynamic var title: String?
-    @objc dynamic var imageURL: String?
+    dynamic var id = ""
+    dynamic var title = ""
+    dynamic var imageURL = ""
 
-//    init(id: String, title: String, imageURL: URL) {
-//        self.id = id
-//        self.title = title
-//        self.imageURL = imageURL
-//    }
-//    
-    convenience init(id: String, title: String, imageURL: String) {
+    convenience init(_ id: String, _ title: String, _ imageURL: String) {
         self.init()
         self.id = id
         self.title = title
         self.imageURL = imageURL
     }
 
-    required init() {
-        super.init()
-    }
-
-    required init(realm: RLMRealm, schema: RLMObjectSchema) {
-        super.init(realm: realm, schema: schema)
-    }
-
-    required init(value: Any, schema: RLMSchema) {
-        super.init(value: value, schema: schema)
-    }
-
     override static func primaryKey() -> String? {
-        return "id"
+        return RGBYClub.Property.id.rawValue
+    }
+}
+
+extension RGBYClub {
+    
+    static func get(id: String, in realm: Realm = try! Realm()) -> RGBYClub? {
+        return realm.object(ofType: RGBYClub.self, forPrimaryKey: id)
+    }
+    
+    static func all(in realm: Realm = try! Realm()) -> Results<RGBYClub> {
+        return realm.objects(RGBYClub.self)
+            .sorted(byKeyPath: RGBYClub.Property.id.rawValue)
+    }
+    
+    @discardableResult
+    static func create(club: RGBYClub, in realm: Realm = try! Realm())
+        -> RGBYClub {
+            try! realm.write {
+                realm.add(club, update: true)
+            }
+            return club
+    }
+    
+    @discardableResult
+    static func update(id: String, title: String, imageURL: String, in realm: Realm = try! Realm())
+        -> RGBYClub {
+            let item = RGBYClub(id, title, imageURL)
+            try! realm.write {
+                realm.add(item)
+            }
+            return item
+    }
+    
+    @discardableResult
+    static func create(title: String, imageURL: String, in realm: Realm = try! Realm())
+        -> RGBYClub {
+            let item = RGBYClub(NSUUID().uuidString, title, imageURL)
+            try! realm.write {
+                realm.add(item)
+            }
+            return item
+    }
+    
+    func delete() {
+        guard let realm = realm else { return }
+        try! realm.write {
+            realm.delete(self)
+        }
     }
 }

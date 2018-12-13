@@ -70,17 +70,18 @@ class RGBYProfileView: UIControl {
 
     func setPlayerData(player: RGBYPlayer) {
         self.player = player
-        if let penImageUrl = player.imageURL {
-            let data = try? Data(contentsOf: penImageUrl)
+        if player.imageURL.isEmpty {
+            // set default pen image
+            //FIXME create a player pen icon
+            penImage.image = UIImage(named: "AppIcon")
+        } else {
+            let data = try? Data(contentsOf: URL(string: player.imageURL)!)
             if let imageData = data {
                 penImage.image = UIImage(data: imageData)
             }
-        } else {
-            // set default pen image
-            penImage.image = UIImage(named: "AppIcon")
         }
-        self.lastName.text = player.lastName
-        self.firstName.text = player.firstName
+        self.lastName.text = player.lName
+        self.firstName.text = player.fName
         self.position.text = player.preferredPosition.displayName
         self.positionNumber.isHidden = true
         self.penImage.isHidden = false

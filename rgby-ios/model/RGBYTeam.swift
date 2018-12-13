@@ -9,41 +9,75 @@
 import Foundation
 import RealmSwift
 
-class RGBYTeam {
-    
-    var id: String?
-    var title: String?
-    private var _shortTitle: String?
-    var club: RGBYClub?
-    var playerList: [RGBYPlayer] = []
-
-    init(id: String, title:String, shortTitle: String) {
-        self.id = id
-        self.title = title
-        self._shortTitle = shortTitle
+@objcMembers class RGBYTeam: Object {//, Codable {
+    enum Property: String {
+        case id, title, shortTitle, club, playerList
     }
 
-    init(id: String, title: String, shortTitle: String, club: RGBYClub) {
-        self.id = id
-        self.title = title
-        self._shortTitle = shortTitle
-        self.club = club
+    dynamic var id = ""
+    dynamic var title = ""
+    dynamic var shortTitle = ""
+    dynamic var club: RGBYClub?
+    dynamic var playerList = List<RGBYPlayer>()
+
+    override static func primaryKey() -> String? {
+        return RGBYTeam.Property.id.rawValue
     }
     
-    init(id: String, title:String, shortTitle: String, club: RGBYClub, playerList: [RGBYPlayer]) {
+    convenience init(_ id: String, _ title: String, _ shortTitle: String, _ club: RGBYClub, _ playerList: List<RGBYPlayer>) {
+        self.init()
         self.id = id
         self.title = title
-        self._shortTitle = shortTitle
+        self.shortTitle = shortTitle
         self.club = club
         self.playerList = playerList
     }
+}
 
-    var shortTitle: String {
-        get {
-            if (self._shortTitle ?? "").isEmpty {
-                return self.title!
+extension RGBYTeam {
+    
+    static func get(id: String, in realm: Realm = try! Realm()) -> RGBYTeam? {
+        return realm.object(ofType: RGBYTeam.self, forPrimaryKey: id)
+    }
+    
+    static func all(in realm: Realm = try! Realm()) -> Results<RGBYTeam> {
+        return realm.objects(RGBYTeam.self)
+            .sorted(byKeyPath: RGBYTeam.Property.id.rawValue)
+    }
+    
+    @discardableResult
+    static func create(team: RGBYTeam, in realm: Realm = try! Realm())
+        -> RGBYTeam {
+            try! realm.write {
+                realm.add(team, update: true)
             }
-            return self._shortTitle!
+            return team
+    }
+    
+    @discardableResult
+    static func update(id: String, title: String, shortTitle: String, club: RGBYClub, playerList: List<RGBYPlayer>, in realm: Realm = try! Realm())
+        -> RGBYTeam {
+            let item = RGBYTeam(id, title, shortTitle, club, playerList)
+            try! realm.write {
+                realm.add(item)
+            }
+            return item
+    }
+    
+    @discardableResult
+    static func create(title: String, shortTitle: String, club: RGBYClub, playerList: List<RGBYPlayer>, in realm: Realm = try! Realm())
+        -> RGBYTeam {
+            let item = RGBYTeam(NSUUID().uuidString, title, shortTitle, club, playerList)
+            try! realm.write {
+                realm.add(item)
+            }
+            return item
+    }
+    
+    func delete() {
+        guard let realm = realm else { return }
+        try! realm.write {
+            realm.delete(self)
         }
     }
 }

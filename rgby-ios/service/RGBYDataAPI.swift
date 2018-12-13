@@ -26,10 +26,8 @@ class RGBYDataAPI {
                 failure(responseError!)
                 return
             }
-            
             // APIs usually respond with the data you just sent in your POST request
-            if let data = responseData, let utf8Representation = String(data: data, encoding: .utf8) {
-                print("response: ", utf8Representation)
+            if let data = responseData, let _ = String(data: data, encoding: .utf8) {
                 do {
                     //Decode JSON Response Data
                     let playerList = try JSONDecoder().decode([RGBYPlayer].self, from: responseData!)
@@ -45,17 +43,16 @@ class RGBYDataAPI {
         task.resume()
     }
 
-    static func getMatchList(onSuccess success: @escaping ([RGBYMatch]) -> Void, onFailure failure: @escaping (Error?) -> Void) {
+    static func getMatchList(teamId:String, onSuccess success: @escaping ([RGBYMatch]) -> Void, onFailure failure: @escaping (Error?) -> Void) {
         
-        let task = URLSession(configuration: URLSessionConfiguration.default).dataTask(with: formatGetRequest(url: formatAPIRequestURL(path: BASE_TEAM_API + "1234567/" + MATCH_LIST))) { (responseData, response, responseError) in
+        let task = URLSession(configuration: URLSessionConfiguration.default).dataTask(with: formatGetRequest(url: formatAPIRequestURL(path: BASE_TEAM_API + teamId + "/" + MATCH_LIST))) { (responseData, response, responseError) in
             guard responseError == nil else {
                 failure(responseError!)
                 return
             }
             
             // APIs usually respond with the data you just sent in your POST request
-            if let data = responseData, let utf8Representation = String(data: data, encoding: .utf8) {
-                print("response: ", utf8Representation)
+            if let data = responseData {
                 do {
                     //Decode JSON Response Data
 //                    let matchList = try JSONDecoder().decode([RGBYMatch].self, from: responseData!)
@@ -71,21 +68,19 @@ class RGBYDataAPI {
         task.resume()
     }
 
-    static func getCoach(onSuccess success: @escaping (RGBYCoach) -> Void, onFailure failure: @escaping (Error?) -> Void) {
+    static func getCoach(id: String, onSuccess success: @escaping (RGBYCoach) -> Void, onFailure failure: @escaping (Error?) -> Void) {
 
-        let task = URLSession(configuration: URLSessionConfiguration.default).dataTask(with: formatGetRequest(url: formatAPIRequestURL(path: BASE_COACH_API+"12345.json"))) { (responseData, response, responseError) in
+        let task = URLSession(configuration: URLSessionConfiguration.default).dataTask(with: formatGetRequest(url: formatAPIRequestURL(path: BASE_COACH_API+id+".json"))) { (responseData, response, responseError) in
             guard responseError == nil else {
                 failure(responseError!)
                 return
             }
-
             // APIs usually respond with the data you just sent in your POST request
-            if let data = responseData, let utf8Representation = String(data: data, encoding: .utf8) {
-                print("response: ", utf8Representation)
+            if let data = responseData {
                 do {
                     //Decode JSON Response Data
-                    let coach = try JSONDecoder().decode(RGBYCoach.self, from: responseData!)
-                    success(coach)
+                    let coach = try JSONDecoder().decode(RGBYCoachCodable.self, from: data)
+                    success(coach.getModel())
                 } catch let parsingError {
                     print("Error", parsingError)
                 }

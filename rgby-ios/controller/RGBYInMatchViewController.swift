@@ -35,8 +35,8 @@ class RGBYInMatchViewController: UIViewController, UITableViewDataSource, RGBYMa
         self.fieldView.modeSwitch.addTarget(self, action: #selector(handleModeSwitch), for: .touchUpInside)
         self.scoreView.eventTableView.dataSource = self
         self.matchDetail!.delegate = self
-        self.teamAName.text = self.matchDetail!.myMatchDaySquad.team.shortTitle
-        self.teamBName.text = self.matchDetail!.oppMatchDaySquad.team.shortTitle
+        self.teamAName.text = self.matchDetail!.match.team!.shortTitle
+        self.teamBName.text = self.matchDetail!.match.opposition!.shortTitle
         matchScoreUpdated()
         setupMatchClock()
     }

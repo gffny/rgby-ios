@@ -7,38 +7,34 @@
 //
 
 import Foundation
+import RealmSwift
 
-class RGBYMatchDaySquad {
-
-    var match: RGBYMatch
-    var team: RGBYTeam
-    var looseHeadProp: RGBYPlayer?
-    var hooker: RGBYPlayer?
-    var tightHeadProp: RGBYPlayer?
-    var looseHeadSecondRow: RGBYPlayer?
-    var tightHeadSecondRow: RGBYPlayer?
-    var blindSideFlanker: RGBYPlayer?
-    var opensideFlanker: RGBYPlayer?
-    var number8: RGBYPlayer?
-    var scrumHalf: RGBYPlayer?
-    var outHalf: RGBYPlayer?
-    var leftWing: RGBYPlayer?
-    var insideCenter: RGBYPlayer?
-    var outsideCenter: RGBYPlayer?
-    var rightWing: RGBYPlayer?
-    var fullback: RGBYPlayer?
-    var subsitutes: [RGBYPlayer] = []
-    var subbedPlayers: [RGBYPlayer] = []
-    var bloodBin: [RGBYPlayer] = []
-    
-    init(match: RGBYMatch, team: RGBYTeam) {
-        self.match = match
-        self.team = team
+@objcMembers class RGBYMatchDaySquad: Object {
+    enum Property: String {
+        case looseHeadProp, hooker, tightHeadProp, looseHeadSecondRow, tightHeadSecondRow, blindsideFlanker, opensideFlanker, number8, scrumHalf, outHalf, leftWing, insideCenter, outsideCenter, rightWing, fullback, subsituteList, subbedPlayreeList, bloodBinList
     }
-    
-    init(match: RGBYMatch, team:RGBYTeam, looseHeadProp: RGBYPlayer, hooker: RGBYPlayer, tightHeadProp: RGBYPlayer, looseHeadSecondRow: RGBYPlayer, tightHeadSecondRow: RGBYPlayer, blindSideFlanker: RGBYPlayer, opensideFlanker: RGBYPlayer, number8: RGBYPlayer, scrumHalf: RGBYPlayer, outHalf: RGBYPlayer, leftWing: RGBYPlayer, insideCenter: RGBYPlayer, outsideCenter: RGBYPlayer, rightWing: RGBYPlayer, fullback: RGBYPlayer, subsitutes: [RGBYPlayer]) {
-        self.match = match
-        self.team = team
+
+    dynamic var looseHeadProp: RGBYPlayer?
+    dynamic var hooker: RGBYPlayer?
+    dynamic var tightHeadProp: RGBYPlayer?
+    dynamic var looseHeadSecondRow: RGBYPlayer?
+    dynamic var tightHeadSecondRow: RGBYPlayer?
+    dynamic var blindSideFlanker: RGBYPlayer?
+    dynamic var opensideFlanker: RGBYPlayer?
+    dynamic var number8: RGBYPlayer?
+    dynamic var scrumHalf: RGBYPlayer?
+    dynamic var outHalf: RGBYPlayer?
+    dynamic var leftWing: RGBYPlayer?
+    dynamic var insideCenter: RGBYPlayer?
+    dynamic var outsideCenter: RGBYPlayer?
+    dynamic var rightWing: RGBYPlayer?
+    dynamic var fullback: RGBYPlayer?
+    dynamic var subsituteList = List<RGBYPlayer>()
+    dynamic var subbedPlayerList = List<RGBYPlayer>()
+    dynamic var bloodBinList = List<RGBYPlayer>()
+
+    convenience init(_ looseHeadProp: RGBYPlayer, _ hooker: RGBYPlayer, _ tightHeadProp: RGBYPlayer, _ looseHeadSecondRow: RGBYPlayer, _ tightHeadSecondRow: RGBYPlayer, _ blindSideFlanker: RGBYPlayer, _ opensideFlanker: RGBYPlayer, _ number8: RGBYPlayer, _ scrumHalf: RGBYPlayer, _ outHalf: RGBYPlayer, _ leftWing: RGBYPlayer, _ insideCenter: RGBYPlayer, _ outsideCenter: RGBYPlayer, _ rightWing: RGBYPlayer, _ fullback: RGBYPlayer, _ subsituteList: List<RGBYPlayer>, _ subbedPlayerList: List<RGBYPlayer>, _ bloodBinList: List<RGBYPlayer>) {
+        self.init()
         self.looseHeadProp = looseHeadProp
         self.hooker = hooker
         self.tightHeadProp = tightHeadProp
@@ -54,12 +50,12 @@ class RGBYMatchDaySquad {
         self.outsideCenter = outsideCenter
         self.rightWing = rightWing
         self.fullback = fullback
-        self.subsitutes = subsitutes
-        self.subbedPlayers = [RGBYPlayer]()
-        self.bloodBin = [RGBYPlayer]()
+        self.subsituteList = subsituteList
+        self.subbedPlayerList = subbedPlayerList
+        self.bloodBinList = bloodBinList
     }
 
-    var listTeam: [RGBYPlayer] {
+    dynamic var listTeam: [RGBYPlayer] {
         get {
             return [
                 self.looseHeadProp!,

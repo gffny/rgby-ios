@@ -30,7 +30,7 @@ class RGBYMatchDaySquadSelectionViewController: UIViewController {
 
     @objc func handleSelectionCompletion() {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: RGBYInMatchViewController.IDENTIFIER) as! RGBYInMatchViewController
-        vc.matchDetail = RGBYMatchDetail(match: self.match!, myMatchDaySquad: self.selectionView.matchDaySquad(), oppMatchDaySquad: RGBYMatchDaySquad(match: self.match!, team: self.match!.homeTeam!))
+        vc.matchDetail = RGBYMatchDetail(match: self.match!)
         present(vc, animated: true, completion: nil)
     }
     

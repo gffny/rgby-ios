@@ -12,8 +12,7 @@ import CoreGraphics
 class RGBYMatchDetail: NSObject {
 
     var match: RGBYMatch
-    var myMatchDaySquad: RGBYMatchDaySquad
-    var oppMatchDaySquad: RGBYMatchDaySquad
+
     var delegate: RGBYMatchDetailTimerDelegate?
     private var _currentPeriod: Int = 0 // 1 = 1st half, 2 = 2nd half, 3 = 1st half extra time...
     private var _periodTimer: Timer? // reset to zero at the start of each period
@@ -22,12 +21,10 @@ class RGBYMatchDetail: NSObject {
     private var _oppTeamScore: Int = 0
     private var _matchEventArray = [RGBYMatchEvent]()
 
-    init(match: RGBYMatch, myMatchDaySquad: RGBYMatchDaySquad, oppMatchDaySquad: RGBYMatchDaySquad) {
+    init(match: RGBYMatch) {
         self.match = match
-        self.myMatchDaySquad = myMatchDaySquad
-        self.oppMatchDaySquad = oppMatchDaySquad
     }
-    
+
     var myTeamScore: Int {
         get {
             return self._myTeamScore
@@ -45,7 +42,7 @@ class RGBYMatchDetail: NSObject {
             return self._matchEventArray
         }
     }
-    
+
     func appendMatchEvent(newEvent: RGBYMatchEvent) {
         _matchEventArray.append(newEvent)
         if newEvent.eventType == nil {
@@ -62,7 +59,7 @@ class RGBYMatchDetail: NSObject {
         NotificationCenter.default.post(name: .matchDetailDataUpdateNotification, object: nil)
         delegate?.matchScoreUpdated()
     }
-    
+
     func startPeriod() {
         self._currentPeriod += 1
         self._periodTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updatePeriodTimer), userInfo: nil, repeats: true)
@@ -71,18 +68,18 @@ class RGBYMatchDetail: NSObject {
     func stopPeriod() {
         self._periodTimer?.invalidate()
     }
-    
+
     @objc func updatePeriodTimer() {
         self._currentPeriodTimeInSec += 1
         delegate?.periodTimerUpdated()
     }
-    
+
     var currentPeriod:Int {
         get {
             return self._currentPeriod
         }
     }
-    
+
     var currentPeriodTimeInSec:Int {
         get {
             return self._currentPeriodTimeInSec

@@ -14,6 +14,7 @@ class RGBYInMatchIncidentInputViewController: UIViewController  {
     @IBOutlet weak var containerView: UIView!
 
     var matchEvent: RGBYMatchEvent
+    var match: RGBYMatch?
     var matchDetail: RGBYMatchDetail?
     
     override func viewDidLoad() {
@@ -96,7 +97,7 @@ class RGBYInMatchIncidentInputViewController: UIViewController  {
         self.incidentInputLabel.text = "Select Responsible Team..."
         // add the team select view
         let teamSelectView = RGBYTeamSelectView(frame: containerView.frame)
-        teamSelectView.setTeamValues(myTeam: matchDetail!.myMatchDaySquad, oppositionTeam: matchDetail!.oppMatchDaySquad)
+        teamSelectView.setTeamValues(team: match!.team!, oppositionTeam: match!.opposition!)
         // configure incidentTypeSelectView
         teamSelectView.frame = containerView.bounds
         teamSelectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]

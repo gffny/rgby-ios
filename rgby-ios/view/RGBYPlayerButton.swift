@@ -19,7 +19,7 @@ class RGBYPlayerButton: UIButton {
     var player: RGBYPlayer {
         set {
             _player = newValue
-            self.setTitle(newValue.firstName + " " + newValue.lastName, for: .normal)
+            self.setTitle(newValue.fName + " " + newValue.lName, for: .normal)
         }
         get {
             return _player

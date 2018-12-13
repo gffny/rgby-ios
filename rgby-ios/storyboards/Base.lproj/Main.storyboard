@@ -223,12 +223,23 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gbO-Kx-s0M">
+                                        <rect key="frame" x="0.0" y="628" width="300" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="RJP-H3-bih"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="KHv-J9-mVW" secondAttribute="trailing" constant="5" id="4gS-AI-8ac"/>
                                     <constraint firstAttribute="width" constant="300" id="6GK-o1-RYk"/>
+                                    <constraint firstItem="gbO-Kx-s0M" firstAttribute="leading" secondItem="Dsw-9x-5ge" secondAttribute="leading" id="CQV-ge-Pdr"/>
                                     <constraint firstItem="KHv-J9-mVW" firstAttribute="leading" secondItem="Dsw-9x-5ge" secondAttribute="leading" constant="5" id="RME-wb-Qum"/>
+                                    <constraint firstAttribute="bottom" secondItem="gbO-Kx-s0M" secondAttribute="bottom" id="TNV-4q-tK0"/>
                                     <constraint firstItem="b0l-ji-Ruh" firstAttribute="leading" secondItem="Dsw-9x-5ge" secondAttribute="leading" constant="5" id="Tvl-Zd-JJN"/>
                                     <constraint firstItem="3Km-iU-Aab" firstAttribute="leading" secondItem="Dsw-9x-5ge" secondAttribute="leading" constant="5" id="hJw-ox-NTI"/>
                                     <constraint firstItem="3Km-iU-Aab" firstAttribute="top" secondItem="KHv-J9-mVW" secondAttribute="bottom" constant="5" id="j0d-2p-Bjj"/>
@@ -236,6 +247,7 @@
                                     <constraint firstItem="KHv-J9-mVW" firstAttribute="top" secondItem="b0l-ji-Ruh" secondAttribute="bottom" constant="5" id="lRd-Bf-xI7"/>
                                     <constraint firstAttribute="trailing" secondItem="b0l-ji-Ruh" secondAttribute="trailing" constant="5" id="mUn-nZ-ehH"/>
                                     <constraint firstItem="b0l-ji-Ruh" firstAttribute="top" secondItem="Dsw-9x-5ge" secondAttribute="top" constant="5" id="yEa-uC-Hrs"/>
+                                    <constraint firstAttribute="trailing" secondItem="gbO-Kx-s0M" secondAttribute="trailing" id="z5X-l3-DKL"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jVd-UR-ls4" userLabel="MainView">
@@ -610,6 +622,7 @@
                     <connections>
                         <outlet property="clubName" destination="7bO-e8-KhN" id="Uuw-el-Ok7"/>
                         <outlet property="fixtureTable" destination="19h-IC-Mwv" id="xSo-hL-OUV"/>
+                        <outlet property="lastLoginLabel" destination="gbO-Kx-s0M" id="LT4-Fm-ekW"/>
                         <outlet property="mainViewConstraint" destination="QlS-og-r6u" id="tb3-an-IFS"/>
                         <outlet property="oppClubName" destination="zLC-ea-eWi" id="pW5-2a-oYd"/>
                         <outlet property="oppImage" destination="Bbg-Lw-QDk" id="Uip-Dc-gHN"/>
