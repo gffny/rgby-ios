@@ -17,8 +17,20 @@ import RealmSwift
     dynamic var id = NSUUID().uuidString
     dynamic var fName = ""
     dynamic var lName = ""
-    dynamic var preferredPosition = RGBYPlayerPosition.SCRUM_HALF
+    dynamic var preferredPositionRaw = RGBYPlayerPosition.SCRUM_HALF.rawValue
     dynamic var imageURL = ""
+    
+    var preferredPosition: RGBYPlayerPosition {
+        get {
+            return RGBYPlayerPosition(rawValue: preferredPositionRaw)!
+        } set {
+            self.preferredPositionRaw = newValue.rawValue
+        }
+    }
+
+    override static func primaryKey() -> String? {
+        return RGBYPlayer.Property.id.rawValue
+    }
 
     convenience init(_ id: String, _ firstName: String, _ lastName: String, _ preferredPosition: RGBYPlayerPosition, _ imageURL: String) {
         self.init()
