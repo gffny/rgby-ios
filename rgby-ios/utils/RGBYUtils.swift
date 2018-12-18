@@ -43,6 +43,14 @@ class RGBYUtils {
         return df
     }
 
+    static func imageDataOrDefault(imageData: Data?, defaultIcon: String) -> UIImage {
+        if let data = imageData {
+            return UIImage(data: data)!
+        }
+        // use default logo
+        return UIImage(named: defaultIcon)!
+    }
+
     static func formatPenImage(imageURL: URL? = nil) -> UIImage {
         if imageURL == nil {
             return UIImage(named: "AppIcon")!

@@ -58,6 +58,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("updated coach last login to "+RGBYUtils.mmddyyyhhmm().string(from: (coach?.lastLogin)!))
         }, onFailure: {_ in
             print("error")
+        }, onOffline: {
+            print("iPad is offline")
         })
         self.configureStyle()
         return true

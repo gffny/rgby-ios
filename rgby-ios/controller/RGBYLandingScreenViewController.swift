@@ -48,7 +48,7 @@ class RGBYLandingScreenViewController: UIViewController, UITableViewDataSource {
             self.lastLoginLabel.text = "Coach \(coach.fName) \(coach.lName)\nUpdated Data: \(RGBYUtils.mmmddyyyhhmm().string(from: coach.lastUpdate))"
         }
         if let team = RGBYTeam.get(id: AppDelegate.TEAM_ID) {
-            // TODO where does this data come from?!
+            // TODO where does this data come from?
             // setTeamData(team: RGBYDemoData.demoTeam)
             setTeamData(team: team)
             // get fixture list from database?
@@ -75,16 +75,7 @@ class RGBYLandingScreenViewController: UIViewController, UITableViewDataSource {
 
     func setTeamData(team: RGBYTeam) {
         self.team = team
-        if let clubImageUrl = team.club?.imageURL {
-            //TODO hanlde catching data load errors here!
-            let data = try? Data(contentsOf: URL(string: clubImageUrl)!)
-            if let imageData = data {
-                self.teamLogo.image = UIImage(data: imageData)
-            }
-        } else {
-            // set default pen image
-            self.teamLogo.image = UIImage(named: "AppIcon")
-        }
+        self.teamLogo.image = RGBYUtils.imageDataOrDefault(imageData: RGBYClub.retrieveImageData(club: team.club!, in: try! Realm()), defaultIcon: "AppIcon");
         self.clubName.text = team.club?.title
         self.teamName.text = team.title
     }
@@ -98,12 +89,9 @@ class RGBYLandingScreenViewController: UIViewController, UITableViewDataSource {
         // update the next fixure section
         let nextFixture = self.upcomingFixtureList![0]
         if let oppTeam = nextFixture.opposition {
-            if let clubImageUrl = oppTeam.club?.imageURL {
-                let data = try? Data(contentsOf: URL(string: clubImageUrl)!)
-                if let imageData = data {
-                    self.oppImage.image = UIImage(data: imageData)
-                    styleSectionBox(view: self.oppImage, borderWidth: 3, cornerRadius: self.oppImage.frame.height/2)
-                }
+            if let data = RGBYClub.retrieveImageData(club: oppTeam.club!, in: try! Realm()) {
+                self.oppImage.image = UIImage(data: data)
+                styleSectionBox(view: self.oppImage, borderWidth: 3, cornerRadius: self.oppImage.frame.height/2)
             } else {
                 // if no image then set vs / @
                 self.oppLabel.text = nextFixture.isHomeMatch ? "vs" : "@"

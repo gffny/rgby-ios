@@ -11,7 +11,7 @@ import RealmSwift
 
 @objcMembers class RGBYCoach: Object {
     enum Property: String {
-        case id, lastUpdate, lastLogin, club, fName, lName
+        case id, lastUpdate, lastLogin, club, clubId, fName, lName
     }
 
     dynamic var id = UUID().uuidString
@@ -43,7 +43,7 @@ import RealmSwift
         codable.lastLogin = self.lastLogin
         codable.fName = self.fName
         codable.lName = self.lName
-        codable.club = self.club
+        codable.clubId = self.club?.id
         return codable
     }
 }
@@ -108,11 +108,12 @@ class RGBYCoachCodable: Codable {
     var id: String?
     var lastUpdate: Date?
     var lastLogin: Date?
-    var club: RGBYClub?
+    var clubId: String?
     var fName: String?
     var lName: String?
 
     func getModel() -> RGBYCoach {
-        return RGBYCoach(self.id!, self.lastUpdate!, self.lastLogin ?? Date(), self.club ?? RGBYClub(), self.fName!, self.lName!)
+        let club = RGBYClub.get(id: self.clubId ?? "") ?? RGBYClub()
+        return RGBYCoach(self.id!, self.lastUpdate!, self.lastLogin ?? Date(), club, self.fName!, self.lName!)
     }
 }

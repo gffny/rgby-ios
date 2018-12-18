@@ -12,8 +12,8 @@ import RealmSwift
 class RGBYDemoData {
 
     // create demoClub
-    static var demoClub: RGBYClub = RGBYClub("club-1", "MIT RFC", "https://s3.amazonaws.com/rgby-cch/clublogo.png")
-    static var demoOppClub: RGBYClub = RGBYClub("club-2", "Boston NZ Kiwis RFC", "https://s3.amazonaws.com/rgby-cch/nz-kiwis.png")
+    static var demoClub: RGBYClub = RGBYClub("club-1", "MIT RFC", "https://s3.amazonaws.com/rgby-cch/clublogo.png", Data())
+    static var demoOppClub: RGBYClub = RGBYClub("club-2", "Boston NZ Kiwis RFC", "https://s3.amazonaws.com/rgby-cch/nz-kiwis.png", Data())
     // create demoPlayers
     static var demoCH:RGBYPlayer = RGBYPlayer("01", "Cian", "Healy", .LOOSE_HEAD_PROP, "")
     static var demoRB:RGBYPlayer = RGBYPlayer("02", "Rory", "Best", .HOOKER, "")
@@ -90,6 +90,7 @@ class RGBYDemoData {
         RGBYDemoData.demoTeam.playerList.append(RGBYDemoData.demoCJS)
         RGBYDemoData.demoTeam.playerList.append(RGBYDemoData.demoKM)
         RGBYDemoData.demoTeam.playerList.append(RGBYDemoData.demoJSe)
+        RGBYDemoData.demoTeam.playerList.append(RGBYDemoData.gffny)
         RGBYDemoData.demoTeam.playerList.append(RGBYDemoData.demoJSt)
         RGBYDemoData.demoTeam.playerList.append(RGBYDemoData.demoBA)
         RGBYDemoData.demoTeam.playerList.append(RGBYDemoData.demoGR)
@@ -103,10 +104,13 @@ class RGBYDemoData {
         RGBYDemoData.demoTeam.playerList.append(RGBYDemoData.demoLMcG)
         RGBYDemoData.demoTeam.playerList.append(RGBYDemoData.demoJC)
         RGBYDemoData.demoTeam.playerList.append(RGBYDemoData.demoJL)
+        for (_, player) in RGBYDemoData.demoTeam.playerList.enumerated() {
+            RGBYPlayer.create(player: player, in: realm)
+        }
         RGBYDemoData.demoCompetition.fixtureList.append(RGBYDemoData.demoMatch)
         RGBYDemoData.demoCompetition.teamList.append(RGBYDemoData.demoTeam)
-        RGBYClub.create(club: RGBYDemoData.demoClub, in: realm)
-        RGBYClub.create(club: RGBYDemoData.demoOppClub, in: realm)
+        RGBYClub.update(club: RGBYDemoData.demoClub, in: realm)
+        RGBYClub.update(club: RGBYDemoData.demoOppClub, in: realm)
         RGBYTeam.create(team: RGBYDemoData.demoTeam, in: realm)
         RGBYMatch.create(match: RGBYDemoData.demoMatch, in: realm)
         RGBYCompetition.create(competition: RGBYDemoData.demoCompetition, in: realm)
