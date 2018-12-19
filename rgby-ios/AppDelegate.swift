@@ -23,10 +23,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // FIXME no need to use a specific Realm configuration just yet
-        
-        // check if we want to load demo data
-        RGBYDemoData.loadDemoData(in: try! Realm())
 
+        let realm = try! Realm()
+        if realm.objects(RGBYCoach.self).count == 0 {
+            // check if we want to load demo data
+            RGBYDemoData.loadDemoData(in: realm)
+        }
         // check if there have been any updates to the data in the API
         RGBYDataAPI.getCoach(id: AppDelegate.COACH_ID, onSuccess: { (result) -> Void in
             print("retrieved coach data for coach with id: \(result.id)")

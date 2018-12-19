@@ -46,7 +46,7 @@ extension RGBYTeam {
     }
     
     @discardableResult
-    static func create(team: RGBYTeam, in realm: Realm = try! Realm())
+    static func update(team: RGBYTeam, in realm: Realm = try! Realm())
         -> RGBYTeam {
             try! realm.write {
                 realm.add(team, update: true)

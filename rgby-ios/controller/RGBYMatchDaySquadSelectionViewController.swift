@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class RGBYMatchDaySquadSelectionViewController: UIViewController {
     
@@ -30,12 +31,18 @@ class RGBYMatchDaySquadSelectionViewController: UIViewController {
 
     @objc func handleSelectionCompletion() {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: RGBYInMatchViewController.IDENTIFIER) as! RGBYInMatchViewController
+        try! Realm().write {
+            self.match!.matchDaySquad = self.selectionView.matchDaySquad()
+        }
         vc.matchDetail = RGBYMatchDetail(match: self.match!)
         present(vc, animated: true, completion: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         // save team selection
-        
+        try! Realm().write {
+            self.match!.matchDaySquad = self.selectionView.matchDaySquad()
+        }
+        RGBYMatch.update(match: self.match!, in: try! Realm());
     }
 }

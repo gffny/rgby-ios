@@ -98,7 +98,45 @@ class RGBYMatchDaySquadSelectionView: UIControl, UIScrollViewDelegate {
             playerView.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handleDrag)))
             self.availablePlayerList.addSubview(playerView)
         }
+        if let mds = self.match?.matchDaySquad {
+            setPlayerData(profile: self.n1Profile, player: mds.tightHeadSecondRow)
+            setPlayerData(profile: self.n1Profile, player: mds.tightHeadProp)
+            setPlayerData(profile: self.n2Profile, player: mds.hooker)
+            setPlayerData(profile: self.n3Profile, player: mds.looseHeadProp)
+            setPlayerData(profile: self.n4Profile, player: mds.tightHeadSecondRow)
+            setPlayerData(profile: self.n5Profile, player: mds.looseHeadSecondRow)
+            setPlayerData(profile: self.n6Profile, player: mds.blindSideFlanker)
+            setPlayerData(profile: self.n7Profile, player: mds.opensideFlanker)
+            setPlayerData(profile: self.n8Profile, player: mds.number8)
+            setPlayerData(profile: self.n9Profile, player: mds.scrumHalf)
+            setPlayerData(profile: self.n10Profile, player: mds.outHalf)
+            setPlayerData(profile: self.n11Profile, player: mds.leftWing)
+            setPlayerData(profile: self.n12Profile, player: mds.insideCenter)
+            setPlayerData(profile: self.n13Profile, player: mds.outsideCenter)
+            setPlayerData(profile: self.n14Profile, player: mds.rightWing)
+            setPlayerData(profile: self.n15Profile, player: mds.fullback)
+            for (index, player) in mds.subsituteList.enumerated() {
+                setPlayerData(profile: self.profileArray[index+15], player: player)
+            }
+        }
         self.availablePlayerList.contentSize = CGSize(width: self.availablePlayerList.frame.width, height: CGFloat(self.team!.playerList.count*102))
+    }
+
+    func setPlayerData(profile: RGBYProfileView, player: RGBYPlayer?) {
+        // if the player is valid, then set the profile and disable from available players
+        if let profilePlayer = player {
+            // add player to the profile
+            profile.setPlayerData(player: profilePlayer)
+            let playerList = self.availablePlayerList.subviews.filter({ (view) -> Bool in
+                return view is RGBYProfileView
+            }) as! [RGBYProfileView]
+            for (_, availableProfile) in playerList.enumerated() {
+                if profilePlayer.id == availableProfile.player!.id {
+                    availableProfile.disable()
+                }
+            }
+            
+        }
     }
 
     func reenablePlayerView(player: RGBYPlayer) {
@@ -149,8 +187,13 @@ class RGBYMatchDaySquadSelectionView: UIControl, UIScrollViewDelegate {
     }
 
     func matchDaySquad() -> RGBYMatchDaySquad {
-//        [self.sub1Profile.player!, self.sub2Profile.player!, self.sub3Profile.player!, self.sub4Profile.player!, self.sub5Profile.player!, self.sub6Profile.player!, self.sub7Profile.player!, self.sub8Profile.player!]
-        return RGBYMatchDaySquad(self.n1Profile.player!, self.n2Profile.player!, self.n3Profile.player!, self.n4Profile.player!, self.n5Profile.player!, self.n6Profile.player!, self.n7Profile.player!, self.n8Profile.player!, self.n9Profile.player!, self.n10Profile.player!, self.n11Profile.player!, self.n12Profile.player!, self.n13Profile.player!, self.n14Profile.player!, self.n15Profile.player!, List<RGBYPlayer>(), List<RGBYPlayer>(), List<RGBYPlayer>())
+        let subList = List<RGBYPlayer>()
+        for (_, profile) in profileArray[15...profileArray.count-1].enumerated() {
+            if let player = profile.player {
+                subList.append(player)
+            }
+        }
+        return RGBYMatchDaySquad(self.n1Profile.player, self.n2Profile.player, self.n3Profile.player, self.n4Profile.player, self.n5Profile.player, self.n6Profile.player, self.n7Profile.player, self.n8Profile.player, self.n9Profile.player, self.n10Profile.player, self.n11Profile.player, self.n12Profile.player, self.n13Profile.player, self.n14Profile.player, self.n15Profile.player, subList, List<RGBYPlayer>(), List<RGBYPlayer>())
     }
 
     // UI EVENT HANDLERS

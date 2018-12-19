@@ -111,8 +111,8 @@ class RGBYDemoData {
         RGBYDemoData.demoCompetition.teamList.append(RGBYDemoData.demoTeam)
         RGBYClub.update(club: RGBYDemoData.demoClub, in: realm)
         RGBYClub.update(club: RGBYDemoData.demoOppClub, in: realm)
-        RGBYTeam.create(team: RGBYDemoData.demoTeam, in: realm)
-        RGBYMatch.create(match: RGBYDemoData.demoMatch, in: realm)
-        RGBYCompetition.create(competition: RGBYDemoData.demoCompetition, in: realm)
+        RGBYTeam.update(team: RGBYDemoData.demoTeam, in: realm)
+        RGBYMatch.update(match: RGBYDemoData.demoMatch, in: realm)
+        RGBYCompetition.update(competition: RGBYDemoData.demoCompetition, in: realm)
     }
 }

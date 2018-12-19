@@ -44,7 +44,7 @@ extension RGBYCompetition {
     }
     
     @discardableResult
-    static func create(competition: RGBYCompetition, in realm: Realm = try! Realm())
+    static func update(competition: RGBYCompetition, in realm: Realm = try! Realm())
         -> RGBYCompetition {
             try! realm.write {
                 realm.add(competition, update: true)

@@ -33,7 +33,7 @@ import RealmSwift
     dynamic var subbedPlayerList = List<RGBYPlayer>()
     dynamic var bloodBinList = List<RGBYPlayer>()
 
-    convenience init(_ looseHeadProp: RGBYPlayer, _ hooker: RGBYPlayer, _ tightHeadProp: RGBYPlayer, _ looseHeadSecondRow: RGBYPlayer, _ tightHeadSecondRow: RGBYPlayer, _ blindSideFlanker: RGBYPlayer, _ opensideFlanker: RGBYPlayer, _ number8: RGBYPlayer, _ scrumHalf: RGBYPlayer, _ outHalf: RGBYPlayer, _ leftWing: RGBYPlayer, _ insideCenter: RGBYPlayer, _ outsideCenter: RGBYPlayer, _ rightWing: RGBYPlayer, _ fullback: RGBYPlayer, _ subsituteList: List<RGBYPlayer>, _ subbedPlayerList: List<RGBYPlayer>, _ bloodBinList: List<RGBYPlayer>) {
+    convenience init(_ looseHeadProp: RGBYPlayer?, _ hooker: RGBYPlayer?, _ tightHeadProp: RGBYPlayer?, _ looseHeadSecondRow: RGBYPlayer?, _ tightHeadSecondRow: RGBYPlayer?, _ blindSideFlanker: RGBYPlayer?, _ opensideFlanker: RGBYPlayer?, _ number8: RGBYPlayer?, _ scrumHalf: RGBYPlayer?, _ outHalf: RGBYPlayer?, _ leftWing: RGBYPlayer?, _ insideCenter: RGBYPlayer?, _ outsideCenter: RGBYPlayer?, _ rightWing: RGBYPlayer?, _ fullback: RGBYPlayer?, _ subsituteList: List<RGBYPlayer>, _ subbedPlayerList: List<RGBYPlayer>, _ bloodBinList: List<RGBYPlayer>) {
         self.init()
         self.looseHeadProp = looseHeadProp
         self.hooker = hooker

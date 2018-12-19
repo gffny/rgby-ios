@@ -57,7 +57,7 @@ extension RGBYMatch {
     }
 
     @discardableResult
-    static func create(match: RGBYMatch, in realm: Realm = try! Realm())
+    static func update(match: RGBYMatch, in realm: Realm = try! Realm())
         -> RGBYMatch {
             try! realm.write {
                 realm.add(match, update: true)
@@ -74,6 +74,7 @@ extension RGBYMatch {
             }
             return item
     }
+
 
     @discardableResult
     static func create(title: String, date: Date, location: String, team: RGBYTeam, matchDaySquad: RGBYMatchDaySquad, opposition: RGBYTeam, isHomeMatch: Bool, in realm: Realm = try! Realm())
