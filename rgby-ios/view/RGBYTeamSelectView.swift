@@ -41,9 +41,13 @@ class RGBYTeamSelectView: UIControl {
         oppositionTeamButton.addTarget(self, action: #selector(handleTeamSelected(button:)), for: .touchUpInside)
     }
 
-    func setTeamValues(team: RGBYTeam, oppositionTeam: RGBYTeam) {
+    func setTeamValues(team: RGBYTeam, oppositionTeam: RGBYTeam?) {
         teamButton.setTitle(team.title, for: .normal)
-        oppositionTeamButton.setTitle(oppositionTeam.title, for: .normal)
+        if let opposition = oppositionTeam {
+            oppositionTeamButton.setTitle(opposition.title, for: .normal)
+        } else {
+            oppositionTeamButton.setTitle("Opposition", for: .normal)
+        }
     }
 }
 

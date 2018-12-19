@@ -23,9 +23,11 @@ class RGBYMatchDetailTableViewCell: UITableViewCell {
     func setData(matchEvent: RGBYMatchEvent) {
         eventTypeLabel.text = matchEvent.eventType?.displayName
         if let subject = matchEvent.subject {
-            eventDetailLabel.text = matchEvent.eventTime + " " + subject.fName + " " + subject.lName
+            eventDetailLabel.text = "\(matchEvent.eventTime) \(subject.fName) \(subject.lName)"
+        } else if let postion = matchEvent.subjectPosition {
+            eventDetailLabel.text = "\(matchEvent.eventTime) \(postion.displayName)"
         } else {
-            eventDetailLabel.text = matchEvent.eventTime + " Unknown Player"
+            eventDetailLabel.text = "\(matchEvent.eventTime) Unknown Player"
         }
     }
 }

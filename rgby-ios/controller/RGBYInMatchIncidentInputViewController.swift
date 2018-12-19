@@ -32,6 +32,7 @@ class RGBYInMatchIncidentInputViewController: UIViewController  {
 
     func setData(matchDetail: RGBYMatchDetail, incidentFieldLocation: CGPoint) {
         self.matchDetail = matchDetail
+        self.match = matchDetail.match
         self.matchEvent = RGBYMatchEvent(eventPeriod: matchDetail.currentPeriod, periodTimeInSec: matchDetail.currentPeriodTimeInSec, fieldLocation: incidentFieldLocation)
     }
 
@@ -97,7 +98,7 @@ class RGBYInMatchIncidentInputViewController: UIViewController  {
         self.incidentInputLabel.text = "Select Responsible Team..."
         // add the team select view
         let teamSelectView = RGBYTeamSelectView(frame: containerView.frame)
-        teamSelectView.setTeamValues(team: match!.team!, oppositionTeam: match!.opposition!)
+        teamSelectView.setTeamValues(team: match!.team!, oppositionTeam: match!.opposition)
         // configure incidentTypeSelectView
         teamSelectView.frame = containerView.bounds
         teamSelectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -110,7 +111,9 @@ class RGBYInMatchIncidentInputViewController: UIViewController  {
         self.incidentInputLabel.text = "Select Responsible Player..."
         // add the player select view
         let playerSelectView = RGBYPlayerSelectView(frame: containerView.frame)
-        playerSelectView.setTeam(squad: (matchEvent.team)!)
+        if matchEvent.isMyTeam! {
+            playerSelectView.setTeam(squad: matchEvent.team!)
+        }
         playerSelectView.frame = containerView.bounds
         playerSelectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         playerSelectView.addTarget(self, action: #selector(handlePlayerSelect), for: .valueChanged)
@@ -177,7 +180,9 @@ class RGBYInMatchIncidentInputViewController: UIViewController  {
 
     @objc func handleTeamSelect(_ sender: RGBYTeamSelectView) {
         print("RGBYInMatchIncidentViewController:: handleTeamSelect")
-        self.matchEvent.team = sender.selectedTeam
+        if (sender.isMyTeam) {
+            self.matchEvent.team = self.match!.matchDaySquad
+        }
         self.matchEvent.isMyTeam = sender.isMyTeam
         sender.removeFromSuperview()
         showPlayerSelectView()
@@ -202,6 +207,7 @@ class RGBYInMatchIncidentInputViewController: UIViewController  {
     @objc func handlePlayerSelect(_ sender: RGBYPlayerSelectView) {
         print("RGBYInMatchIncidentViewController:: handlePlayerSelect")
         self.matchEvent.subject = sender.selectedPlayer
+        self.matchEvent.subjectPosition = sender.selectedPlayerPosition
         self.matchDetail?.appendMatchEvent(newEvent: matchEvent)
         self.dismiss(animated: true)
     }

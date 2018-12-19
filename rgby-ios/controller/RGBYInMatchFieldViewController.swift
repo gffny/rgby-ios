@@ -20,7 +20,6 @@ class RGBYInMatchFieldViewController: UIViewController, RGBYMatchDetailTimerDele
     @IBOutlet weak var teamBScore: UILabel!
     @IBOutlet weak var teamBName: UILabel!
 
-    var match: RGBYMatch?
     var matchDetail: RGBYMatchDetail?
     var fieldTapLocation: CGPoint = CGPoint(x: 100, y: 100)
     
@@ -31,10 +30,9 @@ class RGBYInMatchFieldViewController: UIViewController, RGBYMatchDetailTimerDele
         let fieldTap = UITapGestureRecognizer(target: self, action: #selector(handleFieldTap))
         self.fieldView.addGestureRecognizer(fieldTap)
         self.fieldView.modeSwitch.addTarget(self, action: #selector(handleModeSwitch), for: .touchUpInside)
-        self.matchDetail = RGBYMatchDetail(match: match!)
         self.matchDetail!.delegate = self
-        self.teamAName.text = self.match!.team!.shortTitle
-        self.teamBName.text = self.match!.opposition!.shortTitle
+        self.teamAName.text = self.matchDetail!.match.team!.shortTitle
+        self.teamBName.text = self.matchDetail!.match.opposition!.shortTitle
         matchScoreUpdated()
         setupMatchClock()
     }

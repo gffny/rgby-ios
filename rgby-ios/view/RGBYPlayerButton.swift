@@ -9,17 +9,17 @@
 import UIKit
 
 class RGBYPlayerButton: UIButton {
-    
-    var _player: RGBYPlayer!
-    
+
+    var _player: RGBYPlayer?
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 
-    var player: RGBYPlayer {
+    var player: RGBYPlayer? {
         set {
             _player = newValue
-            self.setTitle(newValue.fName + " " + newValue.lName, for: .normal)
+            self.setTitle(_player!.fName + " " + _player!.lName, for: .normal)
         }
         get {
             return _player

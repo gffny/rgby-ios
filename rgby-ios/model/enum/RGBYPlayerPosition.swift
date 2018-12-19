@@ -29,6 +29,39 @@ enum RGBYPlayerPosition: String, Codable {
         return [.LOOSE_HEAD_PROP, .HOOKER, .TIGHT_HEAD_PROP, .SECOND_ROW, .SECOND_ROW, .BLINDSIDE_FLANKER, .OPENSIDE_FLANKER, .NUMBER_8, .SCRUM_HALF, .OUT_HALF, .LEFT_WING, .INSIDE_CENTER, .OUTSIDE_CENTER, .RIGHT_WING, .FULLBACK]
     }
 
+    var positionOrderNumber: Int {
+        switch self {
+        case .LOOSE_HEAD_PROP:
+            return 1
+        case .HOOKER:
+            return 2
+        case .TIGHT_HEAD_PROP:
+            return 3
+        case .SECOND_ROW:
+            return 5
+        case .BLINDSIDE_FLANKER:
+            return 6
+        case .OPENSIDE_FLANKER:
+            return 7
+        case .NUMBER_8:
+            return 8
+        case .SCRUM_HALF:
+            return 9
+        case .OUT_HALF:
+            return 10
+        case .LEFT_WING:
+            return 14
+        case .INSIDE_CENTER:
+            return 12
+        case .OUTSIDE_CENTER:
+            return 13
+        case .RIGHT_WING:
+            return 14
+        case .FULLBACK:
+            return 15
+        }
+    }
+    
     var displayName: String {
         switch self {
         case .LOOSE_HEAD_PROP:

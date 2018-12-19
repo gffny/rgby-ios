@@ -57,7 +57,7 @@ class RGBYMatchDaySquadSelectionView: UIControl, UIScrollViewDelegate {
         super.init(coder: aDecoder)
         setupView()
     }
-    
+
     override init(frame: CGRect) {
         print("RGBYMatchDaySquadSelectionView:: init(coder)")
         super.init(frame: frame)
@@ -91,7 +91,7 @@ class RGBYMatchDaySquadSelectionView: UIControl, UIScrollViewDelegate {
         self.matchDayTitleLabel.text = "\(self.match!.title): Squad Selection"
         let playerCell = self.availablePlayerList.subviews[0] as! RGBYProfileView
         playerCell.removeFromSuperview()
-        for (index, player) in self.team!.playerList.enumerated() {
+        for (index, player) in self.team!.playerList.sorted(by: { $0.preferredPosition.positionOrderNumber < $1.preferredPosition.positionOrderNumber }).enumerated() {
             let playerView = RGBYProfileView(frame: playerCell.frame)
             playerView.setPlayerData(player: player)
             playerView.frame.origin.y += CGFloat(102*index)
@@ -187,13 +187,13 @@ class RGBYMatchDaySquadSelectionView: UIControl, UIScrollViewDelegate {
     }
 
     func matchDaySquad() -> RGBYMatchDaySquad {
-        let subList = List<RGBYPlayer>()
+        let subtituteList = List<RGBYPlayer>()
         for (_, profile) in profileArray[15...profileArray.count-1].enumerated() {
             if let player = profile.player {
-                subList.append(player)
+                subtituteList.append(player)
             }
         }
-        return RGBYMatchDaySquad(self.n1Profile.player, self.n2Profile.player, self.n3Profile.player, self.n4Profile.player, self.n5Profile.player, self.n6Profile.player, self.n7Profile.player, self.n8Profile.player, self.n9Profile.player, self.n10Profile.player, self.n11Profile.player, self.n12Profile.player, self.n13Profile.player, self.n14Profile.player, self.n15Profile.player, subList, List<RGBYPlayer>(), List<RGBYPlayer>())
+        return RGBYMatchDaySquad(self.n1Profile.player, self.n2Profile.player, self.n3Profile.player, self.n4Profile.player, self.n5Profile.player, self.n6Profile.player, self.n7Profile.player, self.n8Profile.player, self.n9Profile.player, self.n10Profile.player, self.n11Profile.player, self.n12Profile.player, self.n13Profile.player, self.n14Profile.player, self.n15Profile.player, subtituteList, List<RGBYPlayer>(), List<RGBYPlayer>())
     }
 
     // UI EVENT HANDLERS

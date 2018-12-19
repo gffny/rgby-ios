@@ -14,6 +14,7 @@ class RGBYPlayerSelectView: UIControl {
     let nibName = "RGBYPlayerSelectView"
 
     var selectedPlayer: RGBYPlayer?
+    var selectedPlayerPosition: RGBYPlayerPosition?
 
     @IBOutlet weak var contentView: UIView!
 
@@ -98,11 +99,43 @@ extension RGBYPlayerSelectView {
     fileprivate func performAction() {
         sendActions(for: .valueChanged)
     }
-    
+
     //MARK: CHANGING APPEREANCE OF BUTTON ON TAP
     @objc fileprivate func playerSelected(button: RGBYPlayerButton) {
         // maybe handle some styling here if need be for the button tapping
-        selectedPlayer = button.player
+        if button.player != nil {
+            self.selectedPlayer = button.player
+        }
+        if (button == self.number1) {
+            self.selectedPlayerPosition = .TIGHT_HEAD_PROP
+        } else if (button == self.number2) {
+            self.selectedPlayerPosition = .HOOKER
+        } else if (button == self.number3) {
+            self.selectedPlayerPosition = .TIGHT_HEAD_PROP
+        } else if (button == self.number4 || button == self.number5) {
+            self.selectedPlayerPosition = .SECOND_ROW
+        } else if (button == self.number6) {
+            self.selectedPlayerPosition = .BLINDSIDE_FLANKER
+        } else if (button == self.number7) {
+            self.selectedPlayerPosition = .OPENSIDE_FLANKER
+        } else if (button == self.number8) {
+            self.selectedPlayerPosition = .NUMBER_8
+        } else if (button == self.number9) {
+            self.selectedPlayerPosition = .SCRUM_HALF
+        } else if (button == self.number10) {
+            self.selectedPlayerPosition = .OUT_HALF
+        } else if (button == self.number11) {
+            self.selectedPlayerPosition = .LEFT_WING
+        } else if (button == self.number12) {
+            self.selectedPlayerPosition = .INSIDE_CENTER
+        } else if (button == self.number13) {
+            self.selectedPlayerPosition = .OUTSIDE_CENTER
+        } else if (button == self.number14) {
+            self.selectedPlayerPosition = .RIGHT_WING
+        } else if (button == self.number15) {
+            self.selectedPlayerPosition = .FULLBACK
+        }
+
         self.performAction()
     }
 }

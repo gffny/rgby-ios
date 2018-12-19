@@ -151,7 +151,7 @@ class RGBYLandingScreenViewController: UIViewController, UITableViewDataSource {
         } else if tableView == self.squadListTable {
             // if this is the squad list
             let cell = tableView.dequeueReusableCell(withIdentifier: "rgbyTeamSquadListCell") as! RGBYProfileTableViewCell
-            if let player = self.team?.playerList[indexPath.row] {
+            if let player = self.team?.playerList.sorted(by: { $0.preferredPosition.positionOrderNumber < $1.preferredPosition.positionOrderNumber })[indexPath.row] {
                 cell.penImage.image = RGBYUtils.formatPenImage(imageURL: URL(string: player.imageURL))
                 styleSectionBox(view: cell.penImage, borderWidth: 2, cornerRadius: cell.penImage.frame.height/2)
                 cell.playerNameLabel.text = "\(player.fName) \(player.lName)"
