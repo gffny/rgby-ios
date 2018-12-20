@@ -28,15 +28,35 @@ class RGBYMatchEvent {
         self.fieldLocation = fieldLocation
     }
 
-    init(eventPeriod: Int, periodTimeInSec: Int, eventType: RGBYEventType, fieldLocation: CGPoint, subject: RGBYPlayer?, subjectPosition: RGBYPlayerPosition?, parentEvent: RGBYMatchEvent?) {
+    init(eventPeriod: Int, periodTimeInSec: Int, eventType: RGBYEventType, fieldLocation: CGPoint, subject: RGBYPlayer?, subjectPosition: RGBYPlayerPosition?, parentEvent: RGBYMatchEvent?, isMyTeam:Bool?, additionalIncidentType: String?) {
         self.subject = subject
         self.subjectPosition = subjectPosition
         self.eventType = eventType
         self.eventPeriod = eventPeriod
         self.periodTimeInSec = periodTimeInSec
         self.fieldLocation = fieldLocation
+        self.isMyTeam = isMyTeam
+        self.additionalIncidentType = additionalIncidentType
     }
-    
+
+    func eventTableSummary() -> String {
+        var label = ""
+        if let player = self.subject {
+            if isMyTeam != nil && isMyTeam! {
+                label = "\(player.fName) \(player.lName) \(self.eventTime)"
+            } else {
+                label = " \(self.eventTime) \(player.fName) \(player.lName)"
+            }
+        } else if let position = self.subjectPosition {
+            if isMyTeam != nil && isMyTeam! {
+                label = "\(position.displayName) \(self.eventTime)"
+            } else {
+                label = " \(self.eventTime) \(position.displayName)"
+            }
+        }
+        return label
+    }
+
     var eventTime: String {
         get {
             // 1st half past 40m will show 40+%'

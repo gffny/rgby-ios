@@ -78,6 +78,22 @@ class RGBYDemoData {
     static var demoCompetition:RGBYCompetition = RGBYCompetition("comp-1", "NERFU DIII League 2018", List<RGBYTeam>(), List<RGBYMatch>())
 
     static var demoMatch:RGBYMatch = RGBYMatch("match-1", "MIT RFC vs BNZ Kiwis", RGBYUtils.mmddyyyhhmm().date(from: "03/17/2019 12:00")!, "Briggs Field, Vassar St., Cambridge, MA 02143", demoTeam, demoMatchDaySquadMIT, demoOppTeam, true)
+    
+    static func demoMatchEventList() -> [RGBYMatchEvent] {
+        let evt1 = RGBYMatchEvent(eventPeriod: 1, periodTimeInSec: 365, eventType: .PENALTY, fieldLocation: CGPoint(x: 10, y: 20), subject: nil, subjectPosition: .BLINDSIDE_FLANKER, parentEvent: nil, isMyTeam: false, additionalIncidentType: nil)
+        let evt2 = RGBYMatchEvent(eventPeriod: 1, periodTimeInSec: 445, eventType: .KICK_AT_GOAL, fieldLocation: CGPoint(x: 10, y: 20), subject: gffny, subjectPosition: .INSIDE_CENTER, parentEvent: nil, isMyTeam: true, additionalIncidentType: nil)
+        let evt3 = RGBYMatchEvent(eventPeriod: 1, periodTimeInSec: 1065, eventType: .PENALTY, fieldLocation: CGPoint(x: 10, y: 20), subject: nil, subjectPosition: .FULLBACK, parentEvent: nil, isMyTeam: false, additionalIncidentType: nil)
+        let evt4 = RGBYMatchEvent(eventPeriod: 1, periodTimeInSec: 1354, eventType: .TRY, fieldLocation: CGPoint(x: 10, y: 20), subject: demoGR, subjectPosition: .OUTSIDE_CENTER, parentEvent: nil, isMyTeam: true, additionalIncidentType: nil)
+        let evt5 = RGBYMatchEvent(eventPeriod: 1, periodTimeInSec: 1856, eventType: .CONVERSION, fieldLocation: CGPoint(x: 10, y: 20), subject: gffny, subjectPosition: .INSIDE_CENTER, parentEvent: nil, isMyTeam: true, additionalIncidentType: nil)
+        let evt6 = RGBYMatchEvent(eventPeriod: 1, periodTimeInSec: 2345, eventType: .KICK_AT_GOAL, fieldLocation: CGPoint(x: 10, y: 20), subject: demoBB, subjectPosition: .OUT_HALF, parentEvent: nil, isMyTeam: false, additionalIncidentType: nil)
+        let evt7 = RGBYMatchEvent(eventPeriod: 1, periodTimeInSec: 2565, eventType: .PENALTY, fieldLocation: CGPoint(x: 10, y: 20), subject: nil, subjectPosition: .BLINDSIDE_FLANKER, parentEvent: nil, isMyTeam: false, additionalIncidentType: nil)
+        let evt8 = RGBYMatchEvent(eventPeriod: 2, periodTimeInSec: 445, eventType: .KICK_AT_GOAL, fieldLocation: CGPoint(x: 10, y: 20), subject: gffny, subjectPosition: .INSIDE_CENTER, parentEvent: nil, isMyTeam: true, additionalIncidentType: nil)
+        let evt9 = RGBYMatchEvent(eventPeriod: 2, periodTimeInSec: 1065, eventType: .PENALTY, fieldLocation: CGPoint(x: 10, y: 20), subject: nil, subjectPosition: .FULLBACK, parentEvent: nil, isMyTeam: false, additionalIncidentType: nil)
+        let evt10 = RGBYMatchEvent(eventPeriod: 2, periodTimeInSec: 1354, eventType: .TRY, fieldLocation: CGPoint(x: 10, y: 20), subject: demoGR, subjectPosition: .OUTSIDE_CENTER, parentEvent: nil, isMyTeam: true, additionalIncidentType: nil)
+        let evt11 = RGBYMatchEvent(eventPeriod: 2, periodTimeInSec: 1856, eventType: .CONVERSION, fieldLocation: CGPoint(x: 10, y: 20), subject: gffny, subjectPosition: .INSIDE_CENTER, parentEvent: nil, isMyTeam: true, additionalIncidentType: nil)
+        let evt12 = RGBYMatchEvent(eventPeriod: 2, periodTimeInSec: 2345, eventType: .KICK_AT_GOAL, fieldLocation: CGPoint(x: 10, y: 20), subject: demoBB, subjectPosition: .OUT_HALF, parentEvent: nil, isMyTeam: false, additionalIncidentType: nil)
+        return [evt1, evt2, evt3, evt4, evt5, evt6, evt7, evt8, evt9, evt10, evt11, evt12]
+    }
 
     static func loadDemoData(in realm: Realm = try! Realm()) {
         RGBYDemoData.demoTeam.playerList.append(RGBYDemoData.demoCH)

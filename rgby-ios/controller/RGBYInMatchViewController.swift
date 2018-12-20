@@ -69,7 +69,7 @@ class RGBYInMatchViewController: UIViewController, UITableViewDataSource, RGBYMa
 
     @IBAction func handleModeSwitch(_ sender: Any) {
         print("RGBYInMatchViewController:: present mode switch")
-        performSegue(withIdentifier: "presentModeSwitch", sender: self)
+//        performSegue(withIdentifier: "presentModeSwitch", sender: self)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
