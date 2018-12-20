@@ -17,6 +17,11 @@ class RGBYNewInMatchViewController: UIViewController, UITableViewDataSource {
         super.viewDidLoad()
         matchEventTable.dataSource = self
     }
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+
     /*
      return self.matchDetail!.matchEventArray.filter({ (event: RGBYMatchEvent) -> Bool in
         return RGBYEventType.scoreEvents.contains(event.eventType!)
@@ -40,11 +45,15 @@ class RGBYNewInMatchViewController: UIViewController, UITableViewDataSource {
             cell.teamLabel.text = ""
         }
         if let type = matchEvent.eventType {
-            if type == .DROP_GOAL || type == .KICK_AT_GOAL {
+            if type == .DROP_GOAL {
                 cell.eventIcon.image = UIImage(named: "DropGoalIcon")
+            } else if type == .KICK_AT_GOAL {
+                cell.eventIcon.image = UIImage(named: "KickAtGoalIcon")
             } else if type == .TRY {
                 cell.eventIcon.image = UIImage(named: "TryIcon")
             } else if type == .CONVERSION {
+                cell.eventIcon.image = UIImage(named: "KickAtGoalIcon")
+            } else if type == .PENALTY {
                 cell.eventIcon.image = UIImage(named: "PenaltyIcon")
             }
         }
