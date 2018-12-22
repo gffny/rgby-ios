@@ -21,7 +21,15 @@ class RGBYUtils {
             return String("\(minutes):\(seconds)")
         }
     }
-    
+
+    static func formatMatchPeriod(period: Int) -> String {
+        if period < 3 {
+            return "\(period)H"
+        } else {
+            return "\(period-2)ET"
+        }
+    }
+
     static func formatIncidentButton(yPos: Int, width: Int, height: Int, text: String, buttonColor: UIColor) -> UIButton {
         let button = UIButton(frame: CGRect(x: 0, y: yPos, width: width, height: height))
         button.titleLabel?.font = UIFont(name:"HelveticaNeue-CondensedBold", size: 30.0)
@@ -30,7 +38,7 @@ class RGBYUtils {
         button.backgroundColor = buttonColor
         return button
     }
-    
+
     static func mmddyyyhhmm() -> DateFormatter {
         let df = DateFormatter()
         df.dateFormat = "MM/dd/yyyy HH:mm"

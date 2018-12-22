@@ -13,27 +13,32 @@ class RGBYMatchDetail: NSObject {
 
     var match: RGBYMatch
 
-    var delegate: RGBYMatchDetailTimerDelegate?
+    var matchDetailDelegate: RGBYMatchDetailDelegate?
     private var _currentPeriod: Int = 0 // 1 = 1st half, 2 = 2nd half, 3 = 1st half extra time...
     private var _periodTimer: Timer? // reset to zero at the start of each period
     private var _currentPeriodTimeInSec: Int = 0
-    private var _myTeamScore: Int = 0
-    private var _oppTeamScore: Int = 0
+    private var _teamScore: Int = 0
+    private var _oppositionScore: Int = 0
     private var _matchEventArray = [RGBYMatchEvent]()
+
+    override init() {
+        // not really useful
+        match = RGBYMatch()
+    }
 
     init(match: RGBYMatch) {
         self.match = match
     }
 
-    var myTeamScore: Int {
+    var teamScore: Int {
         get {
-            return self._myTeamScore
+            return self._teamScore
         }
     }
 
-    var oppTeamScore: Int {
+    var oppositionScore: Int {
         get {
-            return self._oppTeamScore
+            return self._oppositionScore
         }
     }
 
@@ -51,17 +56,18 @@ class RGBYMatchDetail: NSObject {
         } else if RGBYEventType.scoreEvents.contains(newEvent.eventType!) {
             // add score to the correct team
             if newEvent.isMyTeam! {
-                self._myTeamScore += (newEvent.eventType?.eventScoreValue)!
+                self._teamScore += (newEvent.eventType?.eventScoreValue)!
             } else {
-                self._oppTeamScore += (newEvent.eventType?.eventScoreValue)!
+                self._oppositionScore += (newEvent.eventType?.eventScoreValue)!
             }
         }
         NotificationCenter.default.post(name: .matchDetailDataUpdateNotification, object: nil)
-        delegate?.matchScoreUpdated()
+        matchDetailDelegate?.matchScoreUpdated()
     }
 
     func startPeriod() {
         self._currentPeriod += 1
+        matchDetailDelegate?.periodUpdated()
         self._periodTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updatePeriodTimer), userInfo: nil, repeats: true)
     }
 
@@ -71,7 +77,7 @@ class RGBYMatchDetail: NSObject {
 
     @objc func updatePeriodTimer() {
         self._currentPeriodTimeInSec += 1
-        delegate?.periodTimerUpdated()
+        matchDetailDelegate?.periodTimeUpdated()
     }
 
     var currentPeriod:Int {
@@ -90,8 +96,9 @@ class RGBYMatchDetail: NSObject {
     }
 }
 
-public protocol RGBYMatchDetailTimerDelegate : NSObjectProtocol {
-    func periodTimerUpdated() -> Void
+public protocol RGBYMatchDetailDelegate : NSObjectProtocol {
+    func periodUpdated() -> Void
+    func periodTimeUpdated() -> Void
     func matchScoreUpdated() -> Void
 }
 
