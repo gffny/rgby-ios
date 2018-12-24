@@ -303,7 +303,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YeR-jb-vzH" userLabel="MenuView">
                                 <rect key="frame" x="0.0" y="95" width="150" height="673"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oXv-Eo-VmR">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="oXv-Eo-VmR">
                                         <rect key="frame" x="0.0" y="0.0" width="150" height="168.5"/>
                                         <color key="backgroundColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="20"/>
@@ -340,7 +340,7 @@
                                         <rect key="frame" x="0.0" y="168.5" width="150" height="168"/>
                                         <color key="backgroundColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="20"/>
-                                        <state key="normal" title="Team View">
+                                        <state key="normal" title="Team">
                                             <color key="titleColor" red="0.86490042099999997" green="0.86490042099999997" blue="0.86490042099999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
@@ -592,10 +592,9 @@
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
-                        <outlet property="clickFunctionButton" destination="oXv-Eo-VmR" id="er0-n8-JTb"/>
+                        <outlet property="clockFunctionButton" destination="oXv-Eo-VmR" id="fFq-sH-ESJ"/>
                         <outlet property="clockLabel" destination="2AO-Ce-hgn" id="AxK-ZP-DfT"/>
                         <outlet property="fieldViewButton" destination="wfv-Ks-NFX" id="0Ja-Yq-E3H"/>
-                        <outlet property="matchEventTable" destination="vWA-yu-iNU" id="xxI-Kl-aKx"/>
                         <outlet property="oppositionLabel" destination="eVA-gw-155" id="bit-Hg-zuM"/>
                         <outlet property="oppositionScore" destination="JHO-aC-5do" id="Zsj-zc-VdQ"/>
                         <outlet property="periodLabel" destination="d4q-Ul-8f1" id="SmZ-E5-A03"/>

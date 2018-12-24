@@ -42,8 +42,22 @@ class RGBYNewInMatchViewController: UIViewController, RGBYMatchDetailDelegate {
         self.teamLabel.text = match.team?.shortTitle
         self.oppositionLabel.text = match.opposition?.shortTitle
         // set the data source for the clock
-        matchDetail = RGBYMatchDetail(match: match)
-        matchDetail.matchDetailDelegate = self
+        self.matchDetail = RGBYMatchDetail(match: match)
+        self.matchDetail.matchDetailDelegate = self
+        // set the initial clock value
+        self.periodLabel.text = String("1H")
+        self.clockLabel.text = String("Not Started")
+        // set the initial scoreboard values
+        self.teamScore.text = String("0")
+        self.oppositionScore.text = String("0")
+        // set the clock button handlers
+        self.clockFunctionButton.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(handleMenuClick)))
+        let tapGR = UITapGestureRecognizer(target: self, action: #selector(handleMenuClick))
+        tapGR.numberOfTapsRequired = 2
+        self.clockFunctionButton.addGestureRecognizer(tapGR)
+        self.clockFunctionButton.setTitle("Start Match", for: .normal)
+        //TODO maybe have a reset half time function
+        // swipe left to reset half
     }
 
     override var prefersStatusBarHidden: Bool {
@@ -64,14 +78,28 @@ class RGBYNewInMatchViewController: UIViewController, RGBYMatchDetailDelegate {
     }
 
     @IBAction func handleMenuClick(_ sender: UIButton) {
-        if sender == self.clockFunctionButton {
-            
+        if sender == self.clockFunctionButton && !self.matchDetail.hasPeriodStarted {
+            // handle start
+            self.matchDetail.startPeriod()
+            self.clockFunctionButton.setTitle("Tap: Pause\nDTap: End Half", for: .normal)
+        } else if sender == self.clockFunctionButton {
+            // handle pause
+            self.matchDetail.pauseResumePeriod()
+            if self.matchDetail.isPeriodPaused {
+                // onky append "paused" if the match isn't paused
+                self.clockLabel.text = String("\(RGBYUtils.formatMatchClock(time: self.matchDetail.currentPeriodTimeInSec)) PAUSED")
+            }
         } else if sender == self.teamViewButton {
             
         } else if sender == self.statsViewButton {
             
         } else if sender == self.fieldViewButton {
             
+        } else { // long touch recogniser && double tap
+            // handle finish half
+            self.matchDetail.stopPeriod()
+            self.clockLabel.text = String("\(RGBYUtils.formatMatchClock(time: self.matchDetail.currentPeriodTimeInSec)) ENDED")
+            self.clockFunctionButton.setTitle("Start Half", for: .normal)
         }
     }
 

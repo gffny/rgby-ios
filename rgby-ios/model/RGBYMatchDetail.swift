@@ -20,10 +20,14 @@ class RGBYMatchDetail: NSObject {
     private var _teamScore: Int = 0
     private var _oppositionScore: Int = 0
     private var _matchEventArray = [RGBYMatchEvent]()
+    
+    // match clock function related variables
+    private var _periodStarted: Bool = false
+    private var _periodPaused: Bool = false
 
     override init() {
         // not really useful
-        match = RGBYMatch()
+        self.match = RGBYMatch()
     }
 
     init(match: RGBYMatch) {
@@ -49,7 +53,7 @@ class RGBYMatchDetail: NSObject {
     }
 
     func appendMatchEvent(newEvent: RGBYMatchEvent) {
-        _matchEventArray.append(newEvent)
+        self._matchEventArray.append(newEvent)
         if newEvent.eventType == nil {
             // this is in error
             print("event should not have an empty event type")
@@ -62,31 +66,56 @@ class RGBYMatchDetail: NSObject {
             }
         }
         NotificationCenter.default.post(name: .matchDetailDataUpdateNotification, object: nil)
-        matchDetailDelegate?.matchScoreUpdated()
+        self.matchDetailDelegate?.matchScoreUpdated()
     }
 
     func startPeriod() {
         self._currentPeriod += 1
-        matchDetailDelegate?.periodUpdated()
+        self._currentPeriodTimeInSec = 0
+        self.matchDetailDelegate?.periodUpdated()
         self._periodTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updatePeriodTimer), userInfo: nil, repeats: true)
+        self._periodStarted = true
+        self._periodPaused = false
+    }
+
+    func pauseResumePeriod() {
+        if self._periodPaused {
+            self._periodTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updatePeriodTimer), userInfo: nil, repeats: true)
+        } else {
+            self._periodTimer?.invalidate()
+        }
+        self._periodPaused = !self._periodPaused
     }
 
     func stopPeriod() {
         self._periodTimer?.invalidate()
+        self._periodStarted = false
     }
 
     @objc func updatePeriodTimer() {
         self._currentPeriodTimeInSec += 1
-        matchDetailDelegate?.periodTimeUpdated()
+        self.matchDetailDelegate?.periodTimeUpdated()
     }
 
-    var currentPeriod:Int {
+    var hasPeriodStarted: Bool {
+        get {
+            return self._periodStarted
+        }
+    }
+
+    var isPeriodPaused: Bool {
+        get {
+            return self._periodPaused
+        }
+    }
+
+    var currentPeriod: Int {
         get {
             return self._currentPeriod
         }
     }
 
-    var currentPeriodTimeInSec:Int {
+    var currentPeriodTimeInSec: Int {
         get {
             return self._currentPeriodTimeInSec
         }
