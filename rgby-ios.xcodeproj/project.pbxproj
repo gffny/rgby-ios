@@ -256,11 +256,11 @@
 		5027B5DA219DDA4B00D940E9 /* controller */ = {
 			isa = PBXGroup;
 			children = (
-				5027B5CB219CD03500D940E9 /* RGBYInMatchIncidentInputViewController.swift */,
-				50A5CA2421B70A5700F82FE7 /* RGBYMatchDaySquadSelectionViewController.swift */,
 				50250FCB21BEBC89001823D9 /* RGBYLandingScreenViewController.swift */,
 				50250FCD21BECA41001823D9 /* RGBYLandingScreenNavigationController.swift */,
+				50A5CA2421B70A5700F82FE7 /* RGBYMatchDaySquadSelectionViewController.swift */,
 				509DF55221CC3A3300D4AB43 /* RGBYInMatchViewController.swift */,
+				5027B5CB219CD03500D940E9 /* RGBYInMatchIncidentInputViewController.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";

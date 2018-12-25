@@ -8,9 +8,10 @@
 
 import UIKit
 
-class RGBYFieldView: UIControl {
-    
-   let nibName = "RGBYFieldView"
+class RGBYFieldView: UIControl, UITableViewDataSource {
+
+    let nibName = "RGBYFieldView"
+    let INCIDENT_CELL_REUSE_ID = "INCIDENT_CELL_REUSE_ID"
 
     @IBOutlet weak var fieldView: UIImageView!
     @IBOutlet weak var incidentView: UIView!
@@ -47,6 +48,9 @@ class RGBYFieldView: UIControl {
         self.contentView.frame = bounds
         self.contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(contentView)
+        self.incidentTable.dataSource = self
+        self.incidentTable.register(UITableViewCell.self, forCellReuseIdentifier: INCIDENT_CELL_REUSE_ID)
+
     }
 
     func updateEventArray(matchEventArray: [RGBYMatchEvent]) {
@@ -58,6 +62,7 @@ class RGBYFieldView: UIControl {
             self.addEventOnView(newEvent: newEvent)
             startIndex += 1
         }
+        self.incidentTable.reloadData()
     }
 
     func addEventOnView(newEvent: RGBYMatchEvent) {
@@ -88,6 +93,20 @@ class RGBYFieldView: UIControl {
             // all
             print("foul")
         } // other
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.matchEventArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let tableViewCell = self.incidentTable.dequeueReusableCell(withIdentifier: INCIDENT_CELL_REUSE_ID) {
+            let matchEvent = self.matchEventArray[indexPath.row]
+            tableViewCell.textLabel!.text = "\(matchEvent.eventType!.displayName) \(RGBYUtils.formatPlayerName(player: matchEvent.subject!))"
+            return tableViewCell
+        }
+        // shouldn't reach here
+        return UITableViewCell(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 10, height: 10)))
     }
     
 }

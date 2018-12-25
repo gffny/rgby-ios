@@ -10,8 +10,8 @@ import Foundation
 import UIKit
 import RealmSwift
 
-class RGBYInMatchViewController: UIViewController, RGBYMatchDetailDelegate {
-    
+class RGBYInMatchViewController: UIViewController, RGBYMatchDetailDelegate, RGBYMatchDetailEventDelegate {
+
     public static var IDENTIFIER: String = "inMatchViewController"
 
     /*
@@ -53,6 +53,7 @@ class RGBYInMatchViewController: UIViewController, RGBYMatchDetailDelegate {
         self.oppositionLabel.text = self.matchDetail.match.opposition?.shortTitle
         // set the data source for the clock
         self.matchDetail.matchDetailDelegate = self
+        self.matchDetail.matchDetailEventDelegate = self
         // set the initial clock value
         self.periodLabel.text = String("1H")
         self.clockLabel.text = String("Not Started")
@@ -96,13 +97,15 @@ class RGBYInMatchViewController: UIViewController, RGBYMatchDetailDelegate {
 
     @objc func handleFieldTap(sender: UITapGestureRecognizer) {
         print("RGBYInMatchViewController:: handleFieldTap")
-        self.fieldTapLocation = sender.location(in: self.fieldView)
+        self.fieldTapLocation = sender.location(in: self.fieldView.fieldView)
         // record or pass the tap location to the next VC
         // convert that to % x and % y
-        let x = self.fieldTapLocation.x / self.fieldView.frame.width
-        let y = self.fieldTapLocation.y / self.fieldView.frame.height
-        self.fieldTapLocation = CGPoint(x: x, y: y)
-        performSegue(withIdentifier: "presentMatchIncidentInput", sender: self)
+        if self.fieldTapLocation.y > 0 {
+            let x = self.fieldTapLocation.x / self.fieldView.frame.width
+            let y = self.fieldTapLocation.y / self.fieldView.frame.height
+            self.fieldTapLocation = CGPoint(x: x, y: y)
+            performSegue(withIdentifier: "presentMatchIncidentInput", sender: self)
+        } // ignore taps outside of the field
     }
 
     
@@ -310,6 +313,9 @@ class RGBYInMatchViewController: UIViewController, RGBYMatchDetailDelegate {
         self.oppositionScore.text = "\(self.matchDetail.oppositionScore)"
     }
 
+    func matchEventAdded() {
+        self.fieldView.updateEventArray(matchEventArray: self.matchDetail.matchEventArray)
+    }
 
     // TOUCH INTERACTIONS
     
@@ -381,52 +387,4 @@ class RGBYInMatchViewController: UIViewController, RGBYMatchDetailDelegate {
             destVC.setData(matchDetail: self.matchDetail, incidentFieldLocation: self.fieldTapLocation)
         }
     }
-
-//    /*
-//     return self.matchDetail!.matchEventArray.filter({ (event: RGBYMatchEvent) -> Bool in
-//        return RGBYEventType.scoreEvents.contains(event.eventType!)
-//     }).count
-//    */
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return RGBYDemoData.demoMatchEventList().count
-//    }
-//
-//    /*
-//
-//    */
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: RGBYMatchEventCell.REUSE_IDENTIFIER)! as! RGBYMatchEventCell
-//        let matchEvent = RGBYDemoData.demoMatchEventList()[indexPath.row]
-//        if matchEvent.isMyTeam != nil && matchEvent.isMyTeam! {
-//            cell.teamLabel.text = matchEvent.eventTableSummary()
-//            cell.oppositionLabel.text = ""
-//        } else {
-//            cell.oppositionLabel.text = matchEvent.eventTableSummary()
-//            cell.teamLabel.text = ""
-//        }
-//        if let type = matchEvent.eventType {
-//            if type == .DROP_GOAL {
-//                cell.eventIcon.image = UIImage(named: "DropGoalIcon")
-//            } else if type == .KICK_AT_GOAL {
-//                cell.eventIcon.image = UIImage(named: "KickAtGoalIcon")
-//            } else if type == .TRY {
-//                cell.eventIcon.image = UIImage(named: "TryIcon")
-//            } else if type == .CONVERSION {
-//                cell.eventIcon.image = UIImage(named: "KickAtGoalIcon")
-//            } else if type == .PENALTY {
-//                cell.eventIcon.image = UIImage(named: "PenaltyIcon")
-//            }
-//        }
-//        return cell
-//    }
 }
-
-//class RGBYMatchEventCell: UITableViewCell {
-//
-//    static var REUSE_IDENTIFIER = "rgbyMatchEventCell"
-//
-//    @IBOutlet weak var teamLabel: UILabel!
-//    @IBOutlet weak var eventIcon: UIImageView!
-//    @IBOutlet weak var oppositionLabel: UILabel!
-//
-//}

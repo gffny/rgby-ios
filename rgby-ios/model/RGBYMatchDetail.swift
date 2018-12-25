@@ -13,18 +13,24 @@ class RGBYMatchDetail: NSObject {
 
     var match: RGBYMatch
 
+    // delegates
     var matchDetailDelegate: RGBYMatchDetailDelegate?
+    var matchDetailEventDelegate: RGBYMatchDetailEventDelegate?
+
+    // timing function variables
     private var _currentPeriod: Int = 0 // 1 = 1st half, 2 = 2nd half, 3 = 1st half extra time...
     private var _periodTimer: Timer? // reset to zero at the start of each period
     private var _currentPeriodTimeInSec: Int = 0
-    private var _teamScore: Int = 0
-    private var _oppositionScore: Int = 0
-    private var _matchEventArray = [RGBYMatchEvent]()
-    
-    // match clock function related variables
     private var _periodStarted: Bool = false
     private var _periodPaused: Bool = false
     var hasMatchEnded: Bool = false
+
+    // scoring function variables
+    private var _teamScore: Int = 0
+    private var _oppositionScore: Int = 0
+
+    // match event function variables
+    private var _matchEventArray = [RGBYMatchEvent]()
 
     override init() {
         // not really useful
@@ -68,6 +74,7 @@ class RGBYMatchDetail: NSObject {
         }
         NotificationCenter.default.post(name: .matchDetailDataUpdateNotification, object: nil)
         self.matchDetailDelegate?.matchScoreUpdated()
+        self.matchDetailEventDelegate?.matchEventAdded()
     }
 
     func startPeriod() {
@@ -142,6 +149,10 @@ public protocol RGBYMatchDetailDelegate : NSObjectProtocol {
     func periodUpdated() -> Void
     func periodTimeUpdated() -> Void
     func matchScoreUpdated() -> Void
+}
+
+public protocol RGBYMatchDetailEventDelegate: NSObjectProtocol {
+    func matchEventAdded() -> Void
 }
 
 extension Notification.Name {
