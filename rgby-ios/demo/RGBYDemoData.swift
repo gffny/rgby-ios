@@ -71,14 +71,14 @@ class RGBYDemoData {
     
     //var subList: List<RGBYPlayer> = [demoSC, demoJMcG, demoAP, demoIH, demoJvdF, demoLMcG, demoJC, demoJL]
     static var demoMatchDaySquadMIT:RGBYMatchDaySquad = RGBYMatchDaySquad(demoCH, demoRB, demoTF, demoJR, demoDT, demoPOM, demoDL, demoCJS, demoKM, demoJSe, demoJSt, demoBA, demoGR, demoKE, demoRK, List<RGBYPlayer>(), List<RGBYPlayer>(), List<RGBYPlayer>())
-    
+
     //var subList: List<RGBYPlayer> = [demoDC, demoOT, demoNL, demoSB, demoMT, demoTJP, demoRM, demoALB]
     static var demoMatchDaySquadNZ:RGBYMatchDaySquad = RGBYMatchDaySquad(demoKT, demoCT, demoOF, demoBR, demoSW, demoLS, demoASa, demoKR, demoASm, demoBB, demoRI, demoRC, demoJG, demoBS, demoDMcK, List<RGBYPlayer>(), List<RGBYPlayer>(), List<RGBYPlayer>())
-    
+
     static var demoCompetition:RGBYCompetition = RGBYCompetition("comp-1", "NERFU DIII League 2018", List<RGBYTeam>(), List<RGBYMatch>())
 
-    static var demoMatch:RGBYMatch = RGBYMatch("match-1", "MIT RFC vs BNZ Kiwis", RGBYUtils.mmddyyyhhmm().date(from: "03/17/2019 12:00")!, "Briggs Field, Vassar St., Cambridge, MA 02143", demoTeam, demoMatchDaySquadMIT, demoOppTeam, true)
-    
+    static var demoMatch:RGBYMatch = RGBYMatch("match-1", "MIT RFC vs BNZ Kiwis", RGBYUtils.mmddyyyhhmm().date(from: "03/17/2019 12:00")!, "Briggs Field, Vassar St., Cambridge, MA 02143", demoTeam, demoMatchDaySquadMIT, demoOppTeam, true, 1, 10, 5)
+
     static func demoMatchEventList() -> [RGBYMatchEvent] {
         let evt1 = RGBYMatchEvent(eventPeriod: 1, periodTimeInSec: 365, eventType: .PENALTY, fieldLocation: CGPoint(x: 10, y: 20), subject: nil, subjectPosition: .BLINDSIDE_FLANKER, parentEvent: nil, isMyTeam: false, additionalIncidentType: nil)
         let evt2 = RGBYMatchEvent(eventPeriod: 1, periodTimeInSec: 445, eventType: .KICK_AT_GOAL, fieldLocation: CGPoint(x: 10, y: 20), subject: gffny, subjectPosition: .INSIDE_CENTER, parentEvent: nil, isMyTeam: true, additionalIncidentType: nil)

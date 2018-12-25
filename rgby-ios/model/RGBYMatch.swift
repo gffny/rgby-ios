@@ -22,12 +22,15 @@ import RealmSwift
     dynamic var matchDaySquad: RGBYMatchDaySquad?
     dynamic var opposition: RGBYTeam?
     dynamic var isHomeMatch = false
+    dynamic var extraTimePeriods = 0 // 0 for league, 2 for cup?
+    dynamic var regularPeriodLength = 2400 // 40 minutes in seconds
+    dynamic var extraTimePeriodLength = 900 // 15 minutes in seconds
 
     override static func primaryKey() -> String? {
         return RGBYMatch.Property.id.rawValue
     }
 
-    convenience init(_ id: String, _ title: String, _ date: Date, _ location: String, _ team: RGBYTeam, _ matchDaySquad: RGBYMatchDaySquad, _ opposition: RGBYTeam, _ isHomeMatch: Bool) {
+    convenience init(_ id: String, _ title: String, _ date: Date, _ location: String, _ team: RGBYTeam, _ matchDaySquad: RGBYMatchDaySquad, _ opposition: RGBYTeam, _ isHomeMatch: Bool, _ extraTimePeriods: Int?, _ regularPeriodLength: Int?, _ extraTimePeriodLength: Int?) {
         self.init()
         self.id = id
         self.title = title
@@ -37,6 +40,9 @@ import RealmSwift
         self.matchDaySquad = matchDaySquad
         self.opposition = opposition
         self.isHomeMatch = isHomeMatch
+        self.extraTimePeriods = extraTimePeriods ?? 0
+        self.regularPeriodLength = regularPeriodLength ?? 2400 // 40 minutes in seconds
+        self.extraTimePeriodLength = extraTimePeriodLength ?? 900 // 15 minutes in seconds
     }
 }
 
@@ -66,20 +72,19 @@ extension RGBYMatch {
     }
 
     @discardableResult
-    static func update(id: String, title: String, date: Date, location: String, team: RGBYTeam, matchDaySquad: RGBYMatchDaySquad, opposition: RGBYTeam, isHomeMatch: Bool, in realm: Realm = try! Realm())
+    static func update(id: String, title: String, date: Date, location: String, team: RGBYTeam, matchDaySquad: RGBYMatchDaySquad, opposition: RGBYTeam, isHomeMatch: Bool, _ extraTimePeriods: Int?, _ regularPeriodLength: Int?, _ extraTimePeriodLength: Int?, in realm: Realm = try! Realm())
         -> RGBYMatch {
-            let item = RGBYMatch(id, title, date, location, team, matchDaySquad, opposition, isHomeMatch)
+            let item = RGBYMatch(id, title, date, location, team, matchDaySquad, opposition, isHomeMatch, extraTimePeriods, regularPeriodLength, extraTimePeriodLength)
             try! realm.write {
                 realm.add(item)
             }
             return item
     }
 
-
     @discardableResult
-    static func create(title: String, date: Date, location: String, team: RGBYTeam, matchDaySquad: RGBYMatchDaySquad, opposition: RGBYTeam, isHomeMatch: Bool, in realm: Realm = try! Realm())
+    static func create(title: String, date: Date, location: String, team: RGBYTeam, matchDaySquad: RGBYMatchDaySquad, opposition: RGBYTeam, isHomeMatch: Bool, _ extraTimePeriods: Int?, _ regularPeriodLength: Int?, _ extraTimePeriodLength: Int?, in realm: Realm = try! Realm())
         -> RGBYMatch {
-            let item = RGBYMatch(NSUUID().uuidString, title, date, location, team, matchDaySquad, opposition, isHomeMatch)
+            let item = RGBYMatch(NSUUID().uuidString, title, date, location, team, matchDaySquad, opposition, isHomeMatch, extraTimePeriods, regularPeriodLength, extraTimePeriodLength)
             try! realm.write {
                 realm.add(item)
             }

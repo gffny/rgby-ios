@@ -15,25 +15,26 @@ class RGBYFieldView: UIControl {
     @IBOutlet weak var fieldView: UIImageView!
     @IBOutlet weak var incidentView: UIView!
     @IBOutlet weak var modeSwitch: UIButton!
-    @IBOutlet var contentView: UIView!
+    @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var incidentTable: UITableView!
 
     var fieldTapLocation: CGPoint = CGPoint(x: 100, y: 100)
     var matchEventArray: [RGBYMatchEvent] = []
-    
+
     required init?(coder aDecoder: NSCoder) {
-        print("RGBYScoreTypeSelectView:: init(coder)")
+        print("RGBYFieldView:: init(coder)")
         super.init(coder: aDecoder)
         setupView()
     }
-    
+
     override init(frame: CGRect) {
-        print("RGBYScoreTypeSelectView:: init(coder)")
+        print("RGBYFieldView:: init(coder)")
         super.init(frame: frame)
         setupView()
     }
-    
+
     func setupView() {
-        print("RGBYScoreTypeSelectView::setupView")
+        print("RGBYFieldView::setupView")
         // load the view from the nib
         Bundle.main.loadNibNamed(nibName, owner: self, options: nil)
         // set the view bounds
@@ -43,7 +44,7 @@ class RGBYFieldView: UIControl {
         self.addSubview(contentView)
         self.fieldView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleFieldTap)))
     }
-    
+
     func updateEventArray(matchEventArray: [RGBYMatchEvent]) {
         // assume that only new events (after the x number of events currently in the array) need to up updated
         var startIndex = self.matchEventArray.count
@@ -59,10 +60,10 @@ class RGBYFieldView: UIControl {
         print("adding new event to view")
         if RGBYEventType.scoreEvents.contains(newEvent.eventType!) {
             let frontimgview = UIImageView(image: newEvent.eventType!.eventIcon)
-            let x = self.contentView.frame.width * newEvent.fieldLocation!.x
-            let y = self.contentView.frame.height * newEvent.fieldLocation!.y
-            let w = self.contentView.frame.width / 20
-            let h = self.contentView.frame.height / 20
+            let x = self.incidentView.frame.width * newEvent.fieldLocation!.x
+            let y = self.incidentView.frame.height * newEvent.fieldLocation!.y
+            let w = self.incidentView.frame.width / 20
+            let h = self.incidentView.frame.height / 20
             frontimgview.frame = CGRect(x: x - (w / 2), y: y - (h / 2), width: w, height: h)
             // Add the front image on top of the background
             self.incidentView.addSubview(frontimgview)
@@ -74,6 +75,20 @@ class RGBYFieldView: UIControl {
         self.fieldTapLocation = sender.location(in: self.fieldView)
         self.performAction()
     }
+
+    // UI Table View Data Source Protocol
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return 0;
+//    }
+//
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = incidentTable.dequeueReusableCell(withIdentifier: "rgbyMatchEventCell")! as! RGBYMatchDetailTableViewCell
+//        cell.setData(matchEvent: self.matchDetail.matchEventArray.filter({ (event: RGBYMatchEvent) -> Bool in
+//            return RGBYEventType.scoreEvents.contains(event.eventType!)
+//        })[indexPath.row])
+//        return cell
+//    }
+//
 }
 
 extension RGBYFieldView {

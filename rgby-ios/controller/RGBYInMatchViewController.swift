@@ -1,120 +1,192 @@
 //
-//  RGBYInGameViewController.swift
+//  RGBYNewInMatchViewController.swift
 //  rgby-ios
 //
-//  Created by John D. Gaffney on 11/9/18.
+//  Created by John D. Gaffney on 12/20/18.
 //  Copyright © 2018 gffny.com. All rights reserved.
 //
 
+import Foundation
 import UIKit
+import RealmSwift
 
-class RGBYInMatchViewController: UIViewController, UITableViewDataSource, RGBYMatchDetailDelegate {
+class RGBYInMatchViewController: UIViewController, RGBYMatchDetailDelegate {
+
+    /*
+     * Interaction plan
+     * Top level button interaction on the left will be handled here!
+     * Top bar with clock, match score, team names will be handled here!
+     * Subviews will be loaded as seperate view files from here
+     */
     
-    public static var IDENTIFIER = "InMatchVC"
+    // TOP BAR OUTLETS
+    @IBOutlet weak var periodLabel: UILabel!
+    @IBOutlet weak var clockLabel: UILabel!
+    @IBOutlet weak var teamLabel: UILabel!
+    @IBOutlet weak var teamScore: UILabel!
+    @IBOutlet weak var oppositionScore: UILabel!
+    @IBOutlet weak var oppositionLabel: UILabel!
+    
+    // MENU BUTTONS
+    @IBOutlet weak var clockFunctionButton: UIButton!
+    @IBOutlet weak var teamViewButton: UIButton!
+    @IBOutlet weak var statsViewButton: UIButton!
+    @IBOutlet weak var fieldViewButton: UIButton!
 
-    private static var CLOCK_START_MATCH = "Start Match"
-    private static var CLOCK_SECOND_HALF = "Start 2nd Half"
-
-    @IBOutlet weak var teamAName: UILabel!
-    @IBOutlet weak var teamAScore: UILabel!
-    @IBOutlet weak var teamBName: UILabel!
-    @IBOutlet weak var teamBScore: UILabel!
-    @IBOutlet weak var fieldView: RGBYFieldView!
-    @IBOutlet weak var scoreView: RGBYInMatchScoreView!
-    @IBOutlet weak var matchClock: RGBYMatchClock!
-
-    var matchDetail: RGBYMatchDetail = RGBYMatchDetail()
-    var fieldTapLocation: CGPoint = CGPoint(x: 100, y: 100)
+    private var matchDetail: RGBYMatchDetail = RGBYMatchDetail()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        print("RGBYInMatchViewController:: viewDidLoad");
-        let fieldTap = UITapGestureRecognizer(target: self, action: #selector(handleFieldTap))
-        self.fieldView.addGestureRecognizer(fieldTap)
-        self.fieldView.modeSwitch.addTarget(self, action: #selector(handleModeSwitch), for: .touchUpInside)
-        self.scoreView.eventTableView.dataSource = self
+        // load the team names
+        let match = RGBYDemoData.demoMatch
+        self.teamLabel.text = match.team?.shortTitle
+        self.oppositionLabel.text = match.opposition?.shortTitle
+        // set the data source for the clock
+        self.matchDetail = RGBYMatchDetail(match: match)
         self.matchDetail.matchDetailDelegate = self
-        self.teamAName.text = self.matchDetail.match.team!.shortTitle
-        self.teamBName.text = self.matchDetail.match.opposition!.shortTitle
-        matchScoreUpdated()
-        setupMatchClock()
+        // set the initial clock value
+        self.periodLabel.text = String("1H")
+        self.clockLabel.text = String("Not Started")
+        // set the initial scoreboard values
+        self.teamScore.text = String("0")
+        self.oppositionScore.text = String("0")
+        // set the clock button handlers
+        self.clockFunctionButton.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(handleMenuClick)))
+        let tapGR = UITapGestureRecognizer(target: self, action: #selector(handleMenuClick))
+        tapGR.numberOfTapsRequired = 2
+        self.clockFunctionButton.addGestureRecognizer(tapGR)
+        self.clockFunctionButton.setTitle("Start Match", for: .normal)
+        //TODO maybe have a reset half time function
+        // swipe left to reset half
     }
 
-    @objc func handleClockAction(_ sender:RGBYMatchClock) {
-        // if clock is "start match"
-        if sender.clockActionButton.titleLabel?.text == RGBYInMatchViewController.CLOCK_START_MATCH {
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+
+    func periodUpdated() {
+        self.periodLabel.text = RGBYUtils.formatMatchPeriod(period: self.matchDetail.currentPeriod)
+    }
+
+    func periodTimeUpdated() {
+        if self.matchDetail.isAddedTime {
+            // the period is in overtime, change the clock colour
+            self.clockLabel.textColor = UIColor.red
+        }
+        self.clockLabel.text = String("\(RGBYUtils.formatMatchClock(time: self.matchDetail.currentPeriodTimeInSec))")
+    }
+
+    func matchScoreUpdated() {
+        self.teamScore.text = "\(self.matchDetail.teamScore)"
+        self.oppositionScore.text = "\(self.matchDetail.oppositionScore)"
+    }
+    
+    func handleEndOfMatch() {
+        print("match has ended!")
+    }
+
+    @IBAction func handleMenuClick(_ sender: UIButton) {
+        if sender == self.clockFunctionButton && !self.matchDetail.hasPeriodStarted && !self.matchDetail.hasMatchEnded {
+            // handle start
             self.matchDetail.startPeriod()
-        } else if sender.clockActionButton.titleLabel?.text == RGBYInMatchViewController.CLOCK_SECOND_HALF {
-            self.matchDetail.startPeriod()
-        } else {
+            // reset clock colour to black
+            self.clockLabel.textColor = UIColor.black
+            self.clockFunctionButton.setTitle("Tap: Pause\nDTap: End Half", for: .normal)
+        } else if sender == self.clockFunctionButton && self.matchDetail.hasMatchEnded {
+            // handle end of match - post data to REST service and return to main screen
+            self.handleEndOfMatch()
+        } else if sender == self.clockFunctionButton {
+            // handle pause
+            self.matchDetail.pauseResumePeriod()
+            if self.matchDetail.isPeriodPaused {
+                // onky append "paused" if the match isn't paused
+                self.clockLabel.text = String("\(RGBYUtils.formatMatchClock(time: self.matchDetail.currentPeriodTimeInSec)) PAUSED")
+            }
+        } else if sender == self.teamViewButton {
+            
+        } else if sender == self.statsViewButton {
+            
+        } else if sender == self.fieldViewButton {
+            
+        } else {// long touch recogniser && double tap
+            self.clockLabel.text = String("\(RGBYUtils.formatMatchClock(time: self.matchDetail.currentPeriodTimeInSec)) ENDED")
             self.matchDetail.stopPeriod()
-            if self.matchDetail.currentPeriod == 1 {
-                sender.setClockText(text: RGBYInMatchViewController.CLOCK_SECOND_HALF)
+            // handle button and clock label changes
+            if self.matchDetail.hasMatchEnded {
+                // 0. post data to REST service and return to main screen
+                self.handleEndOfMatch()
+            } else if self.matchDetail.currentPeriod == 1 {
+                // 1. current period is 1 - display "start second half"
+                self.clockFunctionButton.setTitle("Start 2nd Half", for: .normal)
+            } else if (self.matchDetail.currentPeriod == 2 && !self.matchDetail.isExtraTimeRequired) || (self.matchDetail.currentPeriod > 2 && self.matchDetail.currentPeriod == (self.matchDetail.match.extraTimePeriods + 2)) {
+                // 2. current period is 2 && no extra time - display "end match"
+                //  5. current period is == number of extra time periods required - display "end match"
+                self.clockFunctionButton.setTitle("End Match", for: .normal)
+                self.matchDetail.hasMatchEnded = true
+            } else if self.matchDetail.currentPeriod == 2 && self.matchDetail.isExtraTimeRequired {
+                // 3. current period is 2 && extra time is needed - display "start extra time"
+                self.clockFunctionButton.setTitle("Start Extra Time", for: .normal)
+            } else if self.matchDetail.currentPeriod > 2 && self.matchDetail.currentPeriod < (self.matchDetail.match.extraTimePeriods + 2) {
+                // 4. current period is > 2 && < # extra time periods required - display "start .. period of extra time
+                let nextPeriod = self.matchDetail.currentPeriod - 1 // current period 3 is 1st extra time
+                if [1, 11].contains(nextPeriod) {
+                    self.clockFunctionButton.setTitle("Start \(nextPeriod)st Extra Time", for: .normal)
+                } else if [2, 12].contains(nextPeriod) {
+                    self.clockFunctionButton.setTitle("Start \(nextPeriod)nd Extra Time", for: .normal)
+                } else if 3 == nextPeriod {
+                    self.clockFunctionButton.setTitle("Start \(nextPeriod)rd Extra Time", for: .normal)
+                } else {
+                    self.clockFunctionButton.setTitle("Start \(nextPeriod)th Extra Time", for: .normal)
+                }
             }
         }
     }
 
-    @objc func handleFieldTap(_ sender:UITapGestureRecognizer) {
-        // do other task
-        print("RGBYInMatchViewController:: handleFieldTap")
-        self.fieldTapLocation = sender.location(in: self.fieldView)
-        // record or pass the tap location to the next VC
-        // convert that to % x and % y
-        let x = self.fieldTapLocation.x / self.fieldView.frame.width
-        let y = self.fieldTapLocation.y / self.fieldView.frame.height
-        self.fieldTapLocation = CGPoint(x: x, y: y)
-        performSegue(withIdentifier: "presentMatchIncidentInput", sender: self)
-    }
-
-    @IBAction func handleModeSwitch(_ sender: Any) {
-        print("RGBYInMatchViewController:: present mode switch")
-//        performSegue(withIdentifier: "presentModeSwitch", sender: self)
-    }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.destination is RGBYInMatchIncidentInputViewController {
-            let destVC = segue.destination as! RGBYInMatchIncidentInputViewController
-            destVC.setData(matchDetail: self.matchDetail, incidentFieldLocation: self.fieldTapLocation)
-        }  else if segue.destination is RGBYInMatchFieldViewController {
-            let destVC = segue.destination as! RGBYInMatchFieldViewController
-            destVC.matchDetail = self.matchDetail
-        }
-    }
-
-    func setupMatchClock() {
-        self.matchClock.addTarget(self, action: #selector(handleClockAction), for: .valueChanged)
-        self.matchClock.setClockText(text: RGBYInMatchViewController.CLOCK_START_MATCH)
-    }
-    
-    func periodUpdated() {
-        // do nothin
-    }
-
-    func periodTimeUpdated() {
-        if self.matchDetail.currentPeriod < 3 {
-            self.matchClock.setClockText(text: String("\(RGBYUtils.formatMatchClock(time: self.matchDetail.currentPeriodTimeInSec))"))
-        }
-    }
-
-    func matchScoreUpdated() {
-        self.teamAScore.text = String(self.matchDetail.teamScore)
-        self.teamBScore.text = String(self.matchDetail.oppositionScore)
-        self.fieldView.updateEventArray(matchEventArray: self.matchDetail.matchEventArray)
-        self.scoreView.eventTableView.reloadData()
-    }
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.matchDetail.matchEventArray.filter({ (event: RGBYMatchEvent) -> Bool in
-            return RGBYEventType.scoreEvents.contains(event.eventType!)
-        }).count
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "rgbyMatchEventCell")! as! RGBYMatchDetailTableViewCell
-        cell.setData(matchEvent: self.matchDetail.matchEventArray.filter({ (event: RGBYMatchEvent) -> Bool in
-            return RGBYEventType.scoreEvents.contains(event.eventType!)
-        })[indexPath.row])
-        return cell
-    }
+//    /*
+//     return self.matchDetail!.matchEventArray.filter({ (event: RGBYMatchEvent) -> Bool in
+//        return RGBYEventType.scoreEvents.contains(event.eventType!)
+//     }).count
+//    */
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return RGBYDemoData.demoMatchEventList().count
+//    }
+//
+//    /*
+//
+//    */
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: RGBYMatchEventCell.REUSE_IDENTIFIER)! as! RGBYMatchEventCell
+//        let matchEvent = RGBYDemoData.demoMatchEventList()[indexPath.row]
+//        if matchEvent.isMyTeam != nil && matchEvent.isMyTeam! {
+//            cell.teamLabel.text = matchEvent.eventTableSummary()
+//            cell.oppositionLabel.text = ""
+//        } else {
+//            cell.oppositionLabel.text = matchEvent.eventTableSummary()
+//            cell.teamLabel.text = ""
+//        }
+//        if let type = matchEvent.eventType {
+//            if type == .DROP_GOAL {
+//                cell.eventIcon.image = UIImage(named: "DropGoalIcon")
+//            } else if type == .KICK_AT_GOAL {
+//                cell.eventIcon.image = UIImage(named: "KickAtGoalIcon")
+//            } else if type == .TRY {
+//                cell.eventIcon.image = UIImage(named: "TryIcon")
+//            } else if type == .CONVERSION {
+//                cell.eventIcon.image = UIImage(named: "KickAtGoalIcon")
+//            } else if type == .PENALTY {
+//                cell.eventIcon.image = UIImage(named: "PenaltyIcon")
+//            }
+//        }
+//        return cell
+//    }
 }
+
+//class RGBYMatchEventCell: UITableViewCell {
+//
+//    static var REUSE_IDENTIFIER = "rgbyMatchEventCell"
+//
+//    @IBOutlet weak var teamLabel: UILabel!
+//    @IBOutlet weak var eventIcon: UIImageView!
+//    @IBOutlet weak var oppositionLabel: UILabel!
+//
+//}

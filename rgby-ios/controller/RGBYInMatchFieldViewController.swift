@@ -78,7 +78,7 @@ class RGBYInMatchFieldViewController: UIViewController, RGBYMatchDetailDelegate 
             let destVC = segue.destination as! RGBYInMatchIncidentInputViewController
             destVC.setData(matchDetail: self.matchDetail, incidentFieldLocation: self.fieldTapLocation)
         } else if segue.destination is RGBYInMatchViewController {
-            let destVC = segue.destination as! RGBYInMatchViewController
+            let destVC = segue.destination as! RGBYOldInMatchViewController
             destVC.matchDetail = self.matchDetail
         }
     }

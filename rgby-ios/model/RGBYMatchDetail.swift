@@ -24,6 +24,7 @@ class RGBYMatchDetail: NSObject {
     // match clock function related variables
     private var _periodStarted: Bool = false
     private var _periodPaused: Bool = false
+    var hasMatchEnded: Bool = false
 
     override init() {
         // not really useful
@@ -106,6 +107,18 @@ class RGBYMatchDetail: NSObject {
     var isPeriodPaused: Bool {
         get {
             return self._periodPaused
+        }
+    }
+
+    var isAddedTime: Bool {
+        get {
+            return self._currentPeriodTimeInSec > (self.currentPeriod < 3 ? self.match.regularPeriodLength : self.match.extraTimePeriodLength)
+        }
+    }
+
+    var isExtraTimeRequired: Bool {
+        get {
+            return self._currentPeriod == 2 && self._teamScore == self._oppositionScore && self.match.extraTimePeriods > 0
         }
     }
 
