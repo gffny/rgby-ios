@@ -11,6 +11,8 @@ import UIKit
 import RealmSwift
 
 class RGBYInMatchViewController: UIViewController, RGBYMatchDetailDelegate {
+    
+    public static var IDENTIFIER: String = "inMatchViewController"
 
     /*
      * Interaction plan
@@ -40,18 +42,16 @@ class RGBYInMatchViewController: UIViewController, RGBYMatchDetailDelegate {
     var fieldView: RGBYFieldView!
     var fieldTapLocation: CGPoint = CGPoint(x: 100, y: 100)
 
-    private var matchDetail: RGBYMatchDetail = RGBYMatchDetail()
+    var matchDetail: RGBYMatchDetail = RGBYMatchDetail()
     // this will get overridden with handle touch
     var matchEvent: RGBYMatchEvent = RGBYMatchEvent(eventPeriod: 0, periodTimeInSec: 0, fieldLocation: CGPoint(x: 100, y: 100))
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // load the team names
-        let match = RGBYDemoData.demoMatch
-        self.teamLabel.text = match.team?.shortTitle
-        self.oppositionLabel.text = match.opposition?.shortTitle
+        self.teamLabel.text = self.matchDetail.match.team?.shortTitle
+        self.oppositionLabel.text = self.matchDetail.match.opposition?.shortTitle
         // set the data source for the clock
-        self.matchDetail = RGBYMatchDetail(match: match)
         self.matchDetail.matchDetailDelegate = self
         // set the initial clock value
         self.periodLabel.text = String("1H")
@@ -379,9 +379,6 @@ class RGBYInMatchViewController: UIViewController, RGBYMatchDetailDelegate {
         if segue.destination is RGBYInMatchIncidentInputViewController {
             let destVC = segue.destination as! RGBYInMatchIncidentInputViewController
             destVC.setData(matchDetail: self.matchDetail, incidentFieldLocation: self.fieldTapLocation)
-        }  else if segue.destination is RGBYInMatchFieldViewController {
-            let destVC = segue.destination as! RGBYInMatchFieldViewController
-            destVC.matchDetail = self.matchDetail
         }
     }
 

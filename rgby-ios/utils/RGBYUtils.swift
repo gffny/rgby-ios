@@ -71,4 +71,11 @@ class RGBYUtils {
             return UIImage(named: "AppIcon")!
         }
     }
+    
+    static func formatPlayerName(player: RGBYPlayer?) -> String {
+        if player == nil {
+            return "Player"
+        }
+        return "\(player!.fName) \(player!.lName)"
+    }
 }

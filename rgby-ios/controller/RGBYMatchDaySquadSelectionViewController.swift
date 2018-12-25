@@ -30,7 +30,7 @@ class RGBYMatchDaySquadSelectionViewController: UIViewController {
     }
 
     @objc func handleSelectionCompletion() {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: RGBYOldInMatchViewController.IDENTIFIER) as! RGBYOldInMatchViewController
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: RGBYInMatchViewController.IDENTIFIER) as! RGBYInMatchViewController
         try! Realm().write {
             self.match!.matchDaySquad = self.selectionView.matchDaySquad()
         }
