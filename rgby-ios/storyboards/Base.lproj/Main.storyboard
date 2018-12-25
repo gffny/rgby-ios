@@ -393,6 +393,7 @@
                     <connections>
                         <outlet property="clockFunctionButton" destination="oXv-Eo-VmR" id="fFq-sH-ESJ"/>
                         <outlet property="clockLabel" destination="2AO-Ce-hgn" id="AxK-ZP-DfT"/>
+                        <outlet property="contentView" destination="bHX-es-Hjc" id="Fnm-iR-UUG"/>
                         <outlet property="fieldViewButton" destination="wfv-Ks-NFX" id="0Ja-Yq-E3H"/>
                         <outlet property="oppositionLabel" destination="eVA-gw-155" id="bit-Hg-zuM"/>
                         <outlet property="oppositionScore" destination="JHO-aC-5do" id="Zsj-zc-VdQ"/>
@@ -401,11 +402,12 @@
                         <outlet property="teamLabel" destination="KbU-6i-4q7" id="L0D-HW-PA3"/>
                         <outlet property="teamScore" destination="29r-lP-SKW" id="WsG-yC-dha"/>
                         <outlet property="teamViewButton" destination="kaw-PZ-1q8" id="Rlc-F2-YQS"/>
+                        <segue destination="rNm-TO-wKa" kind="presentation" identifier="presentMatchIncidentInput" id="xhP-4o-YKg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xaa-sF-aiK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-468.16406249999994" y="4438.28125"/>
+            <point key="canvasLocation" x="1413" y="3513"/>
         </scene>
         <!--Landing Screen View Controller-->
         <scene sceneID="JP6-59-Xp7">
@@ -1083,6 +1085,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="urw-jY-ZZq"/>
-        <segue reference="z9e-Ju-QO7"/>
+        <segue reference="xhP-4o-YKg"/>
     </inferredMetricsTieBreakers>
 </document>

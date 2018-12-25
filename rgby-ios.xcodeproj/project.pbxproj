@@ -45,7 +45,7 @@
 		50765E6E21C0A7B000ED2FC3 /* RGBYDataAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50765E6D21C0A7B000ED2FC3 /* RGBYDataAPI.swift */; };
 		50765E7021C0A87B00ED2FC3 /* RGBYCoach.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50765E6F21C0A87B00ED2FC3 /* RGBYCoach.swift */; };
 		509DF55321CC3A3300D4AB43 /* RGBYInMatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509DF55221CC3A3300D4AB43 /* RGBYInMatchViewController.swift */; };
-		509DF55521D170B100D4AB43 /* RBGYFieldView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 509DF55421D170B100D4AB43 /* RBGYFieldView.xib */; };
+		509DF55521D170B100D4AB43 /* RGBYFieldView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 509DF55421D170B100D4AB43 /* RGBYFieldView.xib */; };
 		50A5CA2521B70A5700F82FE7 /* RGBYMatchDaySquadSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A5CA2421B70A5700F82FE7 /* RGBYMatchDaySquadSelectionViewController.swift */; };
 		50A5CA2721B70AA700F82FE7 /* RGBYMatchDaySquadSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50A5CA2621B70AA700F82FE7 /* RGBYMatchDaySquadSelectionView.xib */; };
 		50A5CA2921B70ABB00F82FE7 /* RGBYMatchDaySquadSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A5CA2821B70ABB00F82FE7 /* RGBYMatchDaySquadSelectionView.swift */; };
@@ -130,7 +130,7 @@
 		50765E6D21C0A7B000ED2FC3 /* RGBYDataAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBYDataAPI.swift; sourceTree = "<group>"; };
 		50765E6F21C0A87B00ED2FC3 /* RGBYCoach.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBYCoach.swift; sourceTree = "<group>"; };
 		509DF55221CC3A3300D4AB43 /* RGBYInMatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBYInMatchViewController.swift; sourceTree = "<group>"; };
-		509DF55421D170B100D4AB43 /* RBGYFieldView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RBGYFieldView.xib; sourceTree = "<group>"; };
+		509DF55421D170B100D4AB43 /* RGBYFieldView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RGBYFieldView.xib; sourceTree = "<group>"; };
 		50A5CA2421B70A5700F82FE7 /* RGBYMatchDaySquadSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBYMatchDaySquadSelectionViewController.swift; sourceTree = "<group>"; };
 		50A5CA2621B70AA700F82FE7 /* RGBYMatchDaySquadSelectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RGBYMatchDaySquadSelectionView.xib; sourceTree = "<group>"; };
 		50A5CA2821B70ABB00F82FE7 /* RGBYMatchDaySquadSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBYMatchDaySquadSelectionView.swift; sourceTree = "<group>"; };
@@ -359,7 +359,7 @@
 			children = (
 				503459B621B461AA00D267E7 /* RGBYMatchClock.xib */,
 				50F21C0C21B4E53E00ABDCC5 /* RGBYOldFieldView.xib */,
-				509DF55421D170B100D4AB43 /* RBGYFieldView.xib */,
+				509DF55421D170B100D4AB43 /* RGBYFieldView.xib */,
 			);
 			path = match;
 			sourceTree = "<group>";
@@ -497,7 +497,7 @@
 			files = (
 				503459B721B461AA00D267E7 /* RGBYMatchClock.xib in Resources */,
 				500200BE21ACCBE20043CAF8 /* RGBYTeamSelectView.xib in Resources */,
-				509DF55521D170B100D4AB43 /* RBGYFieldView.xib in Resources */,
+				509DF55521D170B100D4AB43 /* RGBYFieldView.xib in Resources */,
 				500CDC722195E7900053508A /* LaunchScreen.storyboard in Resources */,
 				500CDC6F2195E7900053508A /* Assets.xcassets in Resources */,
 				500CDC6D2195E78E0053508A /* Main.storyboard in Resources */,

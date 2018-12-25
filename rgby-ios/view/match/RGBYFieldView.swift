@@ -17,8 +17,14 @@ class RGBYFieldView: UIControl {
     @IBOutlet weak var modeSwitch: UIButton!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var incidentTable: UITableView!
-
-    var fieldTapLocation: CGPoint = CGPoint(x: 100, y: 100)
+    
+    // SUBMENU BUTTONS
+    @IBOutlet weak var allButton: UIButton!
+    @IBOutlet weak var scoreButton: UIButton!
+    @IBOutlet weak var penaltyButton: UIButton!
+    @IBOutlet weak var foulButton: UIButton!
+    @IBOutlet weak var otherButton: UIButton!
+    
     var matchEventArray: [RGBYMatchEvent] = []
 
     required init?(coder aDecoder: NSCoder) {
@@ -28,7 +34,7 @@ class RGBYFieldView: UIControl {
     }
 
     override init(frame: CGRect) {
-        print("RGBYFieldView:: init(coder)")
+        print("RGBYFieldView:: init(frame)")
         super.init(frame: frame)
         setupView()
     }
@@ -40,9 +46,7 @@ class RGBYFieldView: UIControl {
         // set the view bounds
         self.contentView.frame = bounds
         self.contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        // add it to this view
         self.addSubview(contentView)
-        self.fieldView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleFieldTap)))
     }
 
     func updateEventArray(matchEventArray: [RGBYMatchEvent]) {
@@ -70,31 +74,20 @@ class RGBYFieldView: UIControl {
         }
     }
 
-    @objc func handleFieldTap(sender: UITapGestureRecognizer) {
-        print("RGBYFieldView:: handle field tap")
-        self.fieldTapLocation = sender.location(in: self.fieldView)
-        self.performAction()
+    @IBAction func handleMenuButton(_ sender: UIButton) {
+        if sender == self.allButton {
+            // all
+            print("all")
+        } else if sender == self.scoreButton {
+            // all
+            print("score")
+        } else if sender == self.penaltyButton {
+            // all
+            print("penalty ")
+        } else if sender == self.foulButton {
+            // all
+            print("foul")
+        } // other
     }
-
-    // UI Table View Data Source Protocol
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return 0;
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = incidentTable.dequeueReusableCell(withIdentifier: "rgbyMatchEventCell")! as! RGBYMatchDetailTableViewCell
-//        cell.setData(matchEvent: self.matchDetail.matchEventArray.filter({ (event: RGBYMatchEvent) -> Bool in
-//            return RGBYEventType.scoreEvents.contains(event.eventType!)
-//        })[indexPath.row])
-//        return cell
-//    }
-//
-}
-
-extension RGBYFieldView {
-
-    //MARK: MAIN ACTION: .valueChanged
-    fileprivate func performAction() {
-        sendActions(for: .valueChanged)
-    }
+    
 }
