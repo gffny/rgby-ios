@@ -121,9 +121,8 @@
 		50765E6F21C0A87B00ED2FC3 /* RGBYCoach.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBYCoach.swift; sourceTree = "<group>"; };
 		509447C921D314B1003DC7A7 /* RGBYIncidentTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBYIncidentTableCell.swift; sourceTree = "<group>"; };
 		509447CA21D314B1003DC7A7 /* RGBYIncidentTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RGBYIncidentTableCell.xib; sourceTree = "<group>"; };
-		509447D021D3CBED003DC7A7 /* RGBYFieldView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = RGBYFieldView.xib; path = "rgby-ios/storyboards/match/RGBYFieldView.xib"; sourceTree = "<group>"; };
+		509447D021D3CBED003DC7A7 /* RGBYFieldView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RGBYFieldView.xib; sourceTree = "<group>"; };
 		509DF55221CC3A3300D4AB43 /* RGBYInMatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBYInMatchViewController.swift; sourceTree = "<group>"; };
-		509DF55421D170B100D4AB43 /* RGBYFieldView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RGBYFieldView.xib; sourceTree = "<group>"; };
 		50A5CA2421B70A5700F82FE7 /* RGBYMatchDaySquadSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBYMatchDaySquadSelectionViewController.swift; sourceTree = "<group>"; };
 		50A5CA2621B70AA700F82FE7 /* RGBYMatchDaySquadSelectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RGBYMatchDaySquadSelectionView.xib; sourceTree = "<group>"; };
 		50A5CA2821B70ABB00F82FE7 /* RGBYMatchDaySquadSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBYMatchDaySquadSelectionView.swift; sourceTree = "<group>"; };
@@ -169,7 +168,7 @@
 		500200AE21A9BA140043CAF8 /* storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				509447CD21D3C998003DC7A7 /* match */,
+				509447D321D3CDF7003DC7A7 /* match */,
 				509DF54F21CC393D00D4AB43 /* incident */,
 				500CDC702195E7900053508A /* LaunchScreen.storyboard */,
 				500CDC6B2195E78E0053508A /* Main.storyboard */,
@@ -182,7 +181,6 @@
 		500CDC562195E78E0053508A = {
 			isa = PBXGroup;
 			children = (
-				509447D021D3CBED003DC7A7 /* RGBYFieldView.xib */,
 				500CDC612195E78E0053508A /* rgby-ios */,
 				500CDC7B2195E7900053508A /* rgby-iosTests */,
 				500CDC862195E7910053508A /* rgby-iosUITests */,
@@ -308,13 +306,12 @@
 			path = service;
 			sourceTree = "<group>";
 		};
-		509447CD21D3C998003DC7A7 /* match */ = {
+		509447D321D3CDF7003DC7A7 /* match */ = {
 			isa = PBXGroup;
 			children = (
-				509DF55421D170B100D4AB43 /* RGBYFieldView.xib */,
+				509447D021D3CBED003DC7A7 /* RGBYFieldView.xib */,
 			);
-			name = match;
-			path = "New Group";
+			path = match;
 			sourceTree = "<group>";
 		};
 		509DF54E21CC390100D4AB43 /* incident */ = {
