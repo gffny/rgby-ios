@@ -40,6 +40,8 @@
 		50765E6B21C0A59200ED2FC3 /* TestRgbyDataAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50765E6A21C0A59200ED2FC3 /* TestRgbyDataAPI.swift */; };
 		50765E6E21C0A7B000ED2FC3 /* RGBYDataAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50765E6D21C0A7B000ED2FC3 /* RGBYDataAPI.swift */; };
 		50765E7021C0A87B00ED2FC3 /* RGBYCoach.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50765E6F21C0A87B00ED2FC3 /* RGBYCoach.swift */; };
+		509447CB21D314B1003DC7A7 /* RGBYIncidentTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509447C921D314B1003DC7A7 /* RGBYIncidentTableCell.swift */; };
+		509447CC21D314B1003DC7A7 /* RGBYIncidentTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 509447CA21D314B1003DC7A7 /* RGBYIncidentTableCell.xib */; };
 		509DF55321CC3A3300D4AB43 /* RGBYInMatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509DF55221CC3A3300D4AB43 /* RGBYInMatchViewController.swift */; };
 		509DF55521D170B100D4AB43 /* RGBYFieldView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 509DF55421D170B100D4AB43 /* RGBYFieldView.xib */; };
 		50A5CA2521B70A5700F82FE7 /* RGBYMatchDaySquadSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A5CA2421B70A5700F82FE7 /* RGBYMatchDaySquadSelectionViewController.swift */; };
@@ -119,6 +121,8 @@
 		50765E6A21C0A59200ED2FC3 /* TestRgbyDataAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestRgbyDataAPI.swift; sourceTree = "<group>"; };
 		50765E6D21C0A7B000ED2FC3 /* RGBYDataAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBYDataAPI.swift; sourceTree = "<group>"; };
 		50765E6F21C0A87B00ED2FC3 /* RGBYCoach.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBYCoach.swift; sourceTree = "<group>"; };
+		509447C921D314B1003DC7A7 /* RGBYIncidentTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBYIncidentTableCell.swift; sourceTree = "<group>"; };
+		509447CA21D314B1003DC7A7 /* RGBYIncidentTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RGBYIncidentTableCell.xib; sourceTree = "<group>"; };
 		509DF55221CC3A3300D4AB43 /* RGBYInMatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBYInMatchViewController.swift; sourceTree = "<group>"; };
 		509DF55421D170B100D4AB43 /* RGBYFieldView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RGBYFieldView.xib; sourceTree = "<group>"; };
 		50A5CA2421B70A5700F82FE7 /* RGBYMatchDaySquadSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBYMatchDaySquadSelectionViewController.swift; sourceTree = "<group>"; };
@@ -314,6 +318,7 @@
 				5017FC3021ADF4E80054B781 /* RGBYScoreTypeSelectView.swift */,
 				500200BF21ACCDB00043CAF8 /* RGBYTeamSelectView.swift */,
 				50F21C1821B6E81200ABDCC5 /* RGBYTurnOverTypeSelectView.swift */,
+				509447C921D314B1003DC7A7 /* RGBYIncidentTableCell.swift */,
 			);
 			path = incident;
 			sourceTree = "<group>";
@@ -325,6 +330,7 @@
 				500200BD21ACCBE20043CAF8 /* RGBYTeamSelectView.xib */,
 				5017FC2C21ADC59B0054B781 /* RGBYIncidentTypeSelectView.xib */,
 				5017FC2E21ADF3F60054B781 /* RGBYScoreTypeSelectView.xib */,
+				509447CA21D314B1003DC7A7 /* RGBYIncidentTableCell.xib */,
 			);
 			path = incident;
 			sourceTree = "<group>";
@@ -473,6 +479,7 @@
 				509DF55521D170B100D4AB43 /* RGBYFieldView.xib in Resources */,
 				500CDC722195E7900053508A /* LaunchScreen.storyboard in Resources */,
 				500CDC6F2195E7900053508A /* Assets.xcassets in Resources */,
+				509447CC21D314B1003DC7A7 /* RGBYIncidentTableCell.xib in Resources */,
 				500CDC6D2195E78E0053508A /* Main.storyboard in Resources */,
 				5017FC2F21ADF3F60054B781 /* RGBYScoreTypeSelectView.xib in Resources */,
 				500200B021A9BA480043CAF8 /* RGBYPlayerSelectView.xib in Resources */,
@@ -585,6 +592,7 @@
 				50250FCC21BEBC89001823D9 /* RGBYLandingScreenViewController.swift in Sources */,
 				5027B5D2219CF15E00D940E9 /* RGBYMatchDetail.swift in Sources */,
 				503ABE8C21AF8D9B00D45F71 /* RGBYTeam.swift in Sources */,
+				509447CB21D314B1003DC7A7 /* RGBYIncidentTableCell.swift in Sources */,
 				5027B5D6219DD9DB00D940E9 /* RGBYMatchEvent.swift in Sources */,
 				5027B5E1219DDED900D940E9 /* RGBYMatchDaySquad.swift in Sources */,
 			);

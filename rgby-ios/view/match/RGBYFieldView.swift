@@ -49,8 +49,7 @@ class RGBYFieldView: UIControl, UITableViewDataSource {
         self.contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(contentView)
         self.incidentTable.dataSource = self
-        self.incidentTable.register(UITableViewCell.self, forCellReuseIdentifier: INCIDENT_CELL_REUSE_ID)
-
+        self.incidentTable.register(UINib.init(nibName: RGBYIncidentTableCell.nibName, bundle: nil), forCellReuseIdentifier: INCIDENT_CELL_REUSE_ID)
     }
 
     func updateEventArray(matchEventArray: [RGBYMatchEvent]) {
@@ -100,13 +99,8 @@ class RGBYFieldView: UIControl, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let tableViewCell = self.incidentTable.dequeueReusableCell(withIdentifier: INCIDENT_CELL_REUSE_ID) {
-            let matchEvent = self.matchEventArray[indexPath.row]
-            tableViewCell.textLabel!.text = "\(matchEvent.eventType!.displayName) \(RGBYUtils.formatPlayerName(player: matchEvent.subject!))"
-            return tableViewCell
-        }
-        // shouldn't reach here
-        return UITableViewCell(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 10, height: 10)))
+        let cell = self.incidentTable.dequeueReusableCell(withIdentifier: INCIDENT_CELL_REUSE_ID, for: indexPath) as! RGBYIncidentTableCell
+        cell.matchEvent = self.matchEventArray[indexPath.row]
+        return cell
     }
-    
 }
