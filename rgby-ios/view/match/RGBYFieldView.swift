@@ -18,14 +18,14 @@ class RGBYFieldView: UIControl, UITableViewDataSource {
     @IBOutlet weak var modeSwitch: UIButton!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var incidentTable: UITableView!
-    
+
     // SUBMENU BUTTONS
     @IBOutlet weak var allButton: UIButton!
     @IBOutlet weak var scoreButton: UIButton!
     @IBOutlet weak var penaltyButton: UIButton!
     @IBOutlet weak var foulButton: UIButton!
     @IBOutlet weak var otherButton: UIButton!
-    
+
     var matchEventArray: [RGBYMatchEvent] = []
     private var _selectedIncidentFilter = IncidentTableFilter.ALL
 
@@ -98,7 +98,7 @@ class RGBYFieldView: UIControl, UITableViewDataSource {
         }
         self.incidentTable.reloadData()
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.matchEventArray.filter{ (matchEvent) -> Bool in
             switch self._selectedIncidentFilter {
@@ -115,7 +115,7 @@ class RGBYFieldView: UIControl, UITableViewDataSource {
             }
         }.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.incidentTable.dequeueReusableCell(withIdentifier: INCIDENT_CELL_REUSE_ID, for: indexPath) as! RGBYIncidentTableCell
         cell.matchEvent = self.matchEventArray.filter{ (matchEvent) -> Bool in

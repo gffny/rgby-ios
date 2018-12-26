@@ -26,7 +26,6 @@
 		50250FCE21BECA41001823D9 /* RGBYLandingScreenNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50250FCD21BECA41001823D9 /* RGBYLandingScreenNavigationController.swift */; };
 		5027B5CC219CD03500D940E9 /* RGBYInMatchIncidentInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5027B5CB219CD03500D940E9 /* RGBYInMatchIncidentInputViewController.swift */; };
 		5027B5D2219CF15E00D940E9 /* RGBYMatchDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5027B5D1219CF15E00D940E9 /* RGBYMatchDetail.swift */; };
-		5027B5D4219DB35700D940E9 /* RGBYInMatchScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5027B5D3219DB35700D940E9 /* RGBYInMatchScoreView.swift */; };
 		5027B5D6219DD9DB00D940E9 /* RGBYMatchEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5027B5D5219DD9DB00D940E9 /* RGBYMatchEvent.swift */; };
 		5027B5DD219DDA7500D940E9 /* RGBYPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5027B5DC219DDA7500D940E9 /* RGBYPlayer.swift */; };
 		5027B5DF219DDDD500D940E9 /* RGBYPlayerPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5027B5DE219DDDD500D940E9 /* RGBYPlayerPosition.swift */; };
@@ -107,7 +106,6 @@
 		50250FCD21BECA41001823D9 /* RGBYLandingScreenNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBYLandingScreenNavigationController.swift; sourceTree = "<group>"; };
 		5027B5CB219CD03500D940E9 /* RGBYInMatchIncidentInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBYInMatchIncidentInputViewController.swift; sourceTree = "<group>"; };
 		5027B5D1219CF15E00D940E9 /* RGBYMatchDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBYMatchDetail.swift; sourceTree = "<group>"; };
-		5027B5D3219DB35700D940E9 /* RGBYInMatchScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBYInMatchScoreView.swift; sourceTree = "<group>"; };
 		5027B5D5219DD9DB00D940E9 /* RGBYMatchEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBYMatchEvent.swift; sourceTree = "<group>"; };
 		5027B5DC219DDA7500D940E9 /* RGBYPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBYPlayer.swift; sourceTree = "<group>"; };
 		5027B5DE219DDDD500D940E9 /* RGBYPlayerPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBYPlayerPosition.swift; sourceTree = "<group>"; };
@@ -170,10 +168,10 @@
 		500200AE21A9BA140043CAF8 /* storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				509447CD21D3C998003DC7A7 /* match */,
 				509DF54F21CC393D00D4AB43 /* incident */,
 				500CDC702195E7900053508A /* LaunchScreen.storyboard */,
 				500CDC6B2195E78E0053508A /* Main.storyboard */,
-				509DF55421D170B100D4AB43 /* RGBYFieldView.xib */,
 				50A5CA2621B70AA700F82FE7 /* RGBYMatchDaySquadSelectionView.xib */,
 				50A5CA2A21B730C000F82FE7 /* RGBYProfileView.xib */,
 			);
@@ -308,6 +306,15 @@
 			path = service;
 			sourceTree = "<group>";
 		};
+		509447CD21D3C998003DC7A7 /* match */ = {
+			isa = PBXGroup;
+			children = (
+				509DF55421D170B100D4AB43 /* RGBYFieldView.xib */,
+			);
+			name = match;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 		509DF54E21CC390100D4AB43 /* incident */ = {
 			isa = PBXGroup;
 			children = (
@@ -338,7 +345,6 @@
 		509DF55021CC395F00D4AB43 /* match */ = {
 			isa = PBXGroup;
 			children = (
-				5027B5D3219DB35700D940E9 /* RGBYInMatchScoreView.swift */,
 				50F21C0E21B4E68F00ABDCC5 /* RGBYFieldView.swift */,
 			);
 			path = match;
@@ -564,7 +570,6 @@
 				5017FC2B21ADC1B60054B781 /* RGBYIncidentTypeSelectView.swift in Sources */,
 				50F21C1521B6E08100ABDCC5 /* RGBYFoulTypeSelectView.swift in Sources */,
 				50F21C1721B6E0AA00ABDCC5 /* RGBYFoulType.swift in Sources */,
-				5027B5D4219DB35700D940E9 /* RGBYInMatchScoreView.swift in Sources */,
 				50C6591221990E4400DB1B5C /* RGBYEventType.swift in Sources */,
 				50F21C1B21B6E8D000ABDCC5 /* RGBYTurnOverType.swift in Sources */,
 				509DF55321CC3A3300D4AB43 /* RGBYInMatchViewController.swift in Sources */,
