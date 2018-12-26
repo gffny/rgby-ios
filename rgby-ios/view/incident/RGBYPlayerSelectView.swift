@@ -108,8 +108,8 @@ extension RGBYPlayerSelectView {
     @objc fileprivate func playerSelected(button: UIButton) {
         // maybe handle some styling here if need be for the button tapping
         if (button == self.number1) {
-            self.selectedPlayerPosition = .TIGHT_HEAD_PROP
-            self.selectedPlayer = _squad?.looseHeadSecondRow
+            self.selectedPlayerPosition = .LOOSE_HEAD_PROP
+            self.selectedPlayer = _squad?.looseHeadProp
         } else if button == self.number2 {
             self.selectedPlayerPosition = .HOOKER
             self.selectedPlayer = _squad?.hooker

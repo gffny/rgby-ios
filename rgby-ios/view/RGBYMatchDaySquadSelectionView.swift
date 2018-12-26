@@ -99,12 +99,11 @@ class RGBYMatchDaySquadSelectionView: UIControl, UIScrollViewDelegate {
             self.availablePlayerList.addSubview(playerView)
         }
         if let mds = self.match?.matchDaySquad {
-            setPlayerData(profile: self.n1Profile, player: mds.tightHeadSecondRow)
-            setPlayerData(profile: self.n1Profile, player: mds.tightHeadProp)
+            setPlayerData(profile: self.n1Profile, player: mds.looseHeadProp)
             setPlayerData(profile: self.n2Profile, player: mds.hooker)
-            setPlayerData(profile: self.n3Profile, player: mds.looseHeadProp)
-            setPlayerData(profile: self.n4Profile, player: mds.tightHeadSecondRow)
-            setPlayerData(profile: self.n5Profile, player: mds.looseHeadSecondRow)
+            setPlayerData(profile: self.n3Profile, player: mds.tightHeadProp)
+            setPlayerData(profile: self.n4Profile, player: mds.looseHeadSecondRow)
+            setPlayerData(profile: self.n5Profile, player: mds.tightHeadSecondRow)
             setPlayerData(profile: self.n6Profile, player: mds.blindSideFlanker)
             setPlayerData(profile: self.n7Profile, player: mds.opensideFlanker)
             setPlayerData(profile: self.n8Profile, player: mds.number8)
