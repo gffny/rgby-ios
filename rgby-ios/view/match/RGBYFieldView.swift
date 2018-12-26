@@ -27,6 +27,7 @@ class RGBYFieldView: UIControl, UITableViewDataSource {
     @IBOutlet weak var otherButton: UIButton!
     
     var matchEventArray: [RGBYMatchEvent] = []
+    private var _selectedIncidentFilter = IncidentTableFilter.ALL
 
     required init?(coder aDecoder: NSCoder) {
         print("RGBYFieldView:: init(coder)")
@@ -81,26 +82,61 @@ class RGBYFieldView: UIControl, UITableViewDataSource {
     @IBAction func handleMenuButton(_ sender: UIButton) {
         if sender == self.allButton {
             // all
-            print("all")
+            self._selectedIncidentFilter = IncidentTableFilter.ALL
         } else if sender == self.scoreButton {
             // all
-            print("score")
+            self._selectedIncidentFilter = IncidentTableFilter.SCORE
         } else if sender == self.penaltyButton {
             // all
-            print("penalty ")
+            self._selectedIncidentFilter = IncidentTableFilter.PENALTY
         } else if sender == self.foulButton {
             // all
-            print("foul")
-        } // other
+            self._selectedIncidentFilter = IncidentTableFilter.FOUL
+        } else {
+            // other
+            self._selectedIncidentFilter = IncidentTableFilter.OTHER
+        }
+        self.incidentTable.reloadData()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.matchEventArray.count
+        return self.matchEventArray.filter{ (matchEvent) -> Bool in
+            switch self._selectedIncidentFilter {
+            case .ALL:
+                return true
+            case .SCORE:
+                return RGBYEventType.scoreEvents.contains(matchEvent.eventType!)
+            case .PENALTY:
+                return matchEvent.eventType == RGBYEventType.PENALTY
+            case .FOUL:
+                return matchEvent.eventType == RGBYEventType.FOUL
+            case .OTHER:
+                return true
+            }
+        }.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.incidentTable.dequeueReusableCell(withIdentifier: INCIDENT_CELL_REUSE_ID, for: indexPath) as! RGBYIncidentTableCell
-        cell.matchEvent = self.matchEventArray[indexPath.row]
+        cell.matchEvent = self.matchEventArray.filter{ (matchEvent) -> Bool in
+            switch self._selectedIncidentFilter {
+            case .ALL:
+                return true
+            case .SCORE:
+                return RGBYEventType.scoreEvents.contains(matchEvent.eventType!)
+            case .PENALTY:
+                return matchEvent.eventType == RGBYEventType.PENALTY
+            case .FOUL:
+                return matchEvent.eventType == RGBYEventType.FOUL
+            case .OTHER:
+                return true
+            }
+        }[indexPath.row]
         return cell
     }
+}
+
+private enum IncidentTableFilter {
+    
+    case ALL, SCORE, PENALTY, FOUL, OTHER
 }
