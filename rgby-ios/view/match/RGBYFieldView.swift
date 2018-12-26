@@ -69,11 +69,11 @@ class RGBYFieldView: UIControl, UITableViewDataSource {
         print("adding new event to view")
         if RGBYEventType.scoreEvents.contains(newEvent.eventType!) {
             let frontimgview = UIImageView(image: newEvent.eventType!.eventIcon)
-            let x = self.incidentView.frame.width * newEvent.fieldLocation!.x
-            let y = self.incidentView.frame.height * newEvent.fieldLocation!.y
-            let w = self.incidentView.frame.width / 20
-            let h = self.incidentView.frame.height / 20
-            frontimgview.frame = CGRect(x: x - (w / 2), y: y - (h / 2), width: w, height: h)
+            let x = self.fieldView.frame.width * newEvent.fieldLocation!.x
+            let y = self.fieldView.frame.height * newEvent.fieldLocation!.y
+            let w = self.fieldView.frame.width / 20
+            let h = self.fieldView.frame.height / 20
+            frontimgview.frame = CGRect(x: x - (w / 2), y: y - (h / 2), width: h, height: h)
             // Add the front image on top of the background
             self.incidentView.addSubview(frontimgview)
         }

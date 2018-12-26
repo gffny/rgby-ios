@@ -18,7 +18,7 @@ class RGBYIncidentTableCell: UITableViewCell {
 
     var matchEvent: RGBYMatchEvent? {
         didSet {
-            self.incidentIcon.image = UIImage(named: "PenaltyIcon")
+            self.incidentIcon.image = matchEvent?.eventType?.eventIcon ?? UIImage(named: "AppIcon")
             self.teamLabel.text = matchEvent!.isMyTeam! ? RGBYUtils.formatPlayerName(player: matchEvent!.subject) : matchEvent!.subjectPosition?.displayName
         }
     }

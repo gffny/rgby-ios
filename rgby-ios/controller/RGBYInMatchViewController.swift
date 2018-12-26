@@ -101,13 +101,12 @@ class RGBYInMatchViewController: UIViewController, RGBYMatchDetailDelegate, RGBY
         // record or pass the tap location to the next VC
         // convert that to % x and % y
         if self.fieldTapLocation.y > 0 {
-            let x = self.fieldTapLocation.x / self.fieldView.frame.width
-            let y = self.fieldTapLocation.y / self.fieldView.frame.height
+            let x = self.fieldTapLocation.x / self.fieldView.fieldView.frame.width
+            let y = self.fieldTapLocation.y / self.fieldView.fieldView.frame.height
             self.fieldTapLocation = CGPoint(x: x, y: y)
             performSegue(withIdentifier: "presentMatchIncidentInput", sender: self)
         } // ignore taps outside of the field
     }
-
     
     // LOAD INCIDENT RECODING SUBVIEWS
     
