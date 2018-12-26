@@ -71,8 +71,13 @@ class RGBYInMatchViewController: UIViewController, RGBYMatchDetailDelegate, RGBY
         self.loadFieldView()
     }
 
+    // hide that pesky status bar for the match view
     override var prefersStatusBarHidden: Bool {
         return true
+    }
+
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .landscape
     }
 
     // VIEW LOADING METHODS
@@ -85,9 +90,11 @@ class RGBYInMatchViewController: UIViewController, RGBYMatchDetailDelegate, RGBY
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleFieldTap))
         tap.numberOfTapsRequired = 1
         self.fieldView.addGestureRecognizer(tap)
+        // only disable the view if the period hasn't started
         if !self.matchDetail.hasPeriodStarted {
             self.fieldView.isUserInteractionEnabled = false
         }
+        // we don't want a bunch of views in the content area
         for view in self.contentView.subviews {
             view.removeFromSuperview()
         }
@@ -99,6 +106,10 @@ class RGBYInMatchViewController: UIViewController, RGBYMatchDetailDelegate, RGBY
         // configure incidentTypeSelectView
         statsView.frame = self.contentView.bounds
         statsView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        // only disable the view if the period hasn't started
+        if !self.matchDetail.hasPeriodStarted {
+            statsView.isUserInteractionEnabled = false
+        }
         for view in self.contentView.subviews {
             view.removeFromSuperview()
         }
@@ -109,6 +120,11 @@ class RGBYInMatchViewController: UIViewController, RGBYMatchDetailDelegate, RGBY
         let teamView = RGBYTeamView(frame: self.contentView.frame)
         teamView.frame = self.contentView.bounds
         teamView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        teamView.matchDaySquad = self.matchDetail.match.matchDaySquad
+        // only disable the view if the period hasn't started
+        if !self.matchDetail.hasPeriodStarted {
+            teamView.isUserInteractionEnabled = false
+        }
         for view in self.contentView.subviews {
             view.removeFromSuperview()
         }

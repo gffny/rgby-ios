@@ -26,7 +26,7 @@ class RGBYFieldView: UIControl, UITableViewDataSource {
     @IBOutlet weak var foulButton: UIButton!
     @IBOutlet weak var otherButton: UIButton!
 
-    var matchEventArray: [RGBYMatchEvent] = []
+    private var matchEventArray: [RGBYMatchEvent] = []
     private var _selectedIncidentFilter = IncidentTableFilter.ALL
 
     required init?(coder aDecoder: NSCoder) {
