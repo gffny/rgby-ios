@@ -85,12 +85,38 @@ class RGBYInMatchViewController: UIViewController, RGBYMatchDetailDelegate, RGBY
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleFieldTap))
         tap.numberOfTapsRequired = 1
         self.fieldView.addGestureRecognizer(tap)
-        self.fieldView.isUserInteractionEnabled = false
+        if !self.matchDetail.hasPeriodStarted {
+            self.fieldView.isUserInteractionEnabled = false
+        }
+        for view in self.contentView.subviews {
+            view.removeFromSuperview()
+        }
         self.contentView.addSubview(fieldView)
     }
 
+    func loadStatsView() {
+        let statsView = RGBYStatsView(frame: self.contentView.frame)
+        // configure incidentTypeSelectView
+        statsView.frame = self.contentView.bounds
+        statsView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        for view in self.contentView.subviews {
+            view.removeFromSuperview()
+        }
+        self.contentView.addSubview(statsView)
+    }
+
+    func loadTeamView() {
+        let teamView = RGBYTeamView(frame: self.contentView.frame)
+        teamView.frame = self.contentView.bounds
+        teamView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        for view in self.contentView.subviews {
+            view.removeFromSuperview()
+        }
+        self.contentView.addSubview(teamView)
+    }
+
     // BUSINESS LOGIC METHODS
-    
+
     func handleEndOfMatch() {
         print("match has ended!")
     }
@@ -107,9 +133,9 @@ class RGBYInMatchViewController: UIViewController, RGBYMatchDetailDelegate, RGBY
             performSegue(withIdentifier: "presentMatchIncidentInput", sender: self)
         } // ignore taps outside of the field
     }
-    
+
     // LOAD INCIDENT RECODING SUBVIEWS
-    
+
     func showIncidentTypeSelectView() {
         // set the view label
         //self.incidentInputLabel.text = "Select Incident Type..."
@@ -121,7 +147,7 @@ class RGBYInMatchViewController: UIViewController, RGBYMatchDetailDelegate, RGBY
         incidentTypeSelectView.addTarget(self, action: #selector(handleIncidentTypeSelect), for: .valueChanged)
         self.contentView.addSubview(incidentTypeSelectView)
     }
-    
+
     func showPenaltyTypeSelectView() {
         // set the view label
         //self.incidentInputLabel.text = "Select Penalty Type..."
@@ -132,7 +158,7 @@ class RGBYInMatchViewController: UIViewController, RGBYMatchDetailDelegate, RGBY
         penaltyTypeSelectView.addTarget(self, action: #selector(handlePenaltyTypeSelect), for: .valueChanged)
         self.contentView.addSubview(penaltyTypeSelectView)
     }
-    
+
     func showFoulTypeSelectView() {
         // set the view label
         //self.incidentInputLabel.text = "Select Foul Type..."
@@ -143,7 +169,7 @@ class RGBYInMatchViewController: UIViewController, RGBYMatchDetailDelegate, RGBY
         foulTypeSelectView.addTarget(self, action: #selector(handleFoulTypeSelect), for: .valueChanged)
         self.contentView.addSubview(foulTypeSelectView)
     }
-    
+
     func showScoreTypeSelectView() {
         // set the view label
         //self.incidentInputLabel.text = "Select Score Type..."
@@ -155,7 +181,7 @@ class RGBYInMatchViewController: UIViewController, RGBYMatchDetailDelegate, RGBY
         scoreTypeSelectView.addTarget(self, action: #selector(handleScoreTypeSelect), for: .valueChanged)
         self.contentView.addSubview(scoreTypeSelectView)
     }
-    
+
     func showTurnOverTypeSelectView() {
         // set the view label
         //self.incidentInputLabel.text = "Select Turn Over Type..."
@@ -166,7 +192,7 @@ class RGBYInMatchViewController: UIViewController, RGBYMatchDetailDelegate, RGBY
         turnOverTypeSelectView.addTarget(self, action: #selector(handleTurnOverTypeSelect), for: .valueChanged)
         self.contentView.addSubview(turnOverTypeSelectView)
     }
-    
+
     func showTeamSelectView() {
         // set the view label
         //self.incidentInputLabel.text = "Select Responsible Team..."
@@ -179,7 +205,7 @@ class RGBYInMatchViewController: UIViewController, RGBYMatchDetailDelegate, RGBY
         teamSelectView.addTarget(self, action: #selector(handleTeamSelect), for: .valueChanged)
         self.contentView.addSubview(teamSelectView)
     }
-    
+
     func showPlayerSelectView() {
         // set the view label
         //self.incidentInputLabel.text = "Select Responsible Player..."
@@ -193,9 +219,9 @@ class RGBYInMatchViewController: UIViewController, RGBYMatchDetailDelegate, RGBY
         playerSelectView.addTarget(self, action: #selector(handlePlayerSelect), for: .valueChanged)
         self.contentView.addSubview(playerSelectView)
     }
-    
+
     // HANDLE INCIDENT TYPE RECORDING
-    
+
     @objc func handleIncidentTypeSelect(_ sender: RGBYIncidentTypeSelectView) {
         print("RGBYInMatchIncidentViewController:: handleIncidentTypeSelect")
         sender.removeFromSuperview()
@@ -217,7 +243,7 @@ class RGBYInMatchViewController: UIViewController, RGBYMatchDetailDelegate, RGBY
             showTeamSelectView()
         }
     }
-    
+
     @objc func handlePenaltyTypeSelect(_ sender: RGBYPenaltyTypeSelectView) {
         print("RGBYInMatchIncidentViewController:: handlePenaltyTypeSelect")
         sender.removeFromSuperview()
@@ -225,7 +251,7 @@ class RGBYInMatchViewController: UIViewController, RGBYMatchDetailDelegate, RGBY
         self.matchEvent.additionalIncidentType = sender.selectedButton?.titleLabel?.text
         showTeamSelectView()
     }
-    
+
     @objc func handleFoulTypeSelect(_ sender: RGBYFoulTypeSelectView) {
         print("RGBYInMatchIncidentViewController:: handleFoulTypeSelect")
         sender.removeFromSuperview()
@@ -233,7 +259,7 @@ class RGBYInMatchViewController: UIViewController, RGBYMatchDetailDelegate, RGBY
         self.matchEvent.additionalIncidentType = sender.selectedButton?.titleLabel?.text
         showTeamSelectView()
     }
-    
+
     @objc func handleTurnOverTypeSelect(_ sender: RGBYTurnOverTypeSelectView) {
         print("RGBYInMatchIncidentViewController:: handleTurnOverTypeSelect")
         sender.removeFromSuperview()
@@ -253,7 +279,7 @@ class RGBYInMatchViewController: UIViewController, RGBYMatchDetailDelegate, RGBY
         }
         showTeamSelectView()
     }
-    
+
     @objc func handleTeamSelect(_ sender: RGBYTeamSelectView) {
         print("RGBYInMatchIncidentViewController:: handleTeamSelect")
         if (sender.isMyTeam) {
@@ -263,7 +289,7 @@ class RGBYInMatchViewController: UIViewController, RGBYMatchDetailDelegate, RGBY
         sender.removeFromSuperview()
         showPlayerSelectView()
     }
-    
+
     @objc func handleScoreTypeSelect(_ sender: RGBYScoreTypeSelectView) {
         print("RGBYInMatchIncidentViewController:: handleScoreTypeSelect")
         // TODO handle the type correctly
@@ -279,7 +305,7 @@ class RGBYInMatchViewController: UIViewController, RGBYMatchDetailDelegate, RGBY
         sender.removeFromSuperview()
         showTeamSelectView()
     }
-    
+
     @objc func handlePlayerSelect(_ sender: RGBYPlayerSelectView) {
         print("RGBYInMatchIncidentViewController:: handlePlayerSelect")
         self.matchEvent.subject = sender.selectedPlayer
@@ -287,18 +313,18 @@ class RGBYInMatchViewController: UIViewController, RGBYMatchDetailDelegate, RGBY
         self.matchDetail.appendMatchEvent(newEvent: matchEvent)
         sender.removeFromSuperview()
     }
-    
+
     @IBAction func handleCloseButton(_ sender: UIView) {
         print("RGBYInMatchIncidentViewController:: handleCloseButton")
         sender.removeFromSuperview()
     }
 
     // DELEGATE METHODS
-    
+
     func periodUpdated() {
         self.periodLabel.text = RGBYUtils.formatMatchPeriod(period: self.matchDetail.currentPeriod)
     }
-    
+
     func periodTimeUpdated() {
         if self.matchDetail.isAddedTime {
             // the period is in overtime, change the clock colour
@@ -306,7 +332,7 @@ class RGBYInMatchViewController: UIViewController, RGBYMatchDetailDelegate, RGBY
         }
         self.clockLabel.text = String("\(RGBYUtils.formatMatchClock(time: self.matchDetail.currentPeriodTimeInSec))")
     }
-    
+
     func matchScoreUpdated() {
         self.teamScore.text = "\(self.matchDetail.teamScore)"
         self.oppositionScore.text = "\(self.matchDetail.oppositionScore)"
@@ -317,7 +343,7 @@ class RGBYInMatchViewController: UIViewController, RGBYMatchDetailDelegate, RGBY
     }
 
     // TOUCH INTERACTIONS
-    
+
     @IBAction func handleMenuClick(_ sender: UIButton) {
         if sender == self.clockFunctionButton && !self.matchDetail.hasPeriodStarted && !self.matchDetail.hasMatchEnded {
             // handle start
@@ -340,11 +366,11 @@ class RGBYInMatchViewController: UIViewController, RGBYMatchDetailDelegate, RGBY
                 self.clockLabel.text = String("\(RGBYUtils.formatMatchClock(time: self.matchDetail.currentPeriodTimeInSec)) PAUSED")
             }
         } else if sender == self.teamViewButton {
-            
+            self.loadTeamView()
         } else if sender == self.statsViewButton {
-            
+            self.loadStatsView()
         } else if sender == self.fieldViewButton {
-            
+            self.loadFieldView()
         } else {// long touch recogniser && double tap
             self.clockLabel.text = String("\(RGBYUtils.formatMatchClock(time: self.matchDetail.currentPeriodTimeInSec)) ENDED")
             self.matchDetail.stopPeriod()
