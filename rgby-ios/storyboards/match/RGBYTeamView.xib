@@ -48,12 +48,12 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FKN-oZ-5gU">
-                            <rect key="frame" x="0.0" y="50" width="200" height="324"/>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FKN-oZ-5gU">
+                            <rect key="frame" x="0.0" y="50" width="200" height="432"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </tableView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Used Substitutes" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dtJ-Vf-sPX">
-                            <rect key="frame" x="0.0" y="374" width="200" height="50"/>
+                            <rect key="frame" x="0.0" y="482" width="200" height="50"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="0HH-6L-ubo"/>
                             </constraints>
@@ -61,8 +61,8 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="coe-Ug-Ipr">
-                            <rect key="frame" x="0.0" y="424" width="200" height="324"/>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="coe-Ug-Ipr">
+                            <rect key="frame" x="0.0" y="532" width="200" height="216"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </tableView>
                     </subviews>
@@ -72,7 +72,7 @@
                         <constraint firstItem="FKN-oZ-5gU" firstAttribute="top" secondItem="B3b-FK-IRT" secondAttribute="bottom" id="7vM-NK-Ypt"/>
                         <constraint firstItem="B3b-FK-IRT" firstAttribute="top" secondItem="sH6-yS-5qb" secondAttribute="top" id="HNv-9f-Gg1"/>
                         <constraint firstItem="FKN-oZ-5gU" firstAttribute="leading" secondItem="sH6-yS-5qb" secondAttribute="leading" id="O7V-K2-oYZ"/>
-                        <constraint firstItem="coe-Ug-Ipr" firstAttribute="height" secondItem="FKN-oZ-5gU" secondAttribute="height" id="OkX-4z-iSk"/>
+                        <constraint firstItem="coe-Ug-Ipr" firstAttribute="height" secondItem="FKN-oZ-5gU" secondAttribute="height" multiplier="0.5" id="OkX-4z-iSk"/>
                         <constraint firstItem="dtJ-Vf-sPX" firstAttribute="leading" secondItem="sH6-yS-5qb" secondAttribute="leading" id="RGa-Ac-PNL"/>
                         <constraint firstItem="coe-Ug-Ipr" firstAttribute="leading" secondItem="sH6-yS-5qb" secondAttribute="leading" id="YSX-P2-ZUg"/>
                         <constraint firstItem="coe-Ug-Ipr" firstAttribute="top" secondItem="dtJ-Vf-sPX" secondAttribute="bottom" id="bWV-kY-Ihc"/>

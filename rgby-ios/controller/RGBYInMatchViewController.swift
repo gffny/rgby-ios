@@ -121,10 +121,6 @@ class RGBYInMatchViewController: UIViewController, RGBYMatchDetailDelegate, RGBY
         teamView.frame = self.contentView.bounds
         teamView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         teamView.matchDaySquad = self.matchDetail.match.matchDaySquad
-        // only disable the view if the period hasn't started
-        if !self.matchDetail.hasPeriodStarted {
-            teamView.isUserInteractionEnabled = false
-        }
         for view in self.contentView.subviews {
             view.removeFromSuperview()
         }

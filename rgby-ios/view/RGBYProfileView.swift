@@ -68,6 +68,7 @@ class RGBYProfileView: UIControl {
         resetProfileView()
     }
 
+    // for use with profiles of a player not a player and position
     func setPlayerData(player: RGBYPlayer) {
         self.player = player
         if player.imageURL.isEmpty {
@@ -86,7 +87,19 @@ class RGBYProfileView: UIControl {
         self.positionNumber.isHidden = true
         self.penImage.isHidden = false
     }
-    
+
+    // for use with profiles of a specific position
+    func setPlayerData(player: RGBYPlayer, position: RGBYPlayerPosition, positionNumber: Int) {
+        self.setPlayerData(player: player)
+        self.position.text = position.displayName
+        self.positionNumber.text = "\(positionNumber)"
+    }
+
+    // for use with profiles of a specific position overriding number
+    func setPlayerData(player: RGBYPlayer, position: RGBYPlayerPosition) {
+        self.setPlayerData(player: player, position: position, positionNumber: position.positionOrderNumber)
+    }
+
     func resetProfileView() {
         self.lastName.text = "Unselected"
         self.firstName.text = ""

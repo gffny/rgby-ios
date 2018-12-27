@@ -35,7 +35,7 @@ class RGBYTeamView: UIView, UITableViewDataSource {
     @IBOutlet weak var used: UITableView!
 
     @IBOutlet var contentView: UIView!
-    
+
     var matchDaySquad: RGBYMatchDaySquad? {
         didSet {
             self.used.reloadData()
@@ -78,21 +78,21 @@ class RGBYTeamView: UIView, UITableViewDataSource {
     }
 
     func updateOnfieldView() {
-        self.number1.setPlayerData(player: self.matchDaySquad?.looseHeadProp ?? RGBYPlayer())
-        self.number2.setPlayerData(player: self.matchDaySquad?.hooker ?? RGBYPlayer())
-        self.number3.setPlayerData(player: self.matchDaySquad?.tightHeadProp ?? RGBYPlayer())
-        self.number4.setPlayerData(player: self.matchDaySquad?.looseHeadSecondRow ?? RGBYPlayer())
-        self.number5.setPlayerData(player: self.matchDaySquad?.tightHeadSecondRow ?? RGBYPlayer())
-        self.number6.setPlayerData(player: self.matchDaySquad?.blindSideFlanker ?? RGBYPlayer())
-        self.number7.setPlayerData(player: self.matchDaySquad?.opensideFlanker ?? RGBYPlayer())
-        self.number8.setPlayerData(player: self.matchDaySquad?.number8 ?? RGBYPlayer())
-        self.number9.setPlayerData(player: self.matchDaySquad?.scrumHalf ?? RGBYPlayer())
-        self.number10.setPlayerData(player: self.matchDaySquad?.outHalf ?? RGBYPlayer())
-        self.number11.setPlayerData(player: self.matchDaySquad?.leftWing ?? RGBYPlayer())
-        self.number12.setPlayerData(player: self.matchDaySquad?.insideCenter ?? RGBYPlayer())
-        self.number13.setPlayerData(player: self.matchDaySquad?.outsideCenter ?? RGBYPlayer())
-        self.number14.setPlayerData(player: self.matchDaySquad?.rightWing ?? RGBYPlayer())
-        self.number15.setPlayerData(player: self.matchDaySquad?.fullback ?? RGBYPlayer())
+        self.number1.setPlayerData(player: self.matchDaySquad?.hooker ?? RGBYPlayer(), position: .LOOSE_HEAD_PROP)
+        self.number2.setPlayerData(player: self.matchDaySquad?.hooker ?? RGBYPlayer(), position: .HOOKER)
+        self.number3.setPlayerData(player: self.matchDaySquad?.tightHeadProp ?? RGBYPlayer(), position: .TIGHT_HEAD_PROP)
+        self.number4.setPlayerData(player: self.matchDaySquad?.looseHeadSecondRow ?? RGBYPlayer(), position: .SECOND_ROW, positionNumber: 4)
+        self.number5.setPlayerData(player: self.matchDaySquad?.tightHeadSecondRow ?? RGBYPlayer(), position: .SECOND_ROW, positionNumber: 5)
+        self.number6.setPlayerData(player: self.matchDaySquad?.blindSideFlanker ?? RGBYPlayer(), position: .BLINDSIDE_FLANKER)
+        self.number7.setPlayerData(player: self.matchDaySquad?.opensideFlanker ?? RGBYPlayer(), position: .OPENSIDE_FLANKER)
+        self.number8.setPlayerData(player: self.matchDaySquad?.number8 ?? RGBYPlayer(), position: .NUMBER_8)
+        self.number9.setPlayerData(player: self.matchDaySquad?.scrumHalf ?? RGBYPlayer(), position: .SCRUM_HALF)
+        self.number10.setPlayerData(player: self.matchDaySquad?.outHalf ?? RGBYPlayer(), position: .OUT_HALF)
+        self.number11.setPlayerData(player: self.matchDaySquad?.leftWing ?? RGBYPlayer(), position: .LEFT_WING)
+        self.number12.setPlayerData(player: self.matchDaySquad?.insideCenter ?? RGBYPlayer(), position: .INSIDE_CENTER)
+        self.number13.setPlayerData(player: self.matchDaySquad?.outsideCenter ?? RGBYPlayer(), position: .OUTSIDE_CENTER)
+        self.number14.setPlayerData(player: self.matchDaySquad?.rightWing ?? RGBYPlayer(), position: .RIGHT_WING)
+        self.number15.setPlayerData(player: self.matchDaySquad?.fullback ?? RGBYPlayer(), position: .FULLBACK)
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

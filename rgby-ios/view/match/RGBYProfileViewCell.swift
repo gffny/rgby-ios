@@ -41,6 +41,17 @@ class RGBYProfileViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        self.penImage.image = UIImage(named: "AppIcon")
+        self.penImage.layer.borderWidth = 3
+        self.penImage.layer.masksToBounds = false
+        self.penImage.layer.borderColor = UIColor.white.cgColor
+        self.penImage.layer.cornerRadius = self.penImage.frame.height/2
+        self.penImage.clipsToBounds = true
+        self.squadNumber.layer.borderWidth = 3
+        self.squadNumber.layer.masksToBounds = false
+        self.squadNumber.layer.borderColor = UIColor.white.cgColor
+        self.squadNumber.layer.cornerRadius = self.squadNumber.frame.height/2
+        self.contentView.backgroundColor = UIColor.lightGray
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
