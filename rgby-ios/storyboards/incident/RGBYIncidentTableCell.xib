@@ -19,8 +19,14 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="team" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oQo-Az-VsL" userLabel="teamLabel">
-                        <rect key="frame" x="0.0" y="0.0" width="115" height="43.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <rect key="frame" x="0.0" y="0.0" width="115" height="26"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="30"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l2e-fd-7qk" userLabel="teamSubLabel">
+                        <rect key="frame" x="0.0" y="26" width="115" height="17.5"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="23"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -32,31 +38,49 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="opposition" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bpj-VO-upB" userLabel="oppositionLabel">
-                        <rect key="frame" x="205" y="0.0" width="115" height="43.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <rect key="frame" x="205" y="0.0" width="115" height="26"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="30"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UI3-fo-22Q" userLabel="oppositionSubLabel">
+                        <rect key="frame" x="205" y="26" width="115" height="17.5"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="23"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailing" secondItem="UI3-fo-22Q" secondAttribute="trailing" id="10a-71-lIa"/>
                     <constraint firstItem="wuB-L4-WoF" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="4gu-hy-sDa"/>
+                    <constraint firstItem="UI3-fo-22Q" firstAttribute="leading" secondItem="wuB-L4-WoF" secondAttribute="trailing" constant="10" id="9eg-Ui-ZJV"/>
                     <constraint firstItem="wuB-L4-WoF" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="Acp-zr-dz7"/>
                     <constraint firstItem="oQo-Az-VsL" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="FNA-U6-cO4"/>
-                    <constraint firstItem="bpj-VO-upB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="FdV-aV-ak0"/>
+                    <constraint firstItem="l2e-fd-7qk" firstAttribute="top" secondItem="oQo-Az-VsL" secondAttribute="bottom" id="HQi-yb-upt"/>
+                    <constraint firstItem="UI3-fo-22Q" firstAttribute="top" secondItem="bpj-VO-upB" secondAttribute="bottom" id="JIW-L9-1Xs"/>
                     <constraint firstItem="oQo-Az-VsL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Jwg-YM-Qfb"/>
-                    <constraint firstAttribute="trailing" secondItem="bpj-VO-upB" secondAttribute="trailing" id="bYl-N2-PXX"/>
-                    <constraint firstItem="bpj-VO-upB" firstAttribute="leading" secondItem="wuB-L4-WoF" secondAttribute="trailing" constant="10" id="lTt-EU-JXx"/>
-                    <constraint firstAttribute="bottom" secondItem="oQo-Az-VsL" secondAttribute="bottom" id="nFO-qt-EZ1"/>
+                    <constraint firstItem="UI3-fo-22Q" firstAttribute="height" secondItem="bpj-VO-upB" secondAttribute="height" multiplier="0.66" id="QTI-sH-Jih"/>
+                    <constraint firstAttribute="bottom" secondItem="l2e-fd-7qk" secondAttribute="bottom" id="Voy-6K-94c"/>
+                    <constraint firstItem="wuB-L4-WoF" firstAttribute="leading" secondItem="l2e-fd-7qk" secondAttribute="trailing" constant="10" id="Ycw-Sl-h6s"/>
+                    <constraint firstItem="l2e-fd-7qk" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Zm6-Eb-5Rq"/>
+                    <constraint firstItem="l2e-fd-7qk" firstAttribute="top" secondItem="oQo-Az-VsL" secondAttribute="bottom" id="cNn-PK-t2k"/>
+                    <constraint firstItem="l2e-fd-7qk" firstAttribute="height" secondItem="oQo-Az-VsL" secondAttribute="height" multiplier="0.66" id="dQs-d1-RJ4"/>
+                    <constraint firstItem="bpj-VO-upB" firstAttribute="leading" secondItem="wuB-L4-WoF" secondAttribute="trailing" constant="10" id="fUA-MN-RcS"/>
+                    <constraint firstAttribute="bottom" secondItem="UI3-fo-22Q" secondAttribute="bottom" id="hwe-kH-lkR"/>
+                    <constraint firstItem="bpj-VO-upB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="m6x-Bv-0zA"/>
                     <constraint firstItem="wuB-L4-WoF" firstAttribute="leading" secondItem="oQo-Az-VsL" secondAttribute="trailing" constant="10" id="o5a-oX-KsD"/>
-                    <constraint firstAttribute="bottom" secondItem="bpj-VO-upB" secondAttribute="bottom" id="uOt-Nf-1Eo"/>
+                    <constraint firstAttribute="trailing" secondItem="bpj-VO-upB" secondAttribute="trailing" id="vJ5-AI-9Qa"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="incidentIcon" destination="wuB-L4-WoF" id="Dxb-yv-cUm"/>
                 <outlet property="oppositionLabel" destination="bpj-VO-upB" id="AXa-hi-Pjn"/>
+                <outlet property="oppositionSubLabel" destination="UI3-fo-22Q" id="ra4-AI-45p"/>
                 <outlet property="teamLabel" destination="oQo-Az-VsL" id="qID-ZA-jCo"/>
+                <outlet property="teamSubLabel" destination="l2e-fd-7qk" id="kp1-E8-Wna"/>
             </connections>
+            <point key="canvasLocation" x="137.59999999999999" y="113.3433283358321"/>
         </tableViewCell>
     </objects>
 </document>
