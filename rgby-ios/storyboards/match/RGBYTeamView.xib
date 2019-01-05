@@ -27,6 +27,7 @@
                 <outlet property="number7" destination="ebN-iM-qUI" id="jSl-jL-ama"/>
                 <outlet property="number8" destination="aAN-Ov-LEK" id="LVN-Sj-pgQ"/>
                 <outlet property="number9" destination="z7q-7h-fIv" id="lQI-Rv-o7O"/>
+                <outlet property="teamView" destination="mIi-Jm-mhk" id="g1V-YG-pWM"/>
                 <outlet property="unused" destination="FKN-oZ-5gU" id="8J2-s2-7ea"/>
                 <outlet property="used" destination="coe-Ug-Ipr" id="zeg-Bt-vS7"/>
             </connections>

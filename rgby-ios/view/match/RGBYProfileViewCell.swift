@@ -60,4 +60,14 @@ class RGBYProfileViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    // view defaults
+    func enable() {
+        self.isUserInteractionEnabled = true
+        self.alpha = 1
+    }
+    
+    func disable() {
+        self.isUserInteractionEnabled = false
+        self.alpha = 0.7
+    }
 }

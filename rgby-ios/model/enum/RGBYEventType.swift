@@ -8,10 +8,10 @@
 
 import UIKit
 
-enum RGBYEventType {
-    
-    case MISSED_TACKLE, LINE_BREAK, FOUL, PENALTY, TRY, CONVERSION, KICK_FROM_PLAY, DROP_GOAL, KICK_AT_GOAL, KICK_TO_TOUCH, SCRUM, TAP, POACH, TACKLE, HELD_UP, PLAYER_IN_TOUCH
-    
+enum RGBYEventType: String {
+
+    case MISSED_TACKLE, LINE_BREAK, FOUL, PENALTY, TRY, CONVERSION, KICK_FROM_PLAY, DROP_GOAL, KICK_AT_GOAL, KICK_TO_TOUCH, SCRUM, TAP, POACH, TACKLE, HELD_UP, PLAYER_IN_TOUCH, SUBSTITUTION, DROP_OFF_22, RESTART_KICK_OFF, LINE_OUT
+
     var displayName: String {
         switch self {
         case .MISSED_TACKLE:
@@ -46,34 +46,43 @@ enum RGBYEventType {
             return "Player in Touch"
         case .HELD_UP:
             return "Tackle Held Up"
+        case .SUBSTITUTION:
+            return "Substitution"
+        case .DROP_OFF_22:
+            return "22 Drop Out"
+        case .RESTART_KICK_OFF:
+            return "Kick Off (Restart)"
+        case .LINE_OUT:
+            return "Lineout"
         }
     }
-    
+
     var resultingEvents: [RGBYEventType] {
         switch self {
-        case .MISSED_TACKLE, .LINE_BREAK, .CONVERSION, .KICK_FROM_PLAY, .DROP_GOAL, .KICK_AT_GOAL, .KICK_TO_TOUCH, .TAP, .POACH, .TACKLE, .PLAYER_IN_TOUCH, .HELD_UP:
-            return []
-        case .PENALTY: return [.SCRUM, .KICK_AT_GOAL, .KICK_TO_TOUCH, .TRY]
+        case .PENALTY:
+            return [.SCRUM, .KICK_AT_GOAL, .KICK_TO_TOUCH, .TRY]
         case .FOUL:
             return [.SCRUM, .TAP]
         case .SCRUM:
             return [.PENALTY, .FOUL]
         case .TRY:
             return [.CONVERSION]
+        case .CONVERSION:
+            return [.RESTART_KICK_OFF, .DROP_OFF_22]
+        default:
+            return []
         }
     }
 
     var hasPlayerAttribute: Bool {
         switch self {
-        case .MISSED_TACKLE, .LINE_BREAK, .FOUL, .PENALTY, .TRY, .CONVERSION, .KICK_FROM_PLAY:
-            return true
-        case .DROP_GOAL, .KICK_AT_GOAL, .KICK_TO_TOUCH, .TAP, .POACH, .TACKLE, .PLAYER_IN_TOUCH, .HELD_UP:
-            return true
         case .SCRUM:
             return false
+        default:
+            return true
         }
     }
-    
+
     var eventScoreValue: Int {
         switch self {
         case .TRY:
@@ -82,28 +91,15 @@ enum RGBYEventType {
             return 2
         case .KICK_AT_GOAL, .DROP_GOAL:
             return 3
-        case .MISSED_TACKLE, .LINE_BREAK, .FOUL, .PENALTY, .KICK_FROM_PLAY, .KICK_TO_TOUCH:
-            return 0
-        case .SCRUM, .TAP, .POACH, .TACKLE, .HELD_UP, .PLAYER_IN_TOUCH:
+        default:
             return 0
         }
     }
-    
+
     var eventIcon: UIImage {
-        switch self {
-        case .TRY, .CONVERSION:
-            return UIImage(named: "TryIcon")!
-        case .KICK_AT_GOAL:
-            return UIImage(named: "PenaltyIcon")!
-        case .DROP_GOAL:
-            return UIImage(named: "DropGoalIcon")!
-        case .MISSED_TACKLE, .LINE_BREAK, .FOUL, .PENALTY, .KICK_FROM_PLAY, .KICK_TO_TOUCH:
-            return UIImage(named: "Blah")!
-        case .SCRUM, .TAP, .POACH, .TACKLE, .PLAYER_IN_TOUCH, .HELD_UP:
-            return UIImage(named: "Blah")!
-        }
+        return UIImage(named: "EVT_\(self.rawValue)")!
     }
-    
+
     static var topLevelEvents: [RGBYEventType] {
         return [.PENALTY, .FOUL, .TRY, .KICK_FROM_PLAY, .DROP_GOAL, .POACH, .LINE_BREAK, .TACKLE]
     }

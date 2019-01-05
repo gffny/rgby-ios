@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import RealmSwift
 
-class RGBYInMatchViewController: UIViewController, RGBYMatchDetailDelegate, RGBYMatchDetailEventDelegate {
+class RGBYInMatchViewController: UIViewController, RGBYMatchDetailDelegate, RGBYMatchDetailEventDelegate, RGBYTeamViewlDelegate {
 
     public static var IDENTIFIER: String = "inMatchViewController"
 
@@ -121,6 +121,7 @@ class RGBYInMatchViewController: UIViewController, RGBYMatchDetailDelegate, RGBY
         teamView.frame = self.contentView.bounds
         teamView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         teamView.matchDaySquad = self.matchDetail.match.matchDaySquad
+        teamView.teamViewDelegate = self
         for view in self.contentView.subviews {
             view.removeFromSuperview()
         }
@@ -352,6 +353,16 @@ class RGBYInMatchViewController: UIViewController, RGBYMatchDetailDelegate, RGBY
 
     func matchEventAdded() {
         self.fieldView.updateEventArray(matchEventArray: self.matchDetail.matchEventArray)
+    }
+
+    func substitutePlayer(position: String, with: RGBYPlayer) {
+        try! Realm().write {
+             let subbedPlayer = self.matchDetail.match.matchDaySquad?.substitutePlayer(position: position, with: with)
+            self.matchDetail.appendMatchEvent(newEvent:
+                RGBYMatchEvent(eventPeriod: self.matchDetail.currentPeriod, periodTimeInSec: self.matchDetail.currentPeriodTimeInSec, eventType: .SUBSTITUTION, fieldLocation: CGPoint(x:0, y:0), subject: subbedPlayer, subjectPosition: nil, parentEvent: nil, isMyTeam: true, additionalIncidentType: "out"))
+            self.matchDetail.appendMatchEvent(newEvent:
+                RGBYMatchEvent(eventPeriod: self.matchDetail.currentPeriod, periodTimeInSec: self.matchDetail.currentPeriodTimeInSec, eventType: .SUBSTITUTION, fieldLocation: CGPoint(x:0, y:0), subject: with, subjectPosition: nil, parentEvent: nil, isMyTeam: true, additionalIncidentType: "in"))
+        }
     }
 
     // TOUCH INTERACTIONS

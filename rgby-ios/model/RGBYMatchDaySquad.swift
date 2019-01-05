@@ -55,6 +55,97 @@ import RealmSwift
         self.bloodBinList = bloodBinList
     }
 
+    func substitutePlayer(position: String, with: RGBYPlayer) -> RGBYPlayer? {
+
+        // remove the player from the substitute list
+        for (index, player) in self.subsituteList.enumerated() {
+            if player == with {
+                self.subsituteList.remove(at: index)
+            }
+        }
+
+        switch position {
+        case "1":
+            let subbedPlayer = self.looseHeadProp!
+            self.subbedPlayerList.append(subbedPlayer)
+            self.looseHeadProp = with
+            return subbedPlayer
+        case "2":
+            let subbedPlayer = self.hooker!
+            self.subbedPlayerList.append(subbedPlayer)
+            self.hooker = with
+            return subbedPlayer
+        case "3":
+            let subbedPlayer =  self.tightHeadProp!
+            self.subbedPlayerList.append(subbedPlayer)
+            self.tightHeadProp = with
+            return subbedPlayer
+        case "4":
+            let subbedPlayer = self.looseHeadSecondRow!
+            self.subbedPlayerList.append(subbedPlayer)
+            self.looseHeadSecondRow = with
+            return subbedPlayer
+        case "5":
+            let subbedPlayer = self.tightHeadSecondRow!
+            self.subbedPlayerList.append(subbedPlayer)
+            self.tightHeadSecondRow = with
+            return subbedPlayer
+        case "6":
+            let subbedPlayer = self.blindSideFlanker!
+            self.subbedPlayerList.append(subbedPlayer)
+            self.blindSideFlanker = with
+            return subbedPlayer
+        case "7":
+            let subbedPlayer = self.opensideFlanker!
+            self.subbedPlayerList.append(subbedPlayer)
+            self.opensideFlanker = with
+            return subbedPlayer
+        case "8":
+            let subbedPlayer = self.number8!
+            self.subbedPlayerList.append(subbedPlayer)
+            self.number8 = with
+            return subbedPlayer
+        case "9":
+            let subbedPlayer = self.scrumHalf!
+            self.subbedPlayerList.append(subbedPlayer)
+            self.scrumHalf = with
+            return subbedPlayer
+        case "10":
+            let subbedPlayer = self.outHalf!
+            self.subbedPlayerList.append(subbedPlayer)
+            self.outHalf = with
+            return subbedPlayer
+        case "11":
+            let subbedPlayer = self.leftWing!
+            self.subbedPlayerList.append(subbedPlayer)
+            self.leftWing = with
+            return subbedPlayer
+        case "12":
+            let subbedPlayer = self.insideCenter!
+            self.subbedPlayerList.append(subbedPlayer)
+            self.insideCenter = with
+            return subbedPlayer
+        case "13":
+            let subbedPlayer = self.outsideCenter!
+            self.subbedPlayerList.append(subbedPlayer)
+            self.outsideCenter = with
+            return subbedPlayer
+        case "14":
+            let subbedPlayer = self.rightWing!
+            self.subbedPlayerList.append(subbedPlayer)
+            self.rightWing = with
+            return subbedPlayer
+        case "15":
+            let subbedPlayer = self.fullback!
+            self.subbedPlayerList.append(subbedPlayer)
+            self.fullback = with
+            return subbedPlayer
+        default:
+            print("error, player subbed is not position 1-15")
+            return nil
+        }
+    }
+
     dynamic var listTeam: [RGBYPlayer] {
         get {
             return [

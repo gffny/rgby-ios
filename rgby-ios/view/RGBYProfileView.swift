@@ -20,6 +20,7 @@ class RGBYProfileView: UIControl {
     @IBOutlet var contentView: UIView!
 
     var player: RGBYPlayer?
+    var profilePosition: RGBYPlayerPosition?
 
     required init?(coder aDecoder: NSCoder) {
         print("RGBYProfileView:: init(coder)")
@@ -93,6 +94,7 @@ class RGBYProfileView: UIControl {
         self.setPlayerData(player: player)
         self.position.text = position.displayName
         self.positionNumber.text = "\(positionNumber)"
+        self.profilePosition = position
     }
 
     // for use with profiles of a specific position overriding number

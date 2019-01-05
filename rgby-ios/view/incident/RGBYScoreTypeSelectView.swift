@@ -73,3 +73,4 @@ extension RGBYScoreTypeSelectView {
         self.performAction()
     }
 }
+

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RGBYTeamView: UIView, UITableViewDataSource {
+class RGBYTeamView: UIControl, UITableViewDataSource {
 
     private var nibName = "RGBYTeamView"
     private var PROFILE_REUSE_ID = "PROFILE_REUSE_ID"
@@ -29,12 +29,20 @@ class RGBYTeamView: UIView, UITableViewDataSource {
     @IBOutlet weak var number13: RGBYProfileView!
     @IBOutlet weak var number14: RGBYProfileView!
     @IBOutlet weak var number15: RGBYProfileView!
+    @IBOutlet weak var teamView: UIView!
+    
+    // move related variables
+    var selectedView: RGBYProfileViewCell?
+    var movePointer: RGBYProfileView?
+    var profileArray: [RGBYProfileView] = []
 
     // substitute lists
     @IBOutlet weak var unused: UITableView!
     @IBOutlet weak var used: UITableView!
 
     @IBOutlet var contentView: UIView!
+
+    var teamViewDelegate: RGBYTeamViewlDelegate?
 
     var matchDaySquad: RGBYMatchDaySquad? {
         didSet {
@@ -71,14 +79,48 @@ class RGBYTeamView: UIView, UITableViewDataSource {
         self.contentView.frame = bounds
         self.contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(self.contentView)
+        self.profileArray = [self.number1, self.number2, self.number3, self.number4, self.number5, self.number6, self.number7, self.number8, self.number9, self.number10, self.number11, self.number12, self.number13, self.number14, self.number15]
         self.unused.dataSource = self
         self.unused.register(UINib.init(nibName: RGBYProfileViewCell.nibName, bundle: nil), forCellReuseIdentifier: PROFILE_REUSE_ID)
         self.used.dataSource = self
         self.used.register(UINib.init(nibName: RGBYProfileViewCell.nibName, bundle: nil), forCellReuseIdentifier: PROFILE_REUSE_ID)
     }
 
+    @objc func handleDrag(_ sender: UIPanGestureRecognizer) {
+        self.selectedView = sender.view! as? RGBYProfileViewCell
+        if sender.state == .began {
+            self.movePointer = RGBYProfileView(frame: (self.selectedView!.frame), isMovePointer: true)
+            self.movePointer!.setPlayerData(player: self.selectedView!.player!)
+            self.addSubview(self.movePointer!)
+        } else if sender.state == .changed {
+            let center = sender.location(in: self.contentView)
+            self.movePointer!.center = CGPoint(x: center.x, y: center.y)
+        } else if sender.state == .ended {
+            // find the destination position
+            for (_, profile) in self.profileArray.enumerated() {
+                // is the destination position in a profile frame
+                if self.teamView.convert(profile.frame, from:self.teamView).contains(sender.location(in: self.teamView)) {
+                    // call the delegate to sub the player
+                    self.teamViewDelegate?.substitutePlayer(position: profile.positionNumber.text!, with: selectedView!.player!)
+                    // set the new profile view
+                    profile.setPlayerData(player: selectedView!.player!)
+                    // disable and style the selected player
+                    self.selectedView?.disable()
+                }
+            }
+            // if the view is enabled then enable it
+            if (self.selectedView?.isUserInteractionEnabled)! {
+                self.selectedView?.enable()
+            }
+            // remove the move pointer
+            self.movePointer?.removeFromSuperview()
+            self.movePointer = nil
+            self.selectedView = nil
+        }
+    }
+
     func updateOnfieldView() {
-        self.number1.setPlayerData(player: self.matchDaySquad?.hooker ?? RGBYPlayer(), position: .LOOSE_HEAD_PROP)
+        self.number1.setPlayerData(player: self.matchDaySquad?.looseHeadProp ?? RGBYPlayer(), position: .LOOSE_HEAD_PROP)
         self.number2.setPlayerData(player: self.matchDaySquad?.hooker ?? RGBYPlayer(), position: .HOOKER)
         self.number3.setPlayerData(player: self.matchDaySquad?.tightHeadProp ?? RGBYPlayer(), position: .TIGHT_HEAD_PROP)
         self.number4.setPlayerData(player: self.matchDaySquad?.looseHeadSecondRow ?? RGBYPlayer(), position: .SECOND_ROW, positionNumber: 4)
@@ -108,6 +150,7 @@ class RGBYTeamView: UIView, UITableViewDataSource {
         if tableView == self.unused {
             let cell = self.unused.dequeueReusableCell(withIdentifier: PROFILE_REUSE_ID) as! RGBYProfileViewCell
             cell.player = self.matchDaySquad?.subsituteList[indexPath.row]
+            cell.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handleDrag)))
             return cell
         } else {
             let cell = self.used.dequeueReusableCell(withIdentifier: PROFILE_REUSE_ID) as! RGBYProfileViewCell
@@ -115,4 +158,8 @@ class RGBYTeamView: UIView, UITableViewDataSource {
             return cell
         }
     }
+}
+
+protocol RGBYTeamViewlDelegate : NSObjectProtocol {
+    func substitutePlayer(position: String, with: RGBYPlayer) -> Void
 }

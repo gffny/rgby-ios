@@ -51,6 +51,7 @@ class RGBYFieldView: UIControl, UITableViewDataSource {
         self.addSubview(contentView)
         self.incidentTable.dataSource = self
         self.incidentTable.register(UINib.init(nibName: RGBYIncidentTableCell.nibName, bundle: nil), forCellReuseIdentifier: INCIDENT_CELL_REUSE_ID)
+        self.incidentTable.reloadData()
     }
 
     func updateEventArray(matchEventArray: [RGBYMatchEvent]) {
