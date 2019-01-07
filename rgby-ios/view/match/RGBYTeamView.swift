@@ -42,7 +42,7 @@ class RGBYTeamView: UIControl, UITableViewDataSource {
 
     @IBOutlet var contentView: UIView!
 
-    var teamViewDelegate: RGBYTeamViewlDelegate?
+    var teamViewDelegate: RGBYTeamViewDelegate?
 
     var matchDaySquad: RGBYMatchDaySquad? {
         didSet {
@@ -160,6 +160,6 @@ class RGBYTeamView: UIControl, UITableViewDataSource {
     }
 }
 
-protocol RGBYTeamViewlDelegate : NSObjectProtocol {
+protocol RGBYTeamViewDelegate : NSObjectProtocol {
     func substitutePlayer(position: String, with: RGBYPlayer) -> Void
 }
