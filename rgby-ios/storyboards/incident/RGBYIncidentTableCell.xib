@@ -19,32 +19,32 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="team" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oQo-Az-VsL" userLabel="teamLabel">
-                        <rect key="frame" x="0.0" y="0.0" width="115" height="26"/>
+                        <rect key="frame" x="0.0" y="0.0" width="125" height="26"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="30"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l2e-fd-7qk" userLabel="teamSubLabel">
-                        <rect key="frame" x="0.0" y="26" width="115" height="17.5"/>
+                        <rect key="frame" x="0.0" y="26" width="125" height="17.5"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="23"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wuB-L4-WoF" userLabel="incidentIcon">
-                        <rect key="frame" x="125" y="-13.5" width="70" height="70.5"/>
+                        <rect key="frame" x="135" y="-3.5" width="50" height="50.5"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="70" id="40q-nY-4bI"/>
-                            <constraint firstAttribute="height" constant="70" id="bVv-md-Zs6"/>
+                            <constraint firstAttribute="width" constant="50" id="40q-nY-4bI"/>
+                            <constraint firstAttribute="height" constant="50" id="bVv-md-Zs6"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="opposition" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bpj-VO-upB" userLabel="oppositionLabel">
-                        <rect key="frame" x="205" y="0.0" width="115" height="26"/>
+                        <rect key="frame" x="195" y="0.0" width="125" height="26"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="30"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UI3-fo-22Q" userLabel="oppositionSubLabel">
-                        <rect key="frame" x="205" y="26" width="115" height="17.5"/>
+                        <rect key="frame" x="195" y="26" width="125" height="17.5"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="23"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
