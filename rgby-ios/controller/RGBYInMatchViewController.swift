@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import RealmSwift
 
-class RGBYInMatchViewController: UIViewController, RGBYMatchDetailDelegate, RGBYMatchDetailEventDelegate, RGBYTeamViewlDelegate {
+class RGBYInMatchViewController: UIViewController, RGBYMatchDetailDelegate, RGBYMatchDetailEventDelegate, RGBYTeamViewDelegate {
 
     public static var IDENTIFIER: String = "inMatchViewController"
 
