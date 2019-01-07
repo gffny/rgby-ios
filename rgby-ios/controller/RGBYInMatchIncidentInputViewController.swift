@@ -31,7 +31,8 @@ class RGBYInMatchIncidentInputViewController: UIViewController  {
 
     func setData(matchDetail: RGBYMatchDetail, incidentFieldLocation: CGPoint) {
         self.matchDetail = matchDetail
-        self.matchEvent = RGBYMatchEvent(eventPeriod: matchDetail.currentPeriod, periodTimeInSec: matchDetail.currentPeriodTimeInSec, fieldLocation: incidentFieldLocation)
+        let matchEvent = RGBYMatchEvent(eventPeriod: matchDetail.currentPeriod, periodTimeInSec: matchDetail.currentPeriodTimeInSec, fieldLocation: incidentFieldLocation)
+        self.matchEvent = matchEvent
     }
 
     func showIncidentTypeSelectView() {
@@ -110,7 +111,6 @@ class RGBYInMatchIncidentInputViewController: UIViewController  {
         // add the player select view
         let playerSelectView = RGBYPlayerSelectView(frame: containerView.frame)
         if self.matchEvent.isMyTeam! {
-            
             playerSelectView.setTeam(squad: (self.matchDetail?.match.matchDaySquad)!)
         }
         playerSelectView.frame = containerView.bounds
@@ -207,6 +207,7 @@ class RGBYInMatchIncidentInputViewController: UIViewController  {
         print("RGBYInMatchIncidentViewController:: handlePlayerSelect")
         self.matchEvent.subject = sender.selectedPlayer
         self.matchEvent.subjectPosition = sender.selectedPlayerPosition
+        RGBYMatchEvent.create(event: matchEvent)
         self.matchDetail?.appendMatchEvent(newEvent: matchEvent)
         self.dismiss(animated: true)
     }

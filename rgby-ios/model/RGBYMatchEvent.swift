@@ -8,35 +8,72 @@
 
 import Foundation
 import CoreGraphics
+import RealmSwift
 
-class RGBYMatchEvent {
-
-    var team: RGBYMatchDaySquad?
-    var subject: RGBYPlayer?
-    var subjectPosition: RGBYPlayerPosition?
-    var eventType: RGBYEventType?
-    var parentEvent: RGBYMatchEvent?
-    var eventPeriod: Int
-    var periodTimeInSec: Int
-    var fieldLocation: CGPoint?
-    var isMyTeam: Bool?
-    var additionalIncidentType: String?
-
-    init(eventPeriod: Int, periodTimeInSec: Int, fieldLocation: CGPoint) {
-        self.eventPeriod = eventPeriod
-        self.periodTimeInSec = periodTimeInSec
-        self.fieldLocation = fieldLocation
+@objcMembers class RGBYMatchEvent: Object {
+    enum Property: String {
+        case id, team, subject, subjectPosition, eventTypeRaw, parentEvent, eventPeriod, periodTimeInSec, fieldLocation, isMyTeam, additionalIncidentType, eventType
     }
 
-    init(eventPeriod: Int, periodTimeInSec: Int, eventType: RGBYEventType, fieldLocation: CGPoint, subject: RGBYPlayer?, subjectPosition: RGBYPlayerPosition?, parentEvent: RGBYMatchEvent?, isMyTeam:Bool?, additionalIncidentType: String?) {
+    dynamic var id = UUID().uuidString
+    dynamic var team: RGBYMatchDaySquad?
+    dynamic var subject: RGBYPlayer?
+    dynamic var subjectPosition: RGBYPlayerPosition?
+    dynamic var eventTypeRaw = RGBYEventType.LINE_OUT.rawValue
+    dynamic var parentEvent: RGBYMatchEvent?
+    dynamic var eventPeriod: Int = 0
+    dynamic var periodTimeInSec: Int = 0
+    dynamic var fieldLocation: CGPoint? = CGPoint(x: 0, y: 0)
+    dynamic var isMyTeam: Bool? = false
+    dynamic var additionalIncidentType: String? = ""
+
+    var eventType: RGBYEventType? {
+        get {
+            return RGBYEventType(rawValue: eventTypeRaw)!
+        } set {
+            self.eventTypeRaw = newValue!.rawValue
+        }
+    }
+
+    override static func primaryKey() -> String? {
+        return RGBYMatchEvent.Property.id.rawValue
+    }
+
+    convenience init (_ team: RGBYMatchDaySquad, _ subject: RGBYPlayer, _ subjectPosition: RGBYPlayerPosition, _ eventType: RGBYEventType, _ parentEvent: RGBYMatchEvent, _ eventPeriod: Int, _ periodTimeInSec: Int, _ fieldLocation: CGPoint, _ isMyTeam: Bool, _ additionalIncidentType: String) {
+        self.init()
+        self.team = team
         self.subject = subject
         self.subjectPosition = subjectPosition
         self.eventType = eventType
+        self.parentEvent = parentEvent
         self.eventPeriod = eventPeriod
         self.periodTimeInSec = periodTimeInSec
         self.fieldLocation = fieldLocation
         self.isMyTeam = isMyTeam
         self.additionalIncidentType = additionalIncidentType
+    }
+
+    convenience init(eventPeriod: Int, periodTimeInSec: Int, eventType: RGBYEventType, fieldLocation: CGPoint, subject: RGBYPlayer?, subjectPosition: RGBYPlayerPosition?, parentEvent: RGBYMatchEvent?, isMyTeam:Bool?, additionalIncidentType: String?) {
+        self.init()
+        self.subject = subject
+        self.subjectPosition = subjectPosition
+        self.eventType = eventType
+        if parentEvent != nil {
+            self.parentEvent = parentEvent!
+        }
+        self.eventPeriod = eventPeriod
+        self.periodTimeInSec = periodTimeInSec
+        self.fieldLocation = fieldLocation
+        if additionalIncidentType != nil {
+            self.additionalIncidentType = additionalIncidentType!
+        }
+    }
+
+    convenience init(eventPeriod: Int, periodTimeInSec: Int, fieldLocation: CGPoint) {
+        self.init()
+        self.eventPeriod = eventPeriod
+        self.periodTimeInSec = periodTimeInSec
+        self.fieldLocation = fieldLocation
     }
 
     func eventTableSummary() -> String {
@@ -73,6 +110,34 @@ class RGBYMatchEvent {
                 return String("\(80+((eventPeriod-2)*15))+\(periodTime-15)'")
             }
             return String("\(80+((eventPeriod-2)*15)+periodTime)'")
+        }
+    }
+}
+
+extension RGBYMatchEvent {
+    
+    static func get(id: String, in realm: Realm = try! Realm()) -> RGBYMatchEvent? {
+        return realm.object(ofType: RGBYMatchEvent.self, forPrimaryKey: id)
+    }
+    
+    static func all(in realm: Realm = try! Realm()) -> Results<RGBYMatchEvent> {
+        return realm.objects(RGBYMatchEvent.self)
+            .sorted(byKeyPath: RGBYMatchEvent.Property.id.rawValue)
+    }
+    
+    @discardableResult
+    static func create(event: RGBYMatchEvent, in realm: Realm = try! Realm())
+        -> RGBYMatchEvent {
+            try! realm.write {
+                realm.add(event, update: true)
+            }
+            return event
+    }
+    
+    func delete() {
+        guard let realm = realm else { return }
+        try! realm.write {
+            realm.delete(self)
         }
     }
 }

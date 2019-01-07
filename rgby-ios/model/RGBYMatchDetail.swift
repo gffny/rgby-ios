@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreGraphics
+import RealmSwift
 
 class RGBYMatchDetail: NSObject {
 
@@ -37,8 +38,20 @@ class RGBYMatchDetail: NSObject {
         self.match = RGBYMatch()
     }
 
-    init(match: RGBYMatch) {
+    convenience init(match: RGBYMatch) {
+        self.init()
         self.match = match
+    }
+    
+    convenience init(do: RGBYMatchDetailDO) {
+        self.init()
+    }
+
+    func initDatabaseObject() -> RGBYMatchDetailDO {
+        let matchEventList = List<RGBYMatchEvent>()
+        matchEventList.append(objectsIn: self.matchEventArray)
+        let matchDetailDO = RGBYMatchDetailDO(self.match, self.currentPeriod, self.currentPeriodTimeInSec, self.hasMatchEnded, self.teamScore, self.oppositionScore, matchEventList)
+        return matchDetailDO
     }
 
     var teamScore: Int {
@@ -72,6 +85,7 @@ class RGBYMatchDetail: NSObject {
                 self._oppositionScore += (newEvent.eventType?.eventScoreValue)!
             }
         }
+        RGBYMatchDetailDO.create(matchDetailDO: self.initDatabaseObject())
         NotificationCenter.default.post(name: .matchDetailDataUpdateNotification, object: nil)
         self.matchDetailDelegate?.matchScoreUpdated()
         self.matchDetailEventDelegate?.matchEventAdded()
@@ -141,6 +155,81 @@ class RGBYMatchDetail: NSObject {
         }
         set {
             self._currentPeriodTimeInSec = newValue
+        }
+    }
+}
+
+@objcMembers class RGBYMatchDetailDO: Object {
+    enum Property: String {
+        case id, match, currentPeriod, currentPeriodTimeInSec, hasMatchEnded, teamScore, oppositionScore, matchEventArray
+    }
+
+    dynamic var id = UUID().uuidString
+    dynamic var match: RGBYMatch? = RGBYMatch()
+    
+    // timing function variables
+    dynamic var currentPeriod: Int = 0
+    dynamic var currentPeriodTimeInSec: Int = 0
+    dynamic var hasMatchEnded: Bool = false
+    
+    // scoring function variables
+    dynamic var teamScore: Int = 0
+    dynamic var oppositionScore: Int = 0
+    
+    // match event function variables
+    dynamic var matchEventArray = List<RGBYMatchEvent>()
+    
+    override static func primaryKey() -> String? {
+        return RGBYMatchDetailDO.Property.id.rawValue
+    }
+
+    convenience init(_ match: RGBYMatch, _ currentPeriod: Int, _ currentPeriodTimeInSec: Int, _ hasMatchEnded: Bool, _ teamScore: Int, _ oppositionScore: Int, _ matchEventArray: List<RGBYMatchEvent>) {
+        self.init()
+        self.match = match
+        self.currentPeriod = currentPeriod
+        self.currentPeriodTimeInSec = currentPeriodTimeInSec
+        self.hasMatchEnded = hasMatchEnded
+        self.teamScore = teamScore
+        self.oppositionScore = oppositionScore
+        self.matchEventArray = matchEventArray
+    }
+
+    convenience init(_ id: String, _ match: RGBYMatch, _ currentPeriod: Int, _ currentPeriodTimeInSec: Int, _ hasMatchEnded: Bool, _ teamScore: Int, _ oppositionScore: Int, _ matchEventArray: List<RGBYMatchEvent>) {
+        self.init()
+        self.id = id
+        self.match = match
+        self.currentPeriod = currentPeriod
+        self.currentPeriodTimeInSec = currentPeriodTimeInSec
+        self.hasMatchEnded = hasMatchEnded
+        self.teamScore = teamScore
+        self.oppositionScore = oppositionScore
+        self.matchEventArray = matchEventArray
+    }
+}
+
+extension RGBYMatchDetailDO {
+    
+    static func get(id: String, in realm: Realm = try! Realm()) -> RGBYMatchDetailDO? {
+        return realm.object(ofType: RGBYMatchDetailDO.self, forPrimaryKey: id)
+    }
+    
+    static func getActiveDetail(in realm: Realm = try! Realm()) -> RGBYMatchDetailDO? {
+        return realm.objects(RGBYMatchDetailDO.self).filter("hasMatchEnded = false").first
+    }
+    
+    @discardableResult
+    static func create(matchDetailDO: RGBYMatchDetailDO, in realm: Realm = try! Realm())
+        -> RGBYMatchDetailDO {
+            try! realm.write {
+                realm.add(matchDetailDO, update: true)
+            }
+            return matchDetailDO
+    }
+    
+    func delete() {
+        guard let realm = realm else { return }
+        try! realm.write {
+            realm.delete(self)
         }
     }
 }
