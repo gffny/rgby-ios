@@ -64,11 +64,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("iPad is offline")
         })
         
-        if let matchDetail = RGBYMatchDetailDO.getActiveDetail() {
+        if let matchDetailDO = RGBYMatchDetailDO.getActiveDetail() {
             print("there's an active detail")
             // TODO need to figure out how we make the correct view open up?
             // Do we prompt the user to go to the active match screen?
             // Do we jump directly to the active match screen?
+            let matchDetail = RGBYMatchDetail(mddo: matchDetailDO)
+            
         }
         self.configureStyle()
         return true

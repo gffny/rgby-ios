@@ -43,8 +43,16 @@ class RGBYMatchDetail: NSObject {
         self.match = match
     }
     
-    convenience init(do: RGBYMatchDetailDO) {
+    convenience init(mddo: RGBYMatchDetailDO) {
         self.init()
+        self._currentPeriod = mddo.currentPeriod
+        self._currentPeriodTimeInSec = mddo.currentPeriodTimeInSec
+        self._teamScore = mddo.teamScore
+        self._oppositionScore = mddo.oppositionScore
+        self.hasMatchEnded = mddo.hasMatchEnded
+        for (_ , event) in mddo.matchEventArray.enumerated() {
+            self._matchEventArray.append(event)
+        }
     }
 
     func initDatabaseObject() -> RGBYMatchDetailDO {
